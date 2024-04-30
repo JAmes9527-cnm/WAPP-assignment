@@ -47,7 +47,7 @@
             </a>
             <div>
                 <h4>Investing 101</h4>
-                <p>Learn the basics of investing and how to start growing your wealth.</p>
+                <p>asdfsadff.</p>
             </div>
         </div>
         <div class="course">
