@@ -1,0 +1,94 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #005691;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+    header .logo h1 {
+        margin: 0;
+    }
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+    nav ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+.login-btn, .signup-btn {
+    padding: 5px 10px 0px 10px;
+    background: #f8c146;
+    border: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.hero {
+    background: #0077cc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.courses-highlight {
+    background: white;
+    padding: 20px;
+}
+
+    .courses-highlight .course {
+        background: #eeeeee;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+        .courses-highlight .course img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+        }
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.cta-btn {
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

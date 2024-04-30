@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34601.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAPP assignment", "WebApplication2\WAPP assignment.csproj", "{626380F9-FC37-4A95-A35B-E7A6D5A65C60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{626380F9-FC37-4A95-A35B-E7A6D5A65C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626380F9-FC37-4A95-A35B-E7A6D5A65C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626380F9-FC37-4A95-A35B-E7A6D5A65C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626380F9-FC37-4A95-A35B-E7A6D5A65C60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5942C78E-527B-49B8-B01E-CAAC13701E47}
+	EndGlobalSection
+EndGlobal
