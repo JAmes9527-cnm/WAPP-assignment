@@ -13,18 +13,7 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-                if (HttpContext.Current.Session["first_name"] != null)
-                {
-                    lblFirstName.Text = HttpContext.Current.Session["first_name"].ToString();
-                    loginPlaceHolder.Visible = false; // Hide login buttons
-                    logoutPlaceHolder.Visible = true; // Show logout button
-                }
-                else
-                {
-                    loginPlaceHolder.Visible = true; // Show login buttons
-                    logoutPlaceHolder.Visible = false; // Hide logout button
-                }
-            }
+           
         }
     }
 }

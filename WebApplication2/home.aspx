@@ -29,10 +29,6 @@
             <button class="login-btn">Login</button>
             <button class="signup-btn">Sign Up</button>
             </asp:PlaceHolder>
-            <asp:PlaceHolder ID =" logoutPlaceHolder" runat="server">
-                Welcome <asp:Literal ID="lblFirstName" runat="server"></asp:Literal>
-                <button class="signup-btn">Log Out</button>
-            </asp:PlaceHolder>
         </div>
         
     </header>
