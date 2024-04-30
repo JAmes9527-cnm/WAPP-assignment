@@ -76,6 +76,7 @@
     <Content Include="forum.aspx" />
     <Content Include="forum.css" />
     <Content Include="home.aspx" />
+    <Content Include="img\logo.png" />
     <Content Include="login.aspx" />
     <Content Include="register.aspx" />
     <Content Include="styles.css" />

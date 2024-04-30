@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo">
-            <h1>Smart Money Mastery</h1>
+            <img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" />
         </div>
         <nav>
             <ul>
