@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" />
+            <a href="home.aspx"><img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" /></a>
         </div>
         <nav>
             <ul>
@@ -22,12 +22,23 @@
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
+                <li><div class="dropdown">
+                    <button id="More_btn">More</button>
+                    <div class="dropdown_content">
+                        <a href="video.aspx">Video</a>
+                        <a href="calculator.aspx">Calculator</a>
+                    </div>
+                    </div>
+
+                </li>
             </ul>
         </nav>
         <div class="button-container">
             <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
-            <button class="login-btn">Login</button>
-            <button class="signup-btn">Sign Up</button>
+                <asp:Panel ID="loginPanel" runat="server">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign Up</button>
+                </asp:Panel>
             </asp:PlaceHolder>
         </div>
         

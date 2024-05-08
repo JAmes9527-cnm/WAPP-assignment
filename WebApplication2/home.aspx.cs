@@ -13,9 +13,18 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-
+                if (Session["userName"] != null)
+                {
+                    String welcomeText = "Welcome, " + Session["firstName"];
+                    LiteralControl welcomeControl = new LiteralControl(welcomeText);
+                    loginPlaceHolder.Controls.Add(welcomeControl);
+                    loginPanel.Visible = false;
+                }
             }
-           
+            else
+            {
+                loginPanel.Visible = true;
+            }
         }
     }
 }

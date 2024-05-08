@@ -26,23 +26,27 @@ namespace WebApplication2
 
             if (count > 0)
             {
-                SqlCommand cmdType = new SqlCommand("select fname, usertype from userTable where username = '" + username.Text + "'", con);
+                SqlCommand cmdType = new SqlCommand("select fname, usertype, UserID from userTable where username = '" + username.Text + "'", con);
                 SqlDataReader dr = cmdType.ExecuteReader();
 
                 string type = "";
                 string name = "";
+                string UserID = "";
 
                 while (dr.Read())
                 {
                     type = dr["usertype"].ToString().Trim();
                     name = dr["fname"].ToString().Trim();
+                    UserID = dr["UserID"].ToString().Trim();
                 }
                 Session["firstName"] = name;
+                Session["userName"] = username.Text;
+                Session["userID"] = UserID;
 
                 if (type == "admin")
                     Response.Redirect("adminDashboard.aspx");
                 else if (type == "member")
-                    Response.Redirect("memberDashboard.aspx");
+                    Response.Redirect("home.aspx");
             }
             else
             {
@@ -53,6 +57,11 @@ namespace WebApplication2
             }
 
             con.Close();
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("register.aspx");
         }
     }
 }

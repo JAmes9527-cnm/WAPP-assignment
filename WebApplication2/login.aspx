@@ -81,6 +81,9 @@
             </table>
         </div>
         <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" />
+    &nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label3" runat="server" Text="Not yet registered? "></asp:Label>
+        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Register here</asp:LinkButton>
     </form>
 </body>
 </html>
