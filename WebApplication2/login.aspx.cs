@@ -47,6 +47,8 @@ namespace WebApplication2
                     Response.Redirect("adminDashboard.aspx");
                 else if (type == "member")
                     Response.Redirect("home.aspx");
+                else if (type=="tutor")
+                    Response.Redirect("tutorDashboard.aspx");
             }
             else
             {

@@ -141,7 +141,10 @@
                         <asp:Label ID="errMsg" runat="server" Text="[errMsg]" Visible="False"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="usertype" runat="server" Text="admin" Visible="False"></asp:Label>
+                        <asp:DropDownList ID="usertype" runat="server">
+                            <asp:ListItem>member</asp:ListItem>
+                            <asp:ListItem>tutor</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
             </table>
@@ -152,5 +155,7 @@
         </div>
         
     </form>
+    <p>
+        &nbsp;</p>
 </body>
 </html>

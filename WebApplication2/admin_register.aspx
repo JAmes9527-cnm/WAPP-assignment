@@ -141,7 +141,7 @@
                         <asp:Label ID="errMsg" runat="server" Text="[errMsg]" Visible="False"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="usertype" runat="server" Text="member" Visible="False"></asp:Label>
+                        <asp:Label ID="usertype" runat="server" Text="admin" Visible="False"></asp:Label>
                     </td>
                 </tr>
             </table>
