@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewPosts.aspx.cs" Inherits="WebApplication2.ViewPosts" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManagePosts.aspx.cs" Inherits="WebApplication2.ManagePosts" %>
 
 <!DOCTYPE html>
 

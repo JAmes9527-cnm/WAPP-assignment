@@ -119,7 +119,8 @@ namespace WebApplication2
                 }
 
                 // Redirect the user to the same page after posting the topic
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.Url.AbsoluteUri, false); // Redirect to the same page
+                Context.ApplicationInstance.CompleteRequest(); // End the response without further processing
             }
 
             else

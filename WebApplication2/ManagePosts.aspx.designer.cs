@@ -11,7 +11,7 @@ namespace WebApplication2
 {
 
 
-    public partial class ViewPosts
+    public partial class ManagePosts
     {
 
         /// <summary>

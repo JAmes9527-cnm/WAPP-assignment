@@ -16,12 +16,12 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="forum.html">Forum</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="index.aspx">Home</a></li>
+                <li><a href="courses.aspx">Courses</a></li>
+                <li><a href="forum.aspx">Forum</a></li>
+                <li><a href="resources.aspx">Resources</a></li>
+                <li><a href="about.aspx">About</a></li>
+                <li><a href="contact.aspx">Contact Us</a></li>
                 <li><div class="dropdown">
                     <button id="More_btn">More</button>
                     <div class="dropdown_content">

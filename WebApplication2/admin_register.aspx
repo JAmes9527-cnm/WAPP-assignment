@@ -1,4 +1,4 @@
-﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebApplication2.register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_register.aspx.cs" Inherits="WebApplication2.admin_register" %>
 
 <!DOCTYPE html>
 
@@ -141,7 +141,7 @@
                         <asp:Label ID="errMsg" runat="server" Text="[errMsg]" Visible="False"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="usertype" runat="server" Text="admin" Visible="False"></asp:Label>
+                        <asp:Label ID="usertype" runat="server" Text="member" Visible="False"></asp:Label>
                     </td>
                 </tr>
             </table>
