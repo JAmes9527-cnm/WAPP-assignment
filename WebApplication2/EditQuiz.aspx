@@ -245,13 +245,12 @@
                 </td>
                 <td class="auto-style6">:</td>
                 <td class="auto-style11">
-                    <asp:TextBox ID="N" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:Label ID="N" runat="server"></asp:Label>
 &nbsp;
                 </td>
                 <td class="auto-style15">
-                    <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="No" DataValueField="No" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
                 </td>
             </tr>
             <tr>

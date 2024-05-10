@@ -28,15 +28,14 @@ namespace WebApplication2
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 con.Open();
 
-                string query = "select count(*)from Quiz where No = '" + N.Text + "'";
+                string query = "select count(*)from Quiz where Question = '" + Question.Text + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
                 int check = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (check > 0)
                 {
-                    string updateQuery = "UPDATE Quiz SET Question = @Question, Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE No = @No";
+                    string updateQuery = "UPDATE Quiz SET Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE Question = @Question";
                     SqlCommand updateCmd = new SqlCommand(updateQuery, con);
-                    updateCmd.Parameters.AddWithValue("@No", N.Text);
                     updateCmd.Parameters.AddWithValue("@Question", Question.Text);
                     updateCmd.Parameters.AddWithValue("@Choice1", Choice1.Text);
                     updateCmd.Parameters.AddWithValue("@Choice2", Choice2.Text);
@@ -47,9 +46,8 @@ namespace WebApplication2
                 }
                 else
                 {
-                    string quiz = "INSERT INTO Quiz(No,Question,Choice1,Choice2,Choice3,Choice4,Answer) VALUES (@No,@Question,@Choice1,@Choice2,@Choice3,@Choice4,@Answer)";
+                    string quiz = "INSERT INTO Quiz(Question,Choice1,Choice2,Choice3,Choice4,Answer) VALUES (@Question,@Choice1,@Choice2,@Choice3,@Choice4,@Answer)";
                     SqlCommand cmd1 = new SqlCommand(quiz, con);
-                    cmd1.Parameters.AddWithValue("@No", N.Text);
                     cmd1.Parameters.AddWithValue("@Question", Question.Text);
                     cmd1.Parameters.AddWithValue("@Choice1", Choice1.Text);
                     cmd1.Parameters.AddWithValue("@Choice2", Choice2.Text);
@@ -88,10 +86,11 @@ namespace WebApplication2
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
 
-            SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where No = '" + Number.Text + "'", con);
+            SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where Question = '" + Number.Text + "'", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
+            N.Text = dt.Rows[0][0].ToString();
             Question.Text = dt.Rows[0][1].ToString();
             Choice1.Text = dt.Rows[0][2].ToString();
             Choice2.Text = dt.Rows[0][3].ToString();

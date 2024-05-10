@@ -84,7 +84,7 @@ namespace WebApplication2
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox N;
+        protected global::System.Web.UI.WebControls.Label N;
 
         /// <summary>
         /// Number control.
@@ -94,15 +94,6 @@ namespace WebApplication2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Number;
-
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
         /// Label2 control.
