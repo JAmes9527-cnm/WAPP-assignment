@@ -90,6 +90,7 @@
     <Content Include="courses.aspx" />
     <Content Include="course1.aspx" />
     <Content Include="EditQuiz.aspx" />
+    <Content Include="Quiz1Page.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adminDashboard.aspx.cs">
@@ -198,6 +199,13 @@
     </Compile>
     <Compile Include="EditQuiz.aspx.designer.cs">
       <DependentUpon>EditQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quiz1Page.aspx.cs">
+      <DependentUpon>Quiz1Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quiz1Page.aspx.designer.cs">
+      <DependentUpon>Quiz1Page.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
