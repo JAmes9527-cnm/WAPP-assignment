@@ -1,10 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditQuiz.aspx.cs" Inherits="WebApplication2.WebForm3" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="WebApplication2.manageUser" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
     <style type="text/css">
 
 
@@ -140,7 +139,7 @@
             margin-bottom: 26px;
         }
         .auto-style2 {
-            width: 200px;
+            width: 230px;
         }
         .auto-style3 {
             text-align: center;
@@ -149,7 +148,7 @@
             width: 109px;
         }
         .auto-style5 {
-            width: 200px;
+            width: 230px;
             height: 36px;
         }
         .auto-style6 {
@@ -157,7 +156,7 @@
             height: 36px;
         }
         .auto-style8 {
-            width: 200px;
+            width: 230px;
             height: 34px;
         }
         .auto-style9 {
@@ -182,6 +181,11 @@
         .auto-style17 {
             height: 36px;
         }
+
+        .cropped-image {
+    object-fit: cover; /* Cover the entire container, cropping the image if necessary */
+    object-position: center; /* Center the image within the container */
+}
 
     </style>
 </head>
@@ -228,90 +232,90 @@
         <table class="auto-style1">
             <tr>
                 <td class="auto-style3" colspan="4">
-                    <asp:Label ID="Label1" runat="server" Text="Edit Quiz 1"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Edit User"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style16" colspan="3">
-                    <asp:Label ID="Label10" runat="server" Text="Add New Question"></asp:Label>
+                    <asp:Image ID="Image1" runat="server" CssClass="cropped-image" Height="191px" Width="219px" ImageUrl="your_image_url.jpg" />
+
                 </td>
                 <td class="auto-style17">
-                    <asp:Label ID="Label11" runat="server" Text="Edit Question"></asp:Label>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    <br />
+                    <asp:Label ID="ImgUrl" runat="server" Visible="False"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style5">
-                    <asp:Label ID="Label3" runat="server" Text="No"></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text="UserID"></asp:Label>
                 </td>
                 <td class="auto-style6">:</td>
                 <td class="auto-style11">
-                    <asp:Label ID="N" runat="server"></asp:Label>
+                    <asp:Label ID="id" runat="server"></asp:Label>
 &nbsp;
                 </td>
                 <td class="auto-style15">
-                    <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True" Width="596px">
-                    </asp:DropDownList>
+                    <asp:Label ID="Label9" runat="server" Text="Label" Visible="False"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:Label ID="Label2" runat="server" Text="Question"></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="First Name"></asp:Label>
                 </td>
                 <td class="auto-style9">:</td>
                 <td class="auto-style12" colspan="2">
-                    <asp:TextBox ID="Question" runat="server" Width="800px" OnTextChanged="Question_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="fname" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label7" runat="server" Text="Choice1"></asp:Label>
+                    <asp:Label ID="Label7" runat="server" Text="Last Name"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice1" runat="server" Width="799px"></asp:TextBox>
+                    <asp:TextBox ID="lname" runat="server" Width="799px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label4" runat="server" Text="Choice2"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="Gender"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice2" runat="server" Width="800px"></asp:TextBox>
+                    <asp:Label ID="gender" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="Choice3"></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="Email"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice3" runat="server" Width="800px" OnTextChanged="TextBox5_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="email" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label6" runat="server" Text="Choice4"></asp:Label>
+                    <asp:Label ID="Label6" runat="server" Text="Username"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice4" runat="server" Width="800px"></asp:TextBox>
+                    <asp:TextBox ID="username" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label8" runat="server" Text="Answer"></asp:Label>
+                    <asp:Label ID="Label8" runat="server" Text="Password"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Answer" runat="server" Width="800px"></asp:TextBox>
+                    <asp:TextBox ID="password" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add/Edit" />
-        <asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click" />
-        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
+        &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Edit" />
     </form>
     </body>
 </html>
