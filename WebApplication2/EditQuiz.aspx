@@ -251,6 +251,7 @@
                 <td class="auto-style15">
                     <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
                     </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
                 </td>
             </tr>
             <tr>
@@ -259,7 +260,7 @@
                 </td>
                 <td class="auto-style9">:</td>
                 <td class="auto-style12" colspan="2">
-                    <asp:TextBox ID="Question" runat="server" Width="800px" OnTextChanged="Question_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="Question" runat="server" Width="800px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -268,7 +269,7 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice1" runat="server" Width="799px"></asp:TextBox>
+                    <asp:TextBox ID="Choice1" runat="server" Width="799px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -310,6 +311,7 @@
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add/Edit" />
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Remove" />
         <asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
     </form>

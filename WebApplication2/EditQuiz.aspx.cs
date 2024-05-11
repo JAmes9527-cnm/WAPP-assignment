@@ -14,9 +14,42 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                con.Open();
 
+                SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
+                da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                con.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    N.Text = dt.Rows[0][0].ToString();
+                    Question.Text = dt.Rows[0][1].ToString();
+                    Choice1.Text = dt.Rows[0][2].ToString();
+                    Choice2.Text = dt.Rows[0][3].ToString();
+                    Choice3.Text = dt.Rows[0][4].ToString();
+                    Choice4.Text = dt.Rows[0][5].ToString();
+                    Answer.Text = dt.Rows[0][6].ToString();
+                }
+                else
+                {
+                    // Handle the case where no data is found for the given quiz ID
+                    // You might want to clear the textboxes or show a message indicating no data found.
+                }
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = "Error: " + ex.Message;
+            }
         }
-        protected void TextBox5_TextChanged(object sender, EventArgs e)
+
+            protected void TextBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -76,10 +109,6 @@ namespace WebApplication2
 
         }
 
-        protected void Question_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -90,6 +119,8 @@ namespace WebApplication2
             DataTable dt = new DataTable();
             da.Fill(dt);
 
+            con.Close();
+
             N.Text = dt.Rows[0][0].ToString();
             Question.Text = dt.Rows[0][1].ToString();
             Choice1.Text = dt.Rows[0][2].ToString();
@@ -98,5 +129,19 @@ namespace WebApplication2
             Choice4.Text = dt.Rows[0][5].ToString();
             Answer.Text = dt.Rows[0][6].ToString();
         }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+
+            string query = "delete from Quiz where QuizID = '" + N.Text + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+            Response.Redirect(Request.RawUrl);
+        }
+
     }
 }
