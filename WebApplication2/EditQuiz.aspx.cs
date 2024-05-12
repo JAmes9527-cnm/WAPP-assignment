@@ -14,38 +14,35 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-                con.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
-                da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
-
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                con.Close();
-
-                if (dt.Rows.Count > 0)
+                try
                 {
-                    N.Text = dt.Rows[0][0].ToString();
-                    Question.Text = dt.Rows[0][1].ToString();
-                    Choice1.Text = dt.Rows[0][2].ToString();
-                    Choice2.Text = dt.Rows[0][3].ToString();
-                    Choice3.Text = dt.Rows[0][4].ToString();
-                    Choice4.Text = dt.Rows[0][5].ToString();
-                    Answer.Text = dt.Rows[0][6].ToString();
+                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                    con.Open();
+
+                    SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
+                    da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    con.Close();
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Question.Text = dt.Rows[0][1].ToString();
+                        Choice1.Text = dt.Rows[0][2].ToString();
+                        Choice2.Text = dt.Rows[0][3].ToString();
+                        Choice3.Text = dt.Rows[0][4].ToString();
+                        Choice4.Text = dt.Rows[0][5].ToString();
+                        Answer.Text = dt.Rows[0][6].ToString();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Handle the case where no data is found for the given quiz ID
-                    // You might want to clear the textboxes or show a message indicating no data found.
+                    Label1.Text = "Error: " + ex.Message;
                 }
-            }
-            catch (Exception ex)
-            {
-                Label1.Text = "Error: " + ex.Message;
             }
         }
 
@@ -63,6 +60,7 @@ namespace WebApplication2
 
                 string query = "select count(*)from Quiz where Question = '" + Question.Text + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
+
                 int check = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (check > 0)
@@ -121,7 +119,6 @@ namespace WebApplication2
 
             con.Close();
 
-            N.Text = dt.Rows[0][0].ToString();
             Question.Text = dt.Rows[0][1].ToString();
             Choice1.Text = dt.Rows[0][2].ToString();
             Choice2.Text = dt.Rows[0][3].ToString();
@@ -135,7 +132,7 @@ namespace WebApplication2
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
 
-            string query = "delete from Quiz where QuizID = '" + N.Text + "'";
+            string query = "delete from Quiz where Question = '" + Question.Text + "'";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
 

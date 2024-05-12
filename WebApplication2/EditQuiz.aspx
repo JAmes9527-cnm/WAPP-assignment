@@ -135,52 +135,33 @@
         }
 
         .auto-style1 {
-            width: 55%;
+            width: 66%;
             margin-right: 0px;
             margin-bottom: 26px;
         }
         .auto-style2 {
-            width: 200px;
+            width: 448px;
         }
         .auto-style3 {
             text-align: center;
         }
         .auto-style4 {
-            width: 109px;
-        }
-        .auto-style5 {
-            width: 200px;
-            height: 36px;
-        }
-        .auto-style6 {
-            width: 109px;
-            height: 36px;
+            width: 122px;
         }
         .auto-style8 {
-            width: 200px;
+            width: 448px;
             height: 34px;
         }
         .auto-style9 {
-            width: 109px;
+            width: 122px;
             height: 34px;
         }
-        .auto-style11 {
-            height: 36px;
-            width: 311px;
-        }
-        .auto-style12 {
+        .auto-style18 {
+            width: 1014px;
             height: 34px;
         }
-        .auto-style15 {
-            width: 331px;
-            height: 36px;
-        }
-        .auto-style16 {
-            height: 36px;
-            text-align: center;
-        }
-        .auto-style17 {
-            height: 36px;
+        .auto-style19 {
+            width: 1014px;
         }
 
     </style>
@@ -227,28 +208,16 @@
         </section>
         <table class="auto-style1">
             <tr>
-                <td class="auto-style3" colspan="4">
+                <td class="auto-style3" colspan="3">
                     <asp:Label ID="Label1" runat="server" Text="Edit Quiz 1"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="auto-style16" colspan="3">
-                    <asp:Label ID="Label10" runat="server" Text="Add New Question"></asp:Label>
+                <td class="auto-style2">
+                    <asp:Label ID="Label9" runat="server" Text="Choose Question To Edit"></asp:Label>
                 </td>
-                <td class="auto-style17">
-                    <asp:Label ID="Label11" runat="server" Text="Edit Question"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style5">
-                    <asp:Label ID="Label3" runat="server" Text="No"></asp:Label>
-                </td>
-                <td class="auto-style6">:</td>
-                <td class="auto-style11">
-                    <asp:Label ID="N" runat="server"></asp:Label>
-&nbsp;
-                </td>
-                <td class="auto-style15">
+                <td class="auto-style4">:</td>
+                <td class="auto-style19">
                     <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
@@ -259,8 +228,8 @@
                     <asp:Label ID="Label2" runat="server" Text="Question"></asp:Label>
                 </td>
                 <td class="auto-style9">:</td>
-                <td class="auto-style12" colspan="2">
-                    <asp:TextBox ID="Question" runat="server" Width="800px" ></asp:TextBox>
+                <td class="auto-style18">
+                    <asp:TextBox ID="Question" runat="server" Width="800px"  ></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -268,7 +237,7 @@
                     <asp:Label ID="Label7" runat="server" Text="Choice1"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
-                <td colspan="2">
+                <td class="auto-style19">
                     <asp:TextBox ID="Choice1" runat="server" Width="799px" ></asp:TextBox>
                 </td>
             </tr>
@@ -277,7 +246,7 @@
                     <asp:Label ID="Label4" runat="server" Text="Choice2"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
-                <td colspan="2">
+                <td class="auto-style19">
                     <asp:TextBox ID="Choice2" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
@@ -286,7 +255,7 @@
                     <asp:Label ID="Label5" runat="server" Text="Choice3"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
-                <td colspan="2">
+                <td class="auto-style19">
                     <asp:TextBox ID="Choice3" runat="server" Width="800px" OnTextChanged="TextBox5_TextChanged"></asp:TextBox>
                 </td>
             </tr>
@@ -295,7 +264,7 @@
                     <asp:Label ID="Label6" runat="server" Text="Choice4"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
-                <td colspan="2">
+                <td class="auto-style19">
                     <asp:TextBox ID="Choice4" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
@@ -304,7 +273,7 @@
                     <asp:Label ID="Label8" runat="server" Text="Answer"></asp:Label>
                 </td>
                 <td class="auto-style4">:</td>
-                <td colspan="2">
+                <td class="auto-style19">
                     <asp:TextBox ID="Answer" runat="server" Width="800px"></asp:TextBox>
                 </td>
             </tr>
