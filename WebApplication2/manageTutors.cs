@@ -10,7 +10,7 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-               
+                // Load existing tutors
                 LoadExistingTutors();
 
                 // Load new tutors awaiting approval
@@ -20,48 +20,61 @@ namespace WebApplication2
 
         private void LoadExistingTutors()
         {
-            // Replace "Your_Connection_String" with your actual connection string
-            string connectionString = "ConnectionString";
-            string query = "SELECT * FROM TutorTable"; // Assuming TutorTable is your table for existing tutors
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            // Connect to database and retrieve existing tutors
+            using (SqlConnection connection = new SqlConnection("ConnectionString"))
             {
+                string query = "SELECT TutorID, TutorName FROM TutorsTable";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-
                 GridViewExistingTutors.DataSource = reader;
                 GridViewExistingTutors.DataBind();
+                reader.Close();
             }
         }
 
         private void LoadNewTutors()
         {
-            // Replace "Your_Connection_String" with your actual connection string
-            string connectionString = "Your_Connection_String";
-            string query = "SELECT * FROM NewTutorTable"; // Assuming NewTutorTable is your table for new tutors awaiting approval
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            // Connect to database and retrieve new tutors awaiting approval
+            using (SqlConnection connection = new SqlConnection("ConnectionString"))
             {
+                string query = "SELECT TutorID, TutorName, RegistrationDate FROM TutorsTable";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-
                 GridViewNewTutors.DataSource = reader;
                 GridViewNewTutors.DataBind();
+                reader.Close();
             }
         }
 
-        protected void ApproveTutorsButton_Click(object sender, EventArgs e)
+        protected void GridViewExistingTutors_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            // Logic to approve newly registered tutors
-            // You can implement this based on your application requirements
+            if (e.CommandName == "Remove")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewExistingTutors.Rows[index];
+                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
+                // Write code to remove tutor with the specified ID from the database
+            }
         }
 
-        protected void RemoveTutorButton_Click(object sender, EventArgs e)
+        protected void GridViewNewTutors_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            // Logic to remove existing tutors
-            // You can implement this based on your application requirements
+            if (e.CommandName == "Approve")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewNewTutors.Rows[index];
+                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
+                // Write code to approve the new tutor with the specified ID
+            }
+            else if (e.CommandName == "Decline")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridViewNewTutors.Rows[index];
+                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
+                // Write code to decline the new tutor with the specified ID
+            }
         }
     }
 }

@@ -38,20 +38,27 @@
                 </div>
             </div>
             <div class="main-content">
-                <h1>Manage Tutors</h1>
-                <div>
+                <h1 style="text-align: center">Manage Tutors</h1>
+                <div style="margin-left: 1200px">
                     <h2>Existing Tutors</h2>
-                    <asp:GridView ID="GridViewExistingTutors" runat="server">
+                    <asp:GridView ID="GridViewExistingTutors" runat="server" AutoGenerateColumns="False" style="text-align: center">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Tutor Name"></asp:TemplateField>
+                            <asp:BoundField HeaderText="Tutor ID" />
+                            <asp:ButtonField Text="Remove" />
+                        </Columns>
               
                     </asp:GridView>
-                    <asp:Button ID="RemoveTutorButton" runat="server" Text="Remove Tutor" OnClick="RemoveTutorButton_Click" />
-                </div>
-                <div>
-                    <h2>New Tutors Awaiting Approval</h2>
-                    <asp:GridView ID="GridViewNewTutors" runat="server">
-          
+                    <h2 style="text-align: justify">New Tutors Awaiting Approval</h2>
+                    <asp:GridView ID="GridViewNewTutors" runat="server" AutoGenerateColumns="False" style="text-align: center">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Tutor Name"></asp:TemplateField>
+                            <asp:BoundField HeaderText="Tutor ID" />
+                            <asp:BoundField HeaderText="Date of Registration" />
+                            <asp:ButtonField Text="Approve" />
+                            <asp:ButtonField Text="Decline" />
+                        </Columns>
                     </asp:GridView>
-                    <asp:Button ID="ApproveTutorsButton" runat="server" Text="Approve New Tutors" OnClick="ApproveTutorsButton_Click" />
                 </div>
             </div>
         </div>
