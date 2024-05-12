@@ -4,7 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>
+        Quiz1
+    </title>
     <style type="text/css">
 
 
@@ -71,6 +73,10 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        .auto-style1 {
+            text-align: left;
+        }
+
         </style>
 </head>
 <body>
@@ -119,11 +125,27 @@
             <h3>
                 <asp:Label ID="Label12" runat="server" Font-Size="XX-Large" Text="Quiz 1"></asp:Label>
             </h3>
-            <p>&nbsp;</p>
+            <p class="auto-style1">
+                <asp:Label ID="Label14" runat="server" Text="Question1"></asp:Label>
+            </p>
+            <p class="auto-style1">
+                <asp:Label ID="Question1" runat="server" Text="(Question1)"></asp:Label>
+            </p>
+            <p class="auto-style1">
+                <asp:TextBox ID="Answer" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;
+                <asp:Label ID="verify" runat="server" Text="verify" Visible="False"></asp:Label>
+            </p>
+            <p class="auto-style1">
+                <asp:RadioButton ID="Choice1" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice1_CheckedChanged" />
+                <asp:RadioButton ID="Choice2" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice2_CheckedChanged" />
+                <asp:RadioButton ID="Choice3" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice3_CheckedChanged" />
+                <asp:RadioButton ID="Choice4" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice4_CheckedChanged" />
+            </p>
         </section>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click" />
-        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
+        &nbsp;&nbsp;&nbsp;<asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Button2_Click" />
+        <asp:Button ID="Next" runat="server" OnClick="Button3_Click" Text="Next" Visible="False" />
     </form>
 </body>
 </html>
