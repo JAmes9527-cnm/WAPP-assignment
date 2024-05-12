@@ -183,7 +183,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.aspx">Home</a></li>
+                    <li><a href="home.aspx">Home</a></li>
                     <li><a href="courses.aspx">Courses</a></li>
                     <li><a href="forum.aspx">Forum</a></li>
                     <li><a href="resources.aspx">Resources</a></li>
@@ -203,8 +203,9 @@
             <div class="button-container">
                 <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
                     <asp:Panel ID="loginPanel" runat="server">
-                        <button class="login-btn">Login</button>
-                        <button class="signup-btn">Sign Up</button>
+                        <a class="login-btn" href="login.aspx">Login</a>
+                        <a class="signup-btn" href="register.aspx">Sign Up</a>
+
                     </asp:Panel>
                 </asp:PlaceHolder>
             </div>

@@ -37,9 +37,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="forum.html">Forum</a></li>
+                <li><a href="home.aspx">Home</a></li>
+                <li><a href="courses.aspx">Courses</a></li>
+                <li><a href="forum.aspx">Forum</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
