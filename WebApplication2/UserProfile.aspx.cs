@@ -37,8 +37,8 @@ namespace WebApplication2
                 email.Text = dt.Rows[0][4].ToString();
                 username.Text = dt.Rows[0][5].ToString();
                 password.Text = dt.Rows[0][6].ToString();
-                Image1.ImageUrl = dt.Rows[0][9].ToString();
-                ImgUrl.Text = dt.Rows[0][9].ToString();
+                Image1.ImageUrl = dt.Rows[0]["imgUrl"].ToString();
+                ImgUrl.Text = dt.Rows[0]["imgUrl"].ToString();
             }
         }
 
@@ -64,7 +64,7 @@ namespace WebApplication2
                     string fileExtension = Path.GetExtension(FileUpload1.FileName);
 
                     // Specify the directory where you want to save the file
-                    string directoryPath = Server.MapPath("/img/pfp/");
+                    string directoryPath = Server.MapPath("~/img/pfp/");
 
                     // Create the directory if it doesn't exist
                     if (!Directory.Exists(directoryPath))
@@ -78,7 +78,7 @@ namespace WebApplication2
                     // Save the file to the server
                     FileUpload1.SaveAs(filePath);
 
-                    if (!ImgUrl.Text.Equals("/img/pfp/default_pfp.png"))
+                    if (!ImgUrl.Text.Equals("~/img/pfp/default_pfp.png"))
                     {
                         // Construct the full file path of the previous profile picture
                         string previousFilePath = Server.MapPath(ImgUrl.Text);
@@ -88,7 +88,7 @@ namespace WebApplication2
                     }
 
                     // Set the imgUrl to the relative path
-                    ImgUrl.Text = "/img/pfp/" + fileName;
+                    ImgUrl.Text = "~/img/pfp/" + fileName;
                     updateCmd.Parameters.AddWithValue("@imgUrl", ImgUrl.Text);
 
                 }
@@ -116,7 +116,7 @@ namespace WebApplication2
                     string fileExtension = Path.GetExtension(FileUpload1.FileName);
 
                     // Save the file to the server
-                    string filePath = Server.MapPath("/img/pfp/") + fileName;
+                    string filePath = Server.MapPath("~/img/pfp/") + fileName;
                     FileUpload1.SaveAs(filePath);
 
             }

@@ -93,3 +93,17 @@ footer {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.cropped-image {
+    width: 100%; /* Take the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the entire container, cropping the image if necessary */
+    object-position: center; /* Center the image within the container */
+}
+
+.circular-img-container {
+    width: 100px; /* Adjust the size as needed */
+    height: 100px; /* Adjust the size as needed */
+    overflow: hidden;
+    border-radius: 50%;
+}

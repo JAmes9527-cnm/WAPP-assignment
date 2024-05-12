@@ -13,7 +13,8 @@ namespace WebApplication2
     public partial class WebForm3 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
+/*
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
 
@@ -28,6 +29,7 @@ namespace WebApplication2
             Choice3.Text = dt.Rows[0][4].ToString();
             Choice4.Text = dt.Rows[0][5].ToString();
             Answer.Text = dt.Rows[0][6].ToString();
+*/
         }
         protected void TextBox5_TextChanged(object sender, EventArgs e)
         {
@@ -41,7 +43,7 @@ namespace WebApplication2
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 con.Open();
 
-                string query = "select count(*)from Quiz where Question = '" + Question.Text + "'";
+                string query = "select count(*)from Quiz where Question = 'ggg'";
                 SqlCommand cmd = new SqlCommand(query, con);
                 int check = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 

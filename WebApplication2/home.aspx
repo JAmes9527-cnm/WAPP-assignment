@@ -4,12 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Smart Money Mastery</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+    <form runat="server">
     <header>
         <div class="logo">
             <a href="home.aspx"><img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" /></a>
@@ -35,9 +36,14 @@
         </nav>
         <div class="button-container">
             <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
-                <asp:Panel ID="loginPanel" runat="server">
-                <button class="login-btn">Login</button>
-                <button class="signup-btn">Sign Up</button>
+                <asp:Panel ID="loginPanel" runat="server" Visible="false">
+                <asp:Button CssClass="login-btn" Text="Login" runat="server" Onclick="Login_Click"/>
+                <asp:Button CssClass="signup-btn" Text="Sign Up" runat="server" Onclick="SignUp_Click"/>
+                </asp:Panel>
+
+                <asp:Panel ID="UserPanel" runat="server" Visible="false">
+                <asp:Label ID="WelcomeText" Text="Welcome, User" runat="server"/>
+                <asp:ImageButton ID="pfp" ImageUrl="~/img/pfp/default_pfp.img" runat="server" OnClick="PfpButton_Click" CssClass="cropped-image circular-img-container"/>
                 </asp:Panel>
             </asp:PlaceHolder>
         </div>
@@ -109,5 +115,6 @@
     <footer>
         <p>© 2024 Smart Money Mastery. All rights reserved.</p>
     </footer>
+    </form>
 </body>
 </html>

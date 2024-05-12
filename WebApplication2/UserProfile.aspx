@@ -183,8 +183,17 @@
         }
 
         .cropped-image {
+    width: 100%; /* Take the full width of the container */
+    height: auto; /* Maintain aspect ratio */
     object-fit: cover; /* Cover the entire container, cropping the image if necessary */
     object-position: center; /* Center the image within the container */
+}
+
+.circular-img-container {
+    width: 100px; /* Adjust the size as needed */
+    height: 100px; /* Adjust the size as needed */
+    overflow: hidden;
+    border-radius: 50%;
 }
 
     </style>
@@ -236,9 +245,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="auto-style16" colspan="3">
-                    <asp:Image ID="Image1" runat="server" CssClass="cropped-image" Height="191px" Width="219px" ImageUrl="your_image_url.jpg" />
-
+                <td  class="auto-style16" colspan="3">
+                     <asp:Image ID="Image1" runat="server" CssClass="cropped-image circular-img-container" ImageUrl="your_image_url.jpg" />
                 </td>
                 <td class="auto-style17">
                     <asp:FileUpload ID="FileUpload1" runat="server" />

@@ -251,6 +251,7 @@
                 <td class="auto-style15">
                     <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True" Width="596px">
                     </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Question] FROM [Quiz]"></asp:SqlDataSource>
                 </td>
             </tr>
             <tr>
