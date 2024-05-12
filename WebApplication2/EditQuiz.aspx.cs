@@ -132,15 +132,23 @@ namespace WebApplication2
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            con.Open();
+            if (Convert.ToInt32(QuizID.Text) > 0)
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                con.Open();
 
-            string query = "delete from Quiz where Question = '" + Question.Text + "'";
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
+                string query = "delete from Quiz where Question = '" + Question.Text + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
 
-            con.Close();
-            Response.Redirect(Request.RawUrl);
+                con.Close();
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                ErrMsg.Text = "The QuizID 0 Cannot be Deleted";
+                ErrMsg.Visible = true;
+            }
         }
 
     }
