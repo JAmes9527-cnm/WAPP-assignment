@@ -78,12 +78,10 @@
     <Content Include="forum.css" />
     <Content Include="home.aspx" />
     <Content Include="img\logo.png" />
-    <Content Include="img\pfp\default_pfp.png" />
     <Content Include="login.aspx" />
     <Content Include="admin_register.aspx" />
     <Content Include="manageForum.aspx" />
     <Content Include="ManagePosts.aspx" />
-    <Content Include="UserProfile.aspx" />
     <Content Include="register.aspx" />
     <Content Include="styles.css" />
     <Content Include="tutorDashboard.aspx" />
@@ -92,6 +90,7 @@
     <Content Include="courses.aspx" />
     <Content Include="course1.aspx" />
     <Content Include="EditQuiz.aspx" />
+    <Content Include="Quiz1Page.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adminDashboard.aspx.cs">
@@ -151,13 +150,6 @@
     <Compile Include="ManagePosts.aspx.designer.cs">
       <DependentUpon>ManagePosts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
@@ -208,6 +200,13 @@
     <Compile Include="EditQuiz.aspx.designer.cs">
       <DependentUpon>EditQuiz.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Quiz1Page.aspx.cs">
+      <DependentUpon>Quiz1Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quiz1Page.aspx.designer.cs">
+      <DependentUpon>Quiz1Page.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -219,7 +218,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

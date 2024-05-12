@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditQuiz.aspx.cs" Inherits="WebApplication2.WebForm3" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -135,52 +136,39 @@
         }
 
         .auto-style1 {
-            width: 55%;
+            width: 67%;
             margin-right: 0px;
             margin-bottom: 26px;
         }
         .auto-style2 {
-            width: 200px;
+            width: 448px;
         }
         .auto-style3 {
             text-align: center;
         }
         .auto-style4 {
-            width: 109px;
-        }
-        .auto-style5 {
-            width: 200px;
-            height: 36px;
-        }
-        .auto-style6 {
-            width: 109px;
-            height: 36px;
+            width: 122px;
         }
         .auto-style8 {
-            width: 200px;
+            width: 448px;
             height: 34px;
         }
         .auto-style9 {
-            width: 109px;
+            width: 122px;
             height: 34px;
         }
-        .auto-style11 {
-            height: 36px;
-            width: 311px;
+        .auto-style20 {
+            width: 1014px;
+            text-align: left;
+            margin-left: 40px;
         }
-        .auto-style12 {
+        .auto-style21 {
             height: 34px;
         }
-        .auto-style15 {
-            width: 331px;
-            height: 36px;
-        }
-        .auto-style16 {
-            height: 36px;
-            text-align: center;
-        }
-        .auto-style17 {
-            height: 36px;
+        .auto-style22 {
+            width: 720px;
+            text-align: left;
+            margin-left: 40px;
         }
 
     </style>
@@ -195,7 +183,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.aspx">Home</a></li>
+                    <li><a href="home.aspx">Home</a></li>
                     <li><a href="courses.aspx">Courses</a></li>
                     <li><a href="forum.aspx">Forum</a></li>
                     <li><a href="resources.aspx">Resources</a></li>
@@ -215,8 +203,9 @@
             <div class="button-container">
                 <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
                     <asp:Panel ID="loginPanel" runat="server">
-                        <button class="login-btn">Login</button>
-                        <button class="signup-btn">Sign Up</button>
+                        <a class="login-btn" href="login.aspx">Login</a>
+                        <a class="signup-btn" href="register.aspx">Sign Up</a>
+
                     </asp:Panel>
                 </asp:PlaceHolder>
             </div>
@@ -232,26 +221,27 @@
                 </td>
             </tr>
             <tr>
-                <td class="auto-style16" colspan="3">
-                    <asp:Label ID="Label10" runat="server" Text="Add New Question"></asp:Label>
+                <td class="auto-style2">
+                    <asp:Label ID="Label9" runat="server" Text="Choose Question To Edit"></asp:Label>
                 </td>
-                <td class="auto-style17">
-                    <asp:Label ID="Label11" runat="server" Text="Edit Question"></asp:Label>
+                <td class="auto-style4">:</td>
+                <td colspan="2">
+                    <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
                 </td>
             </tr>
             <tr>
-                <td class="auto-style5">
-                    <asp:Label ID="Label3" runat="server" Text="No"></asp:Label>
-                </td>
-                <td class="auto-style6">:</td>
-                <td class="auto-style11">
-                    <asp:Label ID="N" runat="server"></asp:Label>
-&nbsp;
+                <td class="auto-style2">
+                    Question-ID</td>
+                <td class="auto-style4">:</td>
+                <td class="auto-style20">
+                    <asp:Label ID="QuizID" runat="server" Text="0"></asp:Label>
+                &nbsp;&nbsp;
                 </td>
                 <td class="auto-style15">
                     <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True" Width="596px">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Question] FROM [Quiz]"></asp:SqlDataSource>
                 </td>
             </tr>
             <tr>
@@ -259,8 +249,8 @@
                     <asp:Label ID="Label2" runat="server" Text="Question"></asp:Label>
                 </td>
                 <td class="auto-style9">:</td>
-                <td class="auto-style12" colspan="2">
-                    <asp:TextBox ID="Question" runat="server" Width="800px" OnTextChanged="Question_TextChanged"></asp:TextBox>
+                <td class="auto-style21" colspan="2">
+                    <asp:TextBox ID="Question" runat="server" Width="800px"  ></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -269,7 +259,7 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice1" runat="server" Width="799px"></asp:TextBox>
+                    <asp:TextBox ID="Choice1" runat="server" Width="799px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -311,6 +301,7 @@
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add/Edit" />
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Remove" />
         <asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
     </form>
