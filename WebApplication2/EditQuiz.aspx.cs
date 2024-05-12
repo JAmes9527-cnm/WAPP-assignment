@@ -31,12 +31,12 @@ namespace WebApplication2
 
                     if (dt.Rows.Count > 0)
                     {
-                        Question.Text = dt.Rows[0][1].ToString();
-                        Choice1.Text = dt.Rows[0][2].ToString();
-                        Choice2.Text = dt.Rows[0][3].ToString();
-                        Choice3.Text = dt.Rows[0][4].ToString();
-                        Choice4.Text = dt.Rows[0][5].ToString();
-                        Answer.Text = dt.Rows[0][6].ToString();
+                        Question.Text = dt.Rows[0][2].ToString();
+                        Choice1.Text = dt.Rows[0][3].ToString();
+                        Choice2.Text = dt.Rows[0][4].ToString();
+                        Choice3.Text = dt.Rows[0][5].ToString();
+                        Choice4.Text = dt.Rows[0][6].ToString();
+                        Answer.Text = dt.Rows[0][7].ToString();
                     }
                 }
                 catch (Exception ex)
@@ -65,8 +65,9 @@ namespace WebApplication2
 
                 if (check > 0)
                 {
-                    string updateQuery = "UPDATE Quiz SET Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE Question = @Question";
+                    string updateQuery = "UPDATE Quiz SET Quiz = @Quiz,Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE Question = @Question";
                     SqlCommand updateCmd = new SqlCommand(updateQuery, con);
+                    updateCmd.Parameters.AddWithValue("Quiz", "Quiz1");
                     updateCmd.Parameters.AddWithValue("@Question", Question.Text);
                     updateCmd.Parameters.AddWithValue("@Choice1", Choice1.Text);
                     updateCmd.Parameters.AddWithValue("@Choice2", Choice2.Text);
@@ -77,8 +78,9 @@ namespace WebApplication2
                 }
                 else
                 {
-                    string quiz = "INSERT INTO Quiz(Question,Choice1,Choice2,Choice3,Choice4,Answer) VALUES (@Question,@Choice1,@Choice2,@Choice3,@Choice4,@Answer)";
+                    string quiz = "INSERT INTO Quiz(Quiz,Question,Choice1,Choice2,Choice3,Choice4,Answer) VALUES (@Quiz,@Question,@Choice1,@Choice2,@Choice3,@Choice4,@Answer)";
                     SqlCommand cmd1 = new SqlCommand(quiz, con);
+                    cmd1.Parameters.AddWithValue("@Quiz", "Quiz1");
                     cmd1.Parameters.AddWithValue("@Question", Question.Text);
                     cmd1.Parameters.AddWithValue("@Choice1", Choice1.Text);
                     cmd1.Parameters.AddWithValue("@Choice2", Choice2.Text);
@@ -119,12 +121,12 @@ namespace WebApplication2
 
             con.Close();
 
-            Question.Text = dt.Rows[0][1].ToString();
-            Choice1.Text = dt.Rows[0][2].ToString();
-            Choice2.Text = dt.Rows[0][3].ToString();
-            Choice3.Text = dt.Rows[0][4].ToString();
-            Choice4.Text = dt.Rows[0][5].ToString();
-            Answer.Text = dt.Rows[0][6].ToString();
+            Question.Text = dt.Rows[0][2].ToString();
+            Choice1.Text = dt.Rows[0][3].ToString();
+            Choice2.Text = dt.Rows[0][4].ToString();
+            Choice3.Text = dt.Rows[0][5].ToString();
+            Choice4.Text = dt.Rows[0][6].ToString();
+            Answer.Text = dt.Rows[0][7].ToString();
         }
 
         protected void Button4_Click(object sender, EventArgs e)
