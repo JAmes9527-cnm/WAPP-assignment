@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditQuiz.aspx.cs" Inherits="WebApplication2.WebForm3" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -221,6 +222,14 @@
                     <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    Question-ID</td>
+                <td class="auto-style4">:</td>
+                <td class="auto-style19">
+                    <asp:Label ID="QuizID" runat="server" Text="0"></asp:Label>
                 </td>
             </tr>
             <tr>

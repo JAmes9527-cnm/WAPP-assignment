@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace WebApplication2
 {
     public partial class WebForm3 : System.Web.UI.Page
@@ -31,6 +32,7 @@ namespace WebApplication2
 
                     if (dt.Rows.Count > 0)
                     {
+                        QuizID.Text = dt.Rows[0][0].ToString();
                         Question.Text = dt.Rows[0][2].ToString();
                         Choice1.Text = dt.Rows[0][3].ToString();
                         Choice2.Text = dt.Rows[0][4].ToString();
@@ -58,15 +60,14 @@ namespace WebApplication2
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 con.Open();
 
-                string query = "select count(*)from Quiz where Question = '" + Question.Text + "'";
+                string query = "select count(*)from Quiz where QuizID = '" + QuizID.Text + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                int check = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-
-                if (check > 0)
+                if (Convert.ToInt32(QuizID.Text) > 0)
                 {
-                    string updateQuery = "UPDATE Quiz SET Quiz = @Quiz,Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE Question = @Question";
+                    string updateQuery = "UPDATE Quiz SET Quiz = @Quiz,Question = @Question,Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE QuizID = @QuizID";
                     SqlCommand updateCmd = new SqlCommand(updateQuery, con);
+                    updateCmd.Parameters.AddWithValue("@QuizID", QuizID.Text);
                     updateCmd.Parameters.AddWithValue("Quiz", "Quiz1");
                     updateCmd.Parameters.AddWithValue("@Question", Question.Text);
                     updateCmd.Parameters.AddWithValue("@Choice1", Choice1.Text);
@@ -120,7 +121,7 @@ namespace WebApplication2
             da.Fill(dt);
 
             con.Close();
-
+            QuizID.Text=dt.Rows[0][0].ToString();
             Question.Text = dt.Rows[0][2].ToString();
             Choice1.Text = dt.Rows[0][3].ToString();
             Choice2.Text = dt.Rows[0][4].ToString();
