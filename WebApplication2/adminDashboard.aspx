@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminDashboard.aspx.cs" Inherits="WebApplication2.adminDashboard" %>
-=======
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminDashboard.aspx.cs" Inherits="WebApplication2.adminDashboard" %>
->>>>>>> 55de89819cc9ccfe88b4ce308b19fa13f450d7d1
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">

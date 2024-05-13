@@ -120,8 +120,6 @@
     <Content Include="forum.css" />
     <Content Include="home.aspx" />
     <Content Include="img\logo.png" />
-    <Content Include="img\pfp\default_pfp.png" />
-    <Content Include="img\pfp\[removal.ai]_79ef1d0b-99b3-4549-963b-d92e8a986911-logo-maker-online-logo-generator-logoai-com.png" />
     <Content Include="login.aspx" />
     <Content Include="admin_register.aspx" />
     <Content Include="manageForum.aspx" />
@@ -177,8 +175,16 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="manageTutors.aspx.cs">
+      <DependentUpon>manageTutors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageTutors.aspx.designer.cs">
+      <DependentUpon>manageTutors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="oldLogin.aspx.cs">
+      <DependentUpon>oldLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="manageTutors.aspx.cs">
