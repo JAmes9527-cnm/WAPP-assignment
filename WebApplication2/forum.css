@@ -1,4 +1,50 @@
 ﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #005691;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+    nav ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-btn, .signup-btn {
+    padding: 8px 12px;
+    background: #f8c146;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #fff;
 }
 
 section {
@@ -11,36 +57,39 @@ section {
 
     .post-form input[type="text"],
     .post-form textarea {
-        width: 100%;
+        width: calc(100% - 20px);
         padding: 10px;
         margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
     }
 
 .post {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-    .post-form input[type="submit"] {
-        background-color: #333;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-    }
-
-.topic {
+.topics {
     background-color: #f4f4f4;
     padding: 10px;
+    border-radius: 5px;
+}
+
+.topic {
+    background-color: #fff;
+    padding: 10px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
     .topic h3 {
         margin-top: 0;
-    }
-
-    .content {
-        height:150px;
-        resize: none;
     }

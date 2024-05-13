@@ -17,7 +17,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.aspx">Home</a></li>
+                <li><a href="home.aspx">Home</a></li>
                 <li><a href="courses.aspx">Courses</a></li>
                 <li><a href="forum.aspx">Forum</a></li>
                 <li><a href="resources.aspx">Resources</a></li>

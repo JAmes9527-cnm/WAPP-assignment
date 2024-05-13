@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="manageTutor.aspx.cs" Inherits="WebApplication2.manageTutor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="manageTutors.aspx.cs" Inherits="WebApplication2.manageTutors" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">

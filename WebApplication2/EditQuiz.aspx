@@ -165,12 +165,7 @@
         .auto-style21 {
             height: 34px;
         }
-        .auto-style22 {
-            width: 720px;
-            text-align: left;
-            margin-left: 40px;
-        }
-
+        
     </style>
 </head>
 <body>
@@ -229,6 +224,7 @@
                     <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
+                    <asp:Label ID="ErrMsg" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -240,9 +236,7 @@
                 &nbsp;&nbsp;
                 </td>
                 <td class="auto-style15">
-                    <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True" Width="596px">
-                    </asp:DropDownList>
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style8">

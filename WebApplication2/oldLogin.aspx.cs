@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace WebApplication2
 {
-    public partial class newLogin : System.Web.UI.Page
+    public partial class login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,24 +46,31 @@ namespace WebApplication2
 
 
                 if (type == "admin")
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('adminDashboard.aspx','" + name + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('adminDashboard.aspx');", true);
                 else if (type == "member")
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('home.aspx','" + name + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('home.aspx');", true);
                 else if (type == "tutor")
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('tutorDashboard.aspx','" + name + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('tutorDashboard.aspx');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showErrorMessage();", true);
+                errMsg.Visible = true;
+                errMsg.ForeColor = System.Drawing.Color.Red;
+                errMsg.Text = "Wrong username or password!";
                 return;
             }
 
             con.Close();
         }
 
-        protected void register_btn_Click(object sender, EventArgs e)
+        protected void LinkButton1_Click(object sender, EventArgs e)
         {
             Response.Redirect("register.aspx");
+        }
+
+        protected void pwd_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
