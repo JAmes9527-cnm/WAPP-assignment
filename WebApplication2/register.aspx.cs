@@ -50,7 +50,8 @@ namespace WebApplication2
                     cmd1.Parameters.AddWithValue("@password", pwd.Text);
                     cmd1.Parameters.AddWithValue("@usertype", usertype.Text);
                     cmd1.ExecuteNonQuery();
-                    Response.Redirect("login.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage();", true);
+
                 }
                 con.Close();
             }

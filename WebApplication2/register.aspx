@@ -20,6 +20,22 @@
             background-color: transparent;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function showSuccessMessage() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registered Successfully!',
+            text: 'Account Created !',
+            confirmButtonColor: '#1970ae',
+            confirmButtonText: 'Continue'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'Login.aspx';
+            }
+        });
+    }
+    </script>
 </head>
 <body>
     <header>

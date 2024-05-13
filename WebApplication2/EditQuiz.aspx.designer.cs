@@ -78,15 +78,6 @@ namespace WebApplication2
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// QuizID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label QuizID;
-
-        /// <summary>
         /// ErrMsg control.
         /// </summary>
         /// <remarks>
@@ -96,13 +87,13 @@ namespace WebApplication2
         protected global::System.Web.UI.WebControls.Label ErrMsg;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// QuizID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Label QuizID;
 
         /// <summary>
         /// Label2 control.

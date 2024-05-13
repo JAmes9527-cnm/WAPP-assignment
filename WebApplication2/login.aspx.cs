@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace WebApplication2
 {
-    public partial class login : System.Web.UI.Page
+    public partial class newLogin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,25 +43,25 @@ namespace WebApplication2
                 Session["userName"] = username.Text;
                 Session["userID"] = UserID;
 
+
+
                 if (type == "admin")
-                    Response.Redirect("adminDashboard.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('adminDashboard.aspx','" + name + "');", true);
                 else if (type == "member")
-                    Response.Redirect("home.aspx");
-                else if (type=="tutor")
-                    Response.Redirect("tutorDashboard.aspx");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('home.aspx','" + name + "');", true);
+                else if (type == "tutor")
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('tutorDashboard.aspx','" + name + "');", true);
             }
             else
             {
-                errMsg.Visible = true;
-                errMsg.ForeColor = System.Drawing.Color.Red;
-                errMsg.Text = "Wrong username or password!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showErrorMessage();", true);
                 return;
             }
 
             con.Close();
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
+        protected void register_btn_Click(object sender, EventArgs e)
         {
             Response.Redirect("register.aspx");
         }

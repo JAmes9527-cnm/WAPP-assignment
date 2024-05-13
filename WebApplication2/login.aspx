@@ -1,89 +1,89 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="WebApplication2.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="WebApplication2.newLogin" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
-    <style>
-        table tr{
-            padding:4px;
-        }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function showSuccessMessage(redirectPage,fname) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Login Successfully!',
+            text: 'Welcome, '+fname + '!',
+            confirmButtonColor: '#1970ae',
+            confirmButtonText: 'Continue'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = redirectPage;
+            }
+        });
+    }
+    function showErrorMessage() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Wrong username or password!',
+            text: 'Try again !',
+            confirmButtonColor: '#1970ae',
+            confirmButtonText: 'Continue'
+        });
+    }
 
-        table td{
-            padding:4px 7px;
-        }
-
-        textbox{
-            background-color: transparent;
-        }
-
-        .login{
-            display: flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-        }
-    </style>
+    </script>
+<style>
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+  	font-size: 15px;
+}
+.login-form form {
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.form-control, .btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+.btn {        
+    font-size: 15px;
+    font-weight: bold;
+}
+</style>
 </head>
-
-
 <body>
-    <header>
-        <div class="logo">
-            <h1>Smart Money Mastery</h1>
+        <div class="login-form">
+    <form  method="post" runat="server">
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">
+            <asp:Textbox ID="username" type="text" CssClass="form-control" placeholder="Username" required="required" runat="server"/>
         </div>
-        <nav>
-            <ul>
-                <li><a href="home.aspx">Home</a></li>
-                <li><a href="courses.aspx">Courses</a></li>
-                <li><a href="forum.aspx">Forum</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="button-container">
-            <button class="login-btn">Login</button>
-            <button class="signup-btn">Sign Up</button>
+        <div class="form-group">
+            <asp:Textbox ID="pwd" type="text" CssClass="form-control" placeholder="Password" required="required" runat="server"/>
         </div>
-    </header>
-
-    <form id="form1" runat="server">
-        <div class="login">
-            <table>
-                <tr>
-                    <td><h1>Login</h1></td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class="bx bxs-user"></i><asp:Label ID="Label1" runat="server" Text="Username: "></asp:Label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="username" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <i class='bx bxs-lock-alt'></i><asp:Label ID="Label2" runat="server" Text="Password: "></asp:Label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="pwd" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="errMsg" runat="server" Text="[errMsg]" Visible="false"></asp:Label>
-                    </td>
-                </tr>
-            </table>
+        <div class="form-group">
+            <asp:Button CssClass="btn btn-primary btn-block" Text="Log in" runat="server" ID="Button1" OnClick="Button1_Click"></asp:Button>
         </div>
-        <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" />
-    &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label3" runat="server" Text="Not yet registered? "></asp:Label>
-        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Register here</asp:LinkButton>
+        <div class="form-group">
+            <asp:Button CssClass="btn btn-primary btn-block" Text="Sign Up" runat="server" ID="register_btn" OnClick="register_btn_Click"></asp:Button>
+        </div>
+        <div class="clearfix">
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>
     </form>
+</div>
 </body>
 </html>
