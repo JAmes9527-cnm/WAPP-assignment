@@ -232,7 +232,7 @@
                     Question-ID</td>
                 <td class="auto-style4">:</td>
                 <td class="auto-style20">
-                    <asp:Label ID="QuizID" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="QuizID" runat="server" Text="0" ValidateRequestMode="Enabled"></asp:Label>
                 &nbsp;&nbsp;
                 </td>
                 <td class="auto-style15">
@@ -271,7 +271,7 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="Choice3" runat="server" Width="800px" OnTextChanged="TextBox5_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="Choice3" runat="server" Width="800px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>
