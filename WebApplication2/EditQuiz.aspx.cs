@@ -18,11 +18,11 @@ namespace WebApplication2
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
 
-            SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
-            da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
+                    SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
+                    da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
 
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
             QuizID.Text = dt.Rows[0][0].ToString();
             Question.Text = dt.Rows[0][1].ToString();
@@ -105,7 +105,7 @@ namespace WebApplication2
             da.Fill(dt);
 
             con.Close();
-            QuizID.Text = dt.Rows[0][0].ToString();
+            QuizID.Text=dt.Rows[0][0].ToString();
             Question.Text = dt.Rows[0][2].ToString();
             Choice1.Text = dt.Rows[0][3].ToString();
             Choice2.Text = dt.Rows[0][4].ToString();
