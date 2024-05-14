@@ -9,13 +9,14 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 
+
 namespace WebApplication2
 {
-    public partial class manageUser : System.Web.UI.Page
+    public partial class UserProfile : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["userName"] == null)
+            if (Session["userName"] == null)
             {
                 Response.Redirect("login.aspx");
             }
@@ -42,21 +43,21 @@ namespace WebApplication2
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void confirmBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 con.Open();
 
-                    string updateQuery = "UPDATE userTable SET fname = @fname, lname = @lname, gender = @gender, email = @email, username = @username, password = @password, imgUrl = @imgUrl WHERE UserID = @UserID";
-                    SqlCommand updateCmd = new SqlCommand(updateQuery, con);
-                    updateCmd.Parameters.AddWithValue("@fname", fname.Text);
-                    updateCmd.Parameters.AddWithValue("@lname", lname.Text);
-                    updateCmd.Parameters.AddWithValue("@gender", gender.Text);
-                    updateCmd.Parameters.AddWithValue("@email", email.Text);
-                    updateCmd.Parameters.AddWithValue("@username", username.Text);
-                    updateCmd.Parameters.AddWithValue("@password", password.Text);
+                string updateQuery = "UPDATE userTable SET fname = @fname, lname = @lname, gender = @gender, email = @email, username = @username, password = @password, imgUrl = @imgUrl WHERE UserID = @UserID";
+                SqlCommand updateCmd = new SqlCommand(updateQuery, con);
+                updateCmd.Parameters.AddWithValue("@fname", fname.Text);
+                updateCmd.Parameters.AddWithValue("@lname", lname.Text);
+                updateCmd.Parameters.AddWithValue("@gender", gender.Text);
+                updateCmd.Parameters.AddWithValue("@email", email.Text);
+                updateCmd.Parameters.AddWithValue("@username", username.Text);
+                updateCmd.Parameters.AddWithValue("@password", password.Text);
                 if (FileUpload1.HasFile)
                 {
                     // Get the file name and extension
@@ -90,7 +91,7 @@ namespace WebApplication2
                     // Set the imgUrl to the relative path
                     ImgUrl.Text = "~/img/pfp/" + fileName;
                     updateCmd.Parameters.AddWithValue("@imgUrl", ImgUrl.Text);
-
+                    Response.Redirect("UserProfile.aspx");
                 }
                 else
                 {
@@ -100,27 +101,12 @@ namespace WebApplication2
                 updateCmd.ExecuteNonQuery();
 
                 con.Close();
-                Response.Redirect(Request.RawUrl);
-
             }
             catch (Exception ex)
             {
                 Label9.Text = "Error: " + ex.Message;
                 Label9.Visible = true;
             }
-
-            if (FileUpload1.HasFile)
-            {
-                    // Get the file name and extension
-                    string fileName = Path.GetFileName(FileUpload1.FileName);
-                    string fileExtension = Path.GetExtension(FileUpload1.FileName);
-
-                    // Save the file to the server
-                    string filePath = Server.MapPath("~/img/pfp/") + fileName;
-                    FileUpload1.SaveAs(filePath);
-
-            }
         }
-
     }
 }

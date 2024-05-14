@@ -126,7 +126,6 @@
     <Content Include="admin_register.aspx" />
     <Content Include="manageForum.aspx" />
     <Content Include="ManagePosts.aspx" />
-    <Content Include="login.aspx" />
     <Content Include="manageStudents.aspx" />
     <Content Include="manageTutors.aspx" />
     <Content Include="register.aspx" />
@@ -238,6 +237,9 @@
     <Compile Include="UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewPosts.aspx.cs">
       <DependentUpon>ViewPosts.aspx</DependentUpon>

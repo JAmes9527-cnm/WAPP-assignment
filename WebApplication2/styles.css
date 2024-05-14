@@ -102,8 +102,9 @@ footer {
 }
 
 .circular-img-container {
-    width: 100px; /* Adjust the size as needed */
-    height: 100px; /* Adjust the size as needed */
+    width: 60px; /* Adjust the size as needed */
+    height: 60px; /* Adjust the size as needed */
     overflow: hidden;
     border-radius: 50%;
 }
+

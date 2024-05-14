@@ -1,15 +1,87 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="WebApplication2.manageUser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="WebApplication2.UserProfile" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+body {
+	font-family: 'Varela Round', sans-serif;
+}
+.modal-confirm {		
+	color: #636363;
+	width: 550px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;        
+}
+.modal-confirm .modal-header {
+	padding: 0 15px;
+	border-bottom: none;   
+	position: relative;
+}
+.modal-confirm h4 {
+	display: inline-block;
+	font-size: 26px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+.modal-confirm .modal-body {
+	color: #999;
+}
+.modal-confirm .modal-footer {
+	background: #ecf0f1;
+	border-color: #e6eaec;
+	text-align: right;
+	margin: 0 -20px -20px;
+	border-radius: 0 0 5px 5px;
+}	
+.modal-confirm .btn {
+	color: #fff;
+	border-radius: 4px;
+	transition: all 0.4s;
+	border: none;
+	padding: 8px 20px;
+	outline: none !important;
+}	
+.modal-confirm .btn-info {
+	background: #b0c1c6;
+}
+.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+	background: #92a9af;
+}
+.modal-confirm .btn-danger {
+	background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+	background: #ee3535;
+}
+.modal-confirm .modal-footer .btn + .btn {
+	margin-left: 10px;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
+</style>
+<style>
     <style type="text/css">
 
 
         header {
             background: #005691;
-            color: white;
+            color: darkblue;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -208,7 +280,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.aspx">Home</a></li>
+                    <li><a href="home.aspx">Home</a></li>
                     <li><a href="courses.aspx">Courses</a></li>
                     <li><a href="forum.aspx">Forum</a></li>
                     <li><a href="resources.aspx">Resources</a></li>
@@ -323,7 +395,26 @@
             </tr>
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Edit" />
+        &nbsp;&nbsp;&nbsp;<button type="button" href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</button>
+        <!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">			
+				<h4 class="modal-title">Confirmation</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure you want to save your changes?</p>
+			</div>
+			<div class="modal-footer">
+                <asp:Button id="cancelBtn" runat="server" CssClass="btn btn-info" data-dismiss="modal" Text="Cancel"></asp:Button>
+				<asp:Button id="confirmBtn" CssClass="btn btn-danger" runat="server" Text="Yes, change it!" OnClick="confirmBtn_Click"></asp:Button>
+			</div>
+		</div>
+	</div>
+</div>     
     </form>
     </body>
 </html>
+

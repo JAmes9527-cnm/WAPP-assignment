@@ -40,7 +40,7 @@ namespace WebApplication2
 
         protected void PfpButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UP.aspx");
+            Response.Redirect("UserProfile.aspx");
         }
 
         protected void Login_Click(object sender, EventArgs e)
