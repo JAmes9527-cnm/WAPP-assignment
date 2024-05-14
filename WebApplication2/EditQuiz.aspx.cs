@@ -15,41 +15,26 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-                con.Open();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
 
-                SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
-                da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
+                    SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizId = @QuizId", con);
+                    da.SelectCommand.Parameters.AddWithValue("@QuizId", 0);
 
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                if (dt.Rows.Count == 0)
-                {
-                    SqlCommand defaultCmd = new SqlCommand("INSERT INTO Quiz (QuizId, Question, Choice1, Choice2, Choice3, Choice4, Answer) VALUES (@QuizId, @Question, @Choice1, @Choice2, @Choice3, @Choice4, @Answer)", con);
-                    defaultCmd.Parameters.AddWithValue("@QuizId", 1);
-                    defaultCmd.Parameters.AddWithValue("@Question", "Question");
-                    defaultCmd.Parameters.AddWithValue("@Choice1", "-");
-                    defaultCmd.Parameters.AddWithValue("@Choice2", "-");
-                    defaultCmd.Parameters.AddWithValue("@Choice3", "-");
-                    defaultCmd.Parameters.AddWithValue("@Choice4", "-");
-                    defaultCmd.Parameters.AddWithValue("@Answer", "-");
+            QuizID.Text = dt.Rows[0][0].ToString();
+            Question.Text = dt.Rows[0][1].ToString();
+            Choice1.Text = dt.Rows[0][2].ToString();
+            Choice2.Text = dt.Rows[0][3].ToString();
+            Choice3.Text = dt.Rows[0][4].ToString();
+            Choice4.Text = dt.Rows[0][5].ToString();
+            Answer.Text = dt.Rows[0][6].ToString();
+        }
+        protected void TextBox5_TextChanged(object sender, EventArgs e)
+        {
 
-                    defaultCmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    QuizID.Text = dt.Rows[0][0].ToString();
-                    Question.Text = dt.Rows[0][2].ToString();
-                    Choice1.Text = dt.Rows[0][3].ToString();
-                    Choice2.Text = dt.Rows[0][4].ToString();
-                    Choice3.Text = dt.Rows[0][5].ToString();
-                    Choice4.Text = dt.Rows[0][6].ToString();
-                    Answer.Text = dt.Rows[0][7].ToString();
-                }
-            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -61,7 +46,6 @@ namespace WebApplication2
 
                 string query = "select count(*)from Quiz where Question = '" + Question.Text + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
-                int count = (int)cmd.ExecuteScalar();
 
                 if (Convert.ToInt32(QuizID.Text) > 0)
                 {
@@ -79,33 +63,55 @@ namespace WebApplication2
                 }
                 else
                 {
-                    if (count == 0)
-                    {
-                        string quiz = "INSERT INTO Quiz(Quiz,Question,Choice1,Choice2,Choice3,Choice4,Answer) VALUES (@Quiz,@Question,@Choice1,@Choice2,@Choice3,@Choice4,@Answer)";
-                        SqlCommand cmd1 = new SqlCommand(quiz, con);
-                        cmd1.Parameters.AddWithValue("@Quiz", "Quiz1");
-                        cmd1.Parameters.AddWithValue("@Question", Question.Text);
-                        cmd1.Parameters.AddWithValue("@Choice1", Choice1.Text);
-                        cmd1.Parameters.AddWithValue("@Choice2", Choice2.Text);
-                        cmd1.Parameters.AddWithValue("@Choice3", Choice3.Text);
-                        cmd1.Parameters.AddWithValue("@Choice4", Choice4.Text);
-                        cmd1.Parameters.AddWithValue("@Answer", Answer.Text);
-                        cmd1.ExecuteNonQuery();
-                        con.Close();
-                        Response.Redirect(Request.RawUrl);
-                    }
-
-                    else
-                    {
-                        ErrMsg.Text = "This Question already exist";
-                        ErrMsg.Visible = true;
-                    }
+                    string quiz = "INSERT INTO Quiz(Quiz,Question,Choice1,Choice2,Choice3,Choice4,Answer) VALUES (@Quiz,@Question,@Choice1,@Choice2,@Choice3,@Choice4,@Answer)";
+                    SqlCommand cmd1 = new SqlCommand(quiz, con);
+                    cmd1.Parameters.AddWithValue("@Quiz", "Quiz1");
+                    cmd1.Parameters.AddWithValue("@Question", Question.Text);
+                    cmd1.Parameters.AddWithValue("@Choice1", Choice1.Text);
+                    cmd1.Parameters.AddWithValue("@Choice2", Choice2.Text);
+                    cmd1.Parameters.AddWithValue("@Choice3", Choice3.Text);
+                    cmd1.Parameters.AddWithValue("@Choice4", Choice4.Text);
+                    cmd1.Parameters.AddWithValue("@Answer", Answer.Text);
+                    cmd1.ExecuteNonQuery();
                 }
+                con.Close();
+                Response.Redirect(Request.RawUrl);
+
             }
             catch (Exception ex)
             {
                 Label1.Text = "Error: " + ex.Message;
             }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("course1.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where Question = '" + Number.Text + "'", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            con.Close();
+            QuizID.Text=dt.Rows[0][0].ToString();
+            Question.Text = dt.Rows[0][2].ToString();
+            Choice1.Text = dt.Rows[0][3].ToString();
+            Choice2.Text = dt.Rows[0][4].ToString();
+            Choice3.Text = dt.Rows[0][5].ToString();
+            Choice4.Text = dt.Rows[0][6].ToString();
+            Answer.Text = dt.Rows[0][7].ToString();
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -115,7 +121,7 @@ namespace WebApplication2
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 con.Open();
 
-                string query = "delete from Quiz where QuizID = '" + QuizID.Text + "'";
+                string query = "delete from Quiz where Question = '" + Question.Text + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
 
@@ -129,35 +135,5 @@ namespace WebApplication2
             }
         }
 
-        protected void Button3_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("course1.aspx");
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            con.Open();
-
-            SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where Question = '" + Number.Text + "'", con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            con.Close();
-            QuizID.Text = dt.Rows[0][0].ToString();
-            Question.Text = dt.Rows[0][2].ToString();
-            Choice1.Text = dt.Rows[0][3].ToString();
-            Choice2.Text = dt.Rows[0][4].ToString();
-            Choice3.Text = dt.Rows[0][5].ToString();
-            Choice4.Text = dt.Rows[0][6].ToString();
-            Answer.Text = dt.Rows[0][7].ToString();
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Quiz1Page.aspx");
-        }
     }
-
-
 }
