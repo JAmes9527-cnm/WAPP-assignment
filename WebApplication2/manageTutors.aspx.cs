@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Data;
-using System.IO;
+using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
@@ -17,20 +12,18 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-                // Load existing tutors
                 LoadExistingTutors();
-
-                // Load new tutors awaiting approval
                 LoadNewTutors();
             }
         }
 
         private void LoadExistingTutors()
         {
-            // Connect to database and retrieve existing tutors
-            using (SqlConnection connection = new SqlConnection("ConnectionString"))
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = "SELECT TutorID, TutorName FROM TutorsTable";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT TutorID, TutorName FROM TutorsTable";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -42,10 +35,11 @@ namespace WebApplication2
 
         private void LoadNewTutors()
         {
-            // Connect to database and retrieve new tutors awaiting approval
-            using (SqlConnection connection = new SqlConnection("ConnectionString"))
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = "SELECT TutorID, TutorName, RegistrationDate FROM NewTutorsTable";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT TutorID, TutorName, RegistrationDate FROM TutorsTable";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -61,8 +55,20 @@ namespace WebApplication2
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewExistingTutors.Rows[index];
-                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
-                // Write code to remove tutor with the specified ID from the database
+                string tutorID = row.Cells[1].Text;
+
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                string query = "DELETE FROM TutorsTable WHERE TutorID = @TutorID";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@TutorID", tutorID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+                LoadExistingTutors(); // Refresh existing tutors gridview after removal
             }
         }
 
@@ -72,15 +78,60 @@ namespace WebApplication2
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewNewTutors.Rows[index];
-                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
-                // Write code to approve the new tutor with the specified ID
+                string tutorID = row.Cells[1].Text;
+
+                // Retrieve tutor details from NewTutorsTable and insert into TutorsTable
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                string querySelect = "SELECT TutorName, RegistrationDate FROM NewTutorsTable WHERE TutorID = @TutorID";
+                string queryInsert = "INSERT INTO TutorsTable (TutorName, RegistrationDate) VALUES (@TutorName, @RegistrationDate)";
+                string queryDelete = "DELETE FROM NewTutorsTable WHERE TutorID = @TutorID";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand commandSelect = new SqlCommand(querySelect, connection);
+                    commandSelect.Parameters.AddWithValue("@TutorID", tutorID);
+                    connection.Open();
+                    SqlDataReader reader = commandSelect.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string tutorName = reader["TutorName"].ToString();
+                        string registrationDate = reader["RegistrationDate"].ToString();
+
+                        reader.Close();
+
+                        SqlCommand commandInsert = new SqlCommand(queryInsert, connection);
+                        commandInsert.Parameters.AddWithValue("@TutorName", tutorName);
+                        commandInsert.Parameters.AddWithValue("@RegistrationDate", registrationDate);
+                        commandInsert.ExecuteNonQuery();
+
+                        SqlCommand commandDelete = new SqlCommand(queryDelete, connection);
+                        commandDelete.Parameters.AddWithValue("@TutorID", tutorID);
+                        commandDelete.ExecuteNonQuery();
+
+                        LoadExistingTutors(); // Refresh existing tutors gridview after insertion
+                        LoadNewTutors(); // Refresh new tutors gridview after deletion
+                    }
+                }
             }
             else if (e.CommandName == "Decline")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewNewTutors.Rows[index];
-                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
-                // Write code to decline the new tutor with the specified ID
+                string tutorID = row.Cells[1].Text;
+
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                string query = "DELETE FROM NewTutorsTable WHERE TutorID = @TutorID";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@TutorID", tutorID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    LoadNewTutors(); // Refresh new tutors gridview after removal
+                }
             }
         }
     }

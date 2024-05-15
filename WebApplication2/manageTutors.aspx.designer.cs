@@ -33,6 +33,15 @@ namespace WebApplication2
         protected global::System.Web.UI.WebControls.GridView GridViewExistingTutors;
 
         /// <summary>
+        /// Tutor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Tutor;
+
+        /// <summary>
         /// GridViewNewTutors control.
         /// </summary>
         /// <remarks>
@@ -40,5 +49,14 @@ namespace WebApplication2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewNewTutors;
+
+        /// <summary>
+        /// Existingtutor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Existingtutor;
     }
 }
