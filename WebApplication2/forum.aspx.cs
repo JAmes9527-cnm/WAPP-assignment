@@ -49,20 +49,31 @@ namespace WebApplication2
                             // Create HTML elements for the topic
                             Panel topicPanel = new Panel();
                             topicPanel.CssClass = "topic";
+                            Panel contentPanel = new Panel();
+                            contentPanel.CssClass = "contentPanel";
+                            Panel buttonPanel = new Panel();
+                            buttonPanel.CssClass = "buttonPanel";
 
                             LiteralControl titleControl = new LiteralControl("<h3>" + title + "</h3>");
-                            LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
-                            LiteralControl createdAtControl = new LiteralControl("<p><i>" + createdAt + "</i></p>");
+                            LiteralControl contentControl = new LiteralControl(content);
+                            LiteralControl createdAtControl = new LiteralControl("<p><i>Created on " + createdAt + "</i></p>");
 
                             // Create a button to view posts
                             Button viewPostsButton = new Button();
                             viewPostsButton.Text = "View Posts";
+                            viewPostsButton.CssClass = "button";
                             viewPostsButton.CommandArgument = topicID.ToString(); // Set CommandArgument to TopicID
                             viewPostsButton.Click += ViewPostsButton_Click; // Attach event handler
 
+                            LiteralControl span = new LiteralControl();
+                            span.Text = "<span class=\"button-content\">" + viewPostsButton.Text + "</span>";
+                            viewPostsButton.Controls.Add(span);
+
                             topicPanel.Controls.Add(titleControl);
-                            topicPanel.Controls.Add(contentControl);
-                            topicPanel.Controls.Add(viewPostsButton);
+                            contentPanel.Controls.Add(contentControl);
+                            topicPanel.Controls.Add(contentPanel);
+                            buttonPanel.Controls.Add(viewPostsButton);
+                            topicPanel.Controls.Add(buttonPanel);
                             topicPanel.Controls.Add(createdAtControl);
 
                             topics.Controls.Add(topicPanel); // Add the topic panel to the existing topics div 

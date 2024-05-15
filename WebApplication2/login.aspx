@@ -26,6 +26,9 @@
             if (result.isConfirmed) {
                 window.location.href = redirectPage;
             }
+            else {
+                window.location.href = redirectPage;
+            }
         });
     }
     function showErrorMessage() {
@@ -38,7 +41,7 @@
         });
     }
 
-    </script>
+</script>
 <style>
 .login-form {
     width: 340px;
@@ -77,13 +80,11 @@
         <div class="form-group">
             <asp:Button CssClass="btn btn-primary btn-block" Text="Log in" runat="server" ID="Button1" OnClick="Button1_Click"></asp:Button>
         </div>
-        <div class="form-group">
-            <asp:Button CssClass="btn btn-primary btn-block" Text="Sign Up" runat="server" ID="register_btn" OnClick="register_btn_Click"></asp:Button>
-        </div>
         <div class="clearfix">
             <a href="#" class="float-right">Forgot Password?</a>
         </div>
     </form>
+            <p class="text-center"><a href="register.aspx">Create an Account</a></p>
 </div>
 </body>
 </html>

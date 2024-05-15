@@ -91,7 +91,6 @@ namespace WebApplication2
                     // Set the imgUrl to the relative path
                     ImgUrl.Text = "~/img/pfp/" + fileName;
                     updateCmd.Parameters.AddWithValue("@imgUrl", ImgUrl.Text);
-                    Response.Redirect("UserProfile.aspx");
                 }
                 else
                 {

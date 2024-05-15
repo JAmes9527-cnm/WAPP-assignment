@@ -14,7 +14,7 @@
     <form runat="server">
     <header>
         <div class="logo">
-            <a href="home.aspx"><img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" /></a>
+            <a href="home.aspx"><img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" alt="Logo"/></a>
         </div>
         <nav>
             <ul>
@@ -44,7 +44,7 @@
 
                 <asp:Panel ID="UserPanel" runat="server" Visible="false">
                 <asp:Label ID="WelcomeText" Text="Welcome, User" runat="server"/>
-                <asp:ImageButton ID="pfp" ImageUrl="~/img/pfp/default_pfp.img" runat="server" OnClick="PfpButton_Click" CssClass="cropped-image circular-img-container"/>
+                <asp:ImageButton ID="pfp" ImageUrl="~/img/pfp/default_pfp.img" runat="server" OnClick="PfpButton_Click" CssClass="cropped-image circular-img-container" AlternateText="Profile picture"/>
                 </asp:Panel>
             </asp:PlaceHolder>
         </div>

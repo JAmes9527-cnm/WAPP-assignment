@@ -67,28 +67,46 @@ namespace WebApplication2
                             DateTime createdAt = Convert.ToDateTime(reader["CreatedAt"]);
 
                             Panel postPanel = new Panel();
-                            postPanel.CssClass = "post";
+                            postPanel.CssClass = "topic";
+                            Panel voteBtn = new Panel();
+                            voteBtn.CssClass = "btnContainer";
 
                             LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
                             LiteralControl createdByControl = new LiteralControl("<p>By: " + createdBy + "</p>");
                             LiteralControl createdAtControl = new LiteralControl("<p><i>" + createdAt + "</i></p>");
                             LiteralControl voteControl = new LiteralControl("<p>vote: " + vote + "</p>");
 
-                            Button upVoteButton = new Button();
-                            upVoteButton.Text = "Up Vote";
+                            LinkButton upVoteButton = new LinkButton();
+                            upVoteButton.Text = "<i class=\"fa-solid fa-thumbs-up\"></i>";
                             upVoteButton.CommandArgument = postID.ToString();
                             upVoteButton.Click += upVoteButton_Click; // Attach event handler
-                            Button downVoteButton = new Button();
-                            downVoteButton.Text = "Down Vote";
+                            LinkButton downVoteButton = new LinkButton();
+                            downVoteButton.Text = "<i class=\"fa-solid fa-thumbs-down\"></i>";
                             downVoteButton.CommandArgument = postID.ToString();
                             downVoteButton.Click += downVoteButton_Click; // Attach event handler
+                            LinkButton unVoteButton = new LinkButton();
+                            unVoteButton.Text = "<i class=\"fa-solid fa-xmark\"></i>";
+                            unVoteButton.CommandArgument = postID.ToString();
+                            unVoteButton.Click += unVoteButton_Click; // Attach event handler
+
+                            upVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using hex value
+                            downVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using named color
+                            unVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using color name
 
                             postPanel.Controls.Add(contentControl);
                             postPanel.Controls.Add(createdByControl);
                             postPanel.Controls.Add(createdAtControl);
-                            postPanel.Controls.Add(voteControl);
-                            postPanel.Controls.Add(upVoteButton);
-                            postPanel.Controls.Add(downVoteButton);
+
+                            voteBtn.Controls.Add(upVoteButton);
+                            voteBtn.Controls.Add(new LiteralControl("&nbsp;&nbsp;")); // Add padding between buttons
+                            voteBtn.Controls.Add(voteControl);
+                            voteBtn.Controls.Add(new LiteralControl("&nbsp;&nbsp;")); // Add padding between buttons
+                            voteBtn.Controls.Add(downVoteButton);
+                            voteBtn.Controls.Add(new LiteralControl("&nbsp;")); // Add padding between buttons
+                            voteBtn.Controls.Add(unVoteButton);
+
+                            postPanel.Controls.Add(voteBtn);
+                            
 
                             posts.Controls.Add(postPanel);
                         }
@@ -100,7 +118,7 @@ namespace WebApplication2
         protected void upVoteButton_Click(object sender, EventArgs e)
         {
             
-            Button upVoteButton = (Button)sender;
+            LinkButton upVoteButton = (LinkButton)sender;
             int postID = Convert.ToInt32(upVoteButton.CommandArgument);
             if (Session["userName"] != null)
             {
@@ -141,7 +159,7 @@ namespace WebApplication2
         protected void downVoteButton_Click(object sender, EventArgs e)
         {
             
-            Button downVoteButton = (Button)sender;
+            LinkButton downVoteButton = (LinkButton)sender;
             int postID = Convert.ToInt32(downVoteButton.CommandArgument);
 
             if (Session["userName"] != null)
@@ -168,6 +186,40 @@ namespace WebApplication2
                     UpdateVoteRecord(UserID, postID, -1);
                     Response.Redirect(Request.Url.AbsoluteUri, false); // Redirect to the same page
                     Context.ApplicationInstance.CompleteRequest(); // End the response without further processingview
+                }
+            }
+
+            else
+            {
+                // User is not logged in, display an error message or redirect to the login page
+                Response.Write("<script>alert('You must be logged in to post.')</script>");
+            }
+        }
+        protected void unVoteButton_Click(object sender, EventArgs e)
+        {
+
+            LinkButton unVoteButton = (LinkButton)sender;
+            int postID = Convert.ToInt32(unVoteButton.CommandArgument);
+
+            if (Session["userName"] != null)
+            {
+                int UserID = Convert.ToInt32(Session["UserID"]);
+
+                if (CheckVote(UserID, postID) == 0)
+                {
+                    Response.Write("<script>alert('You hasn't voted yet.')</script>");
+                }
+                else if (CheckVote(UserID, postID) == -1)
+                {
+                    UpdatePostVote(postID, "up");
+                    UpdateVoteRecord(UserID, postID, 0);
+                    Response.Redirect(Request.Url.AbsoluteUri);
+                }
+                else if (CheckVote(UserID, postID) == 1)
+                {
+                    UpdatePostVote(postID, "down");
+                    UpdateVoteRecord(UserID, postID, 0);
+                    Response.Redirect(Request.Url.AbsoluteUri); 
                 }
             }
 
