@@ -134,5 +134,15 @@ namespace WebApplication2
                 }
             }
         }
+
+        protected void GridViewNewTutors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridViewExistingTutors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
