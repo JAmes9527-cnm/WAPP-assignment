@@ -31,133 +31,62 @@ namespace WebApplication2
                 reader.Close();
 
                 Random random = new Random();
+                int randomIndex = random.Next(validQuizIDs.Count);
+                int randomQuizID = validQuizIDs[randomIndex];
 
-                for (int i = 0; i < 3; i++)
+                SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizID = @QuizId", con);
+                da.SelectCommand.Parameters.AddWithValue("@QuizId", randomQuizID);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                Random randomChoice = new Random();
+                List<int> randomChoiceIndices = new List<int>();
+
+                while (randomChoiceIndices.Count < 4)
                 {
-                    int randomIndex = random.Next(validQuizIDs.Count);
-                    int randomQuizID = validQuizIDs[randomIndex];
-
-                    SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizID = @QuizId", con);
-                    da.SelectCommand.Parameters.AddWithValue("@QuizId", randomQuizID);
-
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    Random randomChoice = new Random();
-                    List<int> randomChoiceIndices = new List<int>();
-
-                    while (randomChoiceIndices.Count < 4)
+                    int randomChoiceIndex = randomChoice.Next(3, 7); // 7 is exclusive, so it will give values from 3 to 6
+                    if (!randomChoiceIndices.Contains(randomChoiceIndex))
                     {
-                        int randomChoiceIndex = randomChoice.Next(3, 7); // 7 is exclusive, so it will give values from 3 to 6
-                        if (!randomChoiceIndices.Contains(randomChoiceIndex))
-                        {
-                            randomChoiceIndices.Add(randomChoiceIndex);
-                        }
-                    }
-
-                    if (i == 0)
-                    {
-                        Question1.Text = dt.Rows[0][2].ToString();
-                        Choice1.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
-                        Choice2.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
-                        Choice3.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
-                        Choice4.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
-                        CorrectAnswer = dt.Rows[0][7].ToString(); 
-                        ViewState["CorrectAnswer1"] = CorrectAnswer;
-                    }
-                    else if (i == 1)
-                    {
-                        Question2.Text = dt.Rows[0][2].ToString();
-                        Choice5.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
-                        Choice6.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
-                        Choice7.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
-                        Choice8.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
-                        CorrectAnswer = dt.Rows[0][7].ToString();
-                        ViewState["CorrectAnswer2"] = CorrectAnswer;
-                    }
-                    else if (i == 2)
-                    {
-                        Question3.Text = dt.Rows[0][2].ToString();
-                        Choice9.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
-                        Choice10.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
-                        Choice11.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
-                        Choice12.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
-                        CorrectAnswer = dt.Rows[0][7].ToString();
-                        ViewState["CorrectAnswer3"] = CorrectAnswer; 
-
+                        randomChoiceIndices.Add(randomChoiceIndex);
                     }
                 }
+
+                Question1.Text = dt.Rows[0][2].ToString();
+                Choice1.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
+                Choice2.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
+                Choice3.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
+                Choice4.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
+                CorrectAnswer = dt.Rows[0][7].ToString();
+                ViewState["CorrectAnswer"] = CorrectAnswer;
             }
             else
             {
+                CorrectAnswer = ViewState["CorrectAnswer"].ToString();
             }
         }
 
-
         protected void Button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Answer.Text) || string.IsNullOrEmpty(Answer2.Text) || string.IsNullOrEmpty(Answer3.Text))
+            if (string.IsNullOrEmpty(Answer.Text))
             {
-                verify.Visible = false;
-                verify2.Visible = false;
-                verify3.Visible = false;
-
-                if (string.IsNullOrEmpty(Answer.Text))
-                {
-                    verify.Visible = true;
-                    verify.Text = "Please select an answer for question 1.";
-                    verify.ForeColor = System.Drawing.Color.Red;
-                }
-                if (string.IsNullOrEmpty(Answer2.Text))
-                {
-                    verify2.Visible = true;
-                    verify2.Text = "Please select an answer for question 2.";
-                    verify2.ForeColor = System.Drawing.Color.Red;
-                }
-                if (string.IsNullOrEmpty(Answer3.Text))
-                {
-                    verify3.Visible = true;
-                    verify3.Text = "Please select an answer for question 3.";
-                    verify3.ForeColor = System.Drawing.Color.Red;
-                }
-                return; 
+                // If no option is selected, display a message and prevent further action
+                verify.Visible = true;
+                verify.Text = "Please select an answer.";
+                verify.ForeColor = System.Drawing.Color.Red;
+                return;
             }
 
             verify.Visible = true;
-            verify2.Visible = true;
-            verify3.Visible = true;
-
-            if (Answer.Text == ViewState["CorrectAnswer1"].ToString())
+            if (Answer.Text == CorrectAnswer)
             {
                 verify.Text = "Correct Answer!";
                 verify.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
-                verify.Text = "Wrong Answer!Correct Answer is " + ViewState["CorrectAnswer1"].ToString();
+                verify.Text = "Wrong Answer!Correct Answer is " + CorrectAnswer.ToString();
                 verify.ForeColor = System.Drawing.Color.Red;
-            }
-
-            if (Answer.Text == ViewState["CorrectAnswer2"].ToString())
-            {
-                verify2.Text = "Correct Answer!";
-                verify2.ForeColor = System.Drawing.Color.Green;
-            }
-            else
-            {
-                verify2.Text = "Wrong Answer!Correct Answer is " + ViewState["CorrectAnswer2"].ToString();
-                verify2.ForeColor = System.Drawing.Color.Red;
-            }
-
-            if (Answer.Text == ViewState["CorrectAnswer3"].ToString())
-            {
-                verify3.Text = "Correct Answer!";
-                verify3.ForeColor = System.Drawing.Color.Green;
-            }
-            else
-            {
-                verify3.Text = "Wrong Answer!Correct Answer is " + ViewState["CorrectAnswer3"].ToString();
-                verify3.ForeColor = System.Drawing.Color.Red;
             }
             Submit.Visible = false;
             Next.Visible = true;
@@ -166,14 +95,6 @@ namespace WebApplication2
             Choice2.Enabled = false;
             Choice3.Enabled = false;
             Choice4.Enabled = false;
-            Choice5.Enabled = false;
-            Choice6.Enabled = false;
-            Choice7.Enabled = false;
-            Choice8.Enabled = false;
-            Choice9.Enabled = false;
-            Choice10.Enabled = false;
-            Choice10.Enabled = false;
-            Choice12.Enabled = false;
         }
 
 
@@ -210,78 +131,6 @@ namespace WebApplication2
             if (selectedChoice.Checked)
             {
                 Answer.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice5_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer2.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice6_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer2.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice7_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer2.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice8_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer2.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice9_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer3.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice10_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer3.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice11_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer3.Text = selectedChoice.Text;
-            }
-        }
-
-        protected void Choice12_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton selectedChoice = (RadioButton)sender;
-            if (selectedChoice.Checked)
-            {
-                Answer3.Text = selectedChoice.Text;
             }
         }
 
