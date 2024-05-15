@@ -138,8 +138,8 @@
             </p>
             <p class="auto-style1">
                 <asp:RadioButton ID="Choice1" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice1_CheckedChanged" />
-                <asp:RadioButton ID="Choice2" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice4_CheckedChanged" />
-                <asp:RadioButton ID="Choice3" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice4_CheckedChanged" />
+                <asp:RadioButton ID="Choice2" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice2_CheckedChanged" />
+                <asp:RadioButton ID="Choice3" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice3_CheckedChanged" />
                 <asp:RadioButton ID="Choice4" runat="server" AutoPostBack="True" GroupName="Choices" OnCheckedChanged="Choice4_CheckedChanged" />
             </p>
         </section>
