@@ -76,6 +76,8 @@ namespace WebApplication2
                     updateCmd.Parameters.AddWithValue("@Choice4", Choice4.Text);
                     updateCmd.Parameters.AddWithValue("@Answer", Answer.Text);
                     updateCmd.ExecuteNonQuery();
+                    con.Close();
+                    Response.Redirect(Request.RawUrl);
                 }
                 else
                 {

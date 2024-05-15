@@ -1,83 +1,94 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="WebApplication2.UserProfile" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<style>
-body {
-	font-family: 'Varela Round', sans-serif;
-}
-.modal-confirm {		
-	color: #636363;
-	width: 550px;
-}
-.modal-confirm .modal-content {
-	padding: 20px;
-	border-radius: 5px;
-	border: none;        
-}
-.modal-confirm .modal-header {
-	padding: 0 15px;
-	border-bottom: none;   
-	position: relative;
-}
-.modal-confirm h4 {
-	display: inline-block;
-	font-size: 26px;
-}
-.modal-confirm .close {
-	position: absolute;
-	top: -5px;
-	right: -5px;
-}
-.modal-confirm .modal-body {
-	color: #999;
-}
-.modal-confirm .modal-footer {
-	background: #ecf0f1;
-	border-color: #e6eaec;
-	text-align: right;
-	margin: 0 -20px -20px;
-	border-radius: 0 0 5px 5px;
-}	
-.modal-confirm .btn {
-	color: #fff;
-	border-radius: 4px;
-	transition: all 0.4s;
-	border: none;
-	padding: 8px 20px;
-	outline: none !important;
-}	
-.modal-confirm .btn-info {
-	background: #b0c1c6;
-}
-.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
-	background: #92a9af;
-}
-.modal-confirm .btn-danger {
-	background: #f15e5e;
-}
-.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
-	background: #ee3535;
-}
-.modal-confirm .modal-footer .btn + .btn {
-	margin-left: 10px;
-}
-.trigger-btn {
-	display: inline-block;
-	margin: 100px auto;
-}
-</style>
-<style>
-    <style type="text/css">
+    <meta charset="utf-8" />
+    <tilte>user Profile</tilte>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Varela Round', sans-serif;
+        }
 
+        .modal-confirm {
+            color: #636363;
+            width: 550px;
+        }
+
+            .modal-confirm .modal-content {
+                padding: 20px;
+                border-radius: 5px;
+                border: none;
+            }
+
+            .modal-confirm .modal-header {
+                padding: 0 15px;
+                border-bottom: none;
+                position: relative;
+            }
+
+            .modal-confirm h4 {
+                display: inline-block;
+                font-size: 26px;
+            }
+
+            .modal-confirm .close {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+            }
+
+            .modal-confirm .modal-body {
+                color: #999;
+            }
+
+            .modal-confirm .modal-footer {
+                background: #ecf0f1;
+                border-color: #e6eaec;
+                text-align: right;
+                margin: 0 -20px -20px;
+                border-radius: 0 0 5px 5px;
+            }
+
+            .modal-confirm .btn {
+                color: #fff;
+                border-radius: 4px;
+                transition: all 0.4s;
+                border: none;
+                padding: 8px 20px;
+                outline: none !important;
+            }
+
+            .modal-confirm .btn-info {
+                background: #b0c1c6;
+            }
+
+                .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+                    background: #92a9af;
+                }
+
+            .modal-confirm .btn-danger {
+                background: #f15e5e;
+            }
+
+                .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+                    background: #ee3535;
+                }
+
+            .modal-confirm .modal-footer .btn + .btn {
+                margin-left: 10px;
+            }
+
+        .trigger-btn {
+            display: inline-block;
+            margin: 100px auto;
+        }
 
         header {
             background: #005691;
@@ -96,20 +107,20 @@ body {
             padding: 0;
         }
 
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
+            nav ul li {
+                display: inline;
+                margin-right: 10px;
+            }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+                nav ul li a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
 
         .button-container {
             display: flex;
-            justify-content: flex-end; 
+            justify-content: flex-end;
         }
 
         .login-btn {
@@ -146,7 +157,7 @@ body {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding:0 20px;
+            padding: 0 20px;
         }
 
         .left-content {
@@ -155,12 +166,12 @@ body {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            width: calc(30% - 20px); 
-            height: 350px; 
+            width: calc(30% - 20px);
+            height: 350px;
         }
 
         .center-content {
-            text-align: center; 
+            text-align: center;
         }
 
         .center-content {
@@ -169,8 +180,8 @@ body {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            width: calc(30% - 20px); 
-            height: 350px; 
+            width: calc(30% - 20px);
+            height: 350px;
         }
 
         .right-content {
@@ -179,18 +190,18 @@ body {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            width: calc(30% - 20px); 
-            height: 350px; 
+            width: calc(30% - 20px);
+            height: 350px;
         }
 
-        .content{
+        .content {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            width: calc(100% - 20px); 
-            height: 350px; 
+            width: calc(100% - 20px);
+            height: 350px;
         }
 
 
@@ -210,64 +221,75 @@ body {
             margin-right: 0px;
             margin-bottom: 26px;
         }
+
         .auto-style2 {
             width: 230px;
         }
+
         .auto-style3 {
             text-align: center;
         }
+
         .auto-style4 {
             width: 109px;
         }
+
         .auto-style5 {
             width: 230px;
             height: 36px;
         }
+
         .auto-style6 {
             width: 109px;
             height: 36px;
         }
+
         .auto-style8 {
             width: 230px;
             height: 34px;
         }
+
         .auto-style9 {
             width: 109px;
             height: 34px;
         }
+
         .auto-style11 {
             height: 36px;
             width: 311px;
         }
+
         .auto-style12 {
             height: 34px;
         }
+
         .auto-style15 {
             width: 331px;
             height: 36px;
         }
+
         .auto-style16 {
             height: 36px;
             text-align: center;
         }
+
         .auto-style17 {
             height: 36px;
         }
 
         .cropped-image {
-    width: 100%; /* Take the full width of the container */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Cover the entire container, cropping the image if necessary */
-    object-position: center; /* Center the image within the container */
-}
+            width: 100%; /* Take the full width of the container */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover; /* Cover the entire container, cropping the image if necessary */
+            object-position: center; /* Center the image within the container */
+        }
 
-.circular-img-container {
-    width: 100px; /* Adjust the size as needed */
-    height: 100px; /* Adjust the size as needed */
-    overflow: hidden;
-    border-radius: 50%;
-}
-
+        .circular-img-container {
+            width: 100px; /* Adjust the size as needed */
+            height: 100px; /* Adjust the size as needed */
+            overflow: hidden;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
