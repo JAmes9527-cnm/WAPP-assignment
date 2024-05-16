@@ -63,8 +63,6 @@
                     <asp:Button ID="ManageStudentsButton" runat="server" CssClass="admin-option-btn" Text="Manage Students" OnClick="ManageStudentsButton_Click" />
                     <asp:Button ID="ManageTutorsButton" runat="server" CssClass="admin-option-btn" Text="Manage Tutors" OnClick="ManageTutorsButton_Click" />
                     <asp:Button ID="ManageForumButton" runat="server" CssClass="admin-option-btn" Text="Manage Forum" OnClick="ManageForumButton_Click" />
-                    <asp:Button ID="EditQuizButton" runat="server" CssClass="admin-option-btn" Text="Edit Quiz" OnClick="EditQuizButton_Click" />
-                    <asp:Button ID="ManagePostsButton" runat="server" CssClass="admin-option-btn" Text="Manage Posts" OnClick="ManagePostsButton_Click" />
                 </div>
             </div>
         </div>

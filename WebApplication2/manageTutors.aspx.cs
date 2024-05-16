@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Data;
-using System.IO;
+using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
@@ -17,10 +12,7 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-                // Load existing tutors
                 LoadExistingTutors();
-
-                // Load new tutors awaiting approval
                 LoadNewTutors();
             }
         }

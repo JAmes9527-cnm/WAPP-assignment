@@ -65,15 +65,5 @@ namespace WebApplication2
         {
             Response.Redirect("manageTutors.aspx");
         }
-
-        protected void EditQuizButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("EditQuiz.aspx");
-        }
-
-        protected void ManagePostsButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ManagePosts.aspx");
-        }
     }
 }
