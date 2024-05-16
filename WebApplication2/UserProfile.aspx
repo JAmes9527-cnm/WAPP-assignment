@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-    <tilte>user Profile</tilte>
+    <title>user Profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -417,7 +417,8 @@
             </tr>
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<button type="button" href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</button>
+        &nbsp;&nbsp;&nbsp;<button type="button" href="#myModal" class="trigger-btn" data-toggle="modal">Confirm Changes</button>
+        &nbsp;&nbsp;&nbsp;<button type="button" href="#deleteModal" class="trigger-btn" data-toggle="modal">Delete account</button>
         <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
@@ -432,6 +433,23 @@
 			<div class="modal-footer">
                 <asp:Button id="cancelBtn" runat="server" CssClass="btn btn-info" data-dismiss="modal" Text="Cancel"></asp:Button>
 				<asp:Button id="confirmBtn" CssClass="btn btn-danger" runat="server" Text="Yes, change it!" OnClick="confirmBtn_Click"></asp:Button>
+			</div>
+		</div>
+	</div>
+</div>
+        <div id="deleteModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">			
+				<h4 class="modal-title">Confirmation</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure you want to delete your account?</p>
+			</div>
+			<div class="modal-footer">
+                <asp:Button id="Button1" runat="server" CssClass="btn btn-info" data-dismiss="modal" Text="Cancel"></asp:Button>
+				<asp:Button id="Button2" CssClass="btn btn-danger" runat="server" Text="Yes, I want to delete it!" OnClick="deleteBtn_Click"></asp:Button>
 			</div>
 		</div>
 	</div>

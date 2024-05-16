@@ -51,6 +51,24 @@ namespace WebApplication2
         protected global::System.Web.UI.WebControls.Button postBtn;
 
         /// <summary>
+        /// searchPostsBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox searchPostsBox;
+
+        /// <summary>
+        /// searchPostsBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchPostsBtn;
+
+        /// <summary>
         /// posts control.
         /// </summary>
         /// <remarks>

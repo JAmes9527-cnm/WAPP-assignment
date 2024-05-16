@@ -13,12 +13,13 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadTopics();
+
+                LoadTopics();
+            
         }
 
 
-
-        private void LoadTopics()
+        private void LoadTopics(string searchQuery = "")
         {
             // Get the connection string from web.config
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -27,17 +28,30 @@ namespace WebApplication2
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 // Define the SQL query to select topics
-                string query = "SELECT TopicID, Title, Content,CreatedAt,UserID FROM Topics ORDER BY CreatedAt DESC";
+                string query = "SELECT TopicID, Title, Content, CreatedAt, UserID FROM Topics";
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    query += " WHERE Title LIKE @SearchQuery OR Content LIKE @SearchQuery";
+                }
+                query += " ORDER BY CreatedAt DESC";
 
                 // Create a SQL command
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
+                    if (!string.IsNullOrEmpty(searchQuery))
+                    {
+                        cmd.Parameters.AddWithValue("@SearchQuery", "%" + searchQuery + "%");
+                    }
+
                     // Open the connection
                     con.Open();
 
                     // Execute the command and get a data reader
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        // Clear previous topics
+                        topics.Controls.Clear();
+
                         // Loop through the results and generate HTML for each topic
                         while (reader.Read())
                         {
@@ -54,7 +68,7 @@ namespace WebApplication2
                             Panel buttonPanel = new Panel();
                             buttonPanel.CssClass = "buttonPanel";
 
-                            LiteralControl titleControl = new LiteralControl("<h3>" + title + "</h3>");
+                            LiteralControl titleControl = new LiteralControl("<h3>"+ topicID + title + "</h3>");
                             LiteralControl contentControl = new LiteralControl(content);
                             LiteralControl createdAtControl = new LiteralControl("<p><i>Created on " + createdAt + "</i></p>");
 
@@ -76,7 +90,7 @@ namespace WebApplication2
                             topicPanel.Controls.Add(buttonPanel);
                             topicPanel.Controls.Add(createdAtControl);
 
-                            topics.Controls.Add(topicPanel); // Add the topic panel to the existing topics div 
+                            topics.Controls.Add(topicPanel); // Add the topic panel to the existing topics div
                         }
                     }
                 }
@@ -89,11 +103,9 @@ namespace WebApplication2
             Button viewPostsButton = (Button)sender;
             int topicID = Convert.ToInt32(viewPostsButton.CommandArgument);
 
-            // Redirect to a page where users can view posts in the selected topic
+            // Redirect to the page where users can view posts in the selected topic
             Response.Redirect("ViewPosts.aspx?TopicID=" + topicID);
         }
-
-
 
         protected void postBtn_Click(object sender, EventArgs e)
         {
@@ -133,12 +145,22 @@ namespace WebApplication2
                 Response.Redirect(Request.Url.AbsoluteUri, false); // Redirect to the same page
                 Context.ApplicationInstance.CompleteRequest(); // End the response without further processing
             }
-
             else
             {
                 // User is not logged in, display an error message or redirect to the login page
                 Response.Write("<script>alert('You must be logged in to post a topic.')</script>");
             }
+        }
+
+        protected void searchBtn_Click(object sender, EventArgs e)
+        {
+            string searchQuery = searchBox.Text.Trim();
+            LoadTopics(searchQuery);
+        }
+
+        protected void searchBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

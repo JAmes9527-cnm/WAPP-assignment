@@ -13,16 +13,15 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
                 // Check if the TopicID is provided in the query string
                 if (Request.QueryString["TopicID"] != null)
                 {
                     int topicID = Convert.ToInt32(Request.QueryString["TopicID"]);
 
+                    // Now you have the topicID, you can use it to load posts or perform any other necessary actions
+                    // For example, you might call a method to load posts for the specified topic
                     GetPostsForTopic(topicID);
-                    if (Class1.GetPostNo(topicID) == 0)
-                    {
-                        label1.Visible = true;
-                    }
                 }
                 else
                 {
@@ -30,7 +29,10 @@ namespace WebApplication2
                     // Redirect the user back to the forum page or display an error message
                     Response.Redirect("forum.aspx");
                 }
+            
         }
+
+
 
         private void GetPostsForTopic(int topicID)
         {
@@ -109,6 +111,106 @@ namespace WebApplication2
                             
 
                             posts.Controls.Add(postPanel);
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void searchPostsBtn_Click(object sender, EventArgs e)
+        {
+            string searchQuery = searchPostsBox.Text.Trim();
+            SearchPosts(searchQuery);
+        }
+
+        private void SearchPosts(string searchQuery)
+        {
+            // Get the connection string from web.config
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            // Create a SQL connection
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                // Define the SQL query to search posts
+                string query = "SELECT PostID, Content, UserID, CreatedAt, vote FROM Posts WHERE TopicID = @TopicID AND Content LIKE '%' + @SearchQuery + '%' ORDER BY CreatedAt DESC";
+
+                // Create a SQL command with parameters
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    // Add parameters for TopicID and SearchQuery
+                    int topicID = Convert.ToInt32(Request.QueryString["TopicID"]);
+                    cmd.Parameters.AddWithValue("@TopicID", topicID);
+                    cmd.Parameters.AddWithValue("@SearchQuery", searchQuery);
+
+                    // Open the connection
+                    con.Open();
+
+                    // Execute the command and get a data reader
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear existing posts before adding search results
+                        posts.Controls.Clear();
+
+                        // Loop through the search results and create Post objects
+                        while (reader.Read())
+                        {
+                            int postID = Convert.ToInt32(reader["PostID"]);
+                            string content = reader["Content"].ToString();
+                            int userID = Convert.ToInt32(reader["UserID"]);
+                            string createdBy = Class1.GetUsernameFromID(userID);
+                            int vote = Convert.ToInt32(reader["vote"]);
+                            DateTime createdAt = Convert.ToDateTime(reader["CreatedAt"]);
+
+                            Panel postPanel = new Panel();
+                            postPanel.CssClass = "topic";
+                            Panel voteBtn = new Panel();
+                            voteBtn.CssClass = "btnContainer";
+
+                            LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
+                            LiteralControl createdByControl = new LiteralControl("<p>By: " + createdBy + "</p>");
+                            LiteralControl createdAtControl = new LiteralControl("<p><i>" + createdAt + "</i></p>");
+                            LiteralControl voteControl = new LiteralControl("<p>vote: " + vote + "</p>");
+
+                            LinkButton upVoteButton = new LinkButton();
+                            upVoteButton.Text = "<i class=\"fa-solid fa-thumbs-up\"></i>";
+                            upVoteButton.CommandArgument = postID.ToString();
+                            upVoteButton.Click += upVoteButton_Click; // Attach event handler
+                            LinkButton downVoteButton = new LinkButton();
+                            downVoteButton.Text = "<i class=\"fa-solid fa-thumbs-down\"></i>";
+                            downVoteButton.CommandArgument = postID.ToString();
+                            downVoteButton.Click += downVoteButton_Click; // Attach event handler
+                            LinkButton unVoteButton = new LinkButton();
+                            unVoteButton.Text = "<i class=\"fa-solid fa-xmark\"></i>";
+                            unVoteButton.CommandArgument = postID.ToString();
+                            unVoteButton.Click += unVoteButton_Click; // Attach event handler
+
+                            upVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using hex value
+                            downVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using named color
+                            unVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using color name
+
+                            postPanel.Controls.Add(contentControl);
+                            postPanel.Controls.Add(createdByControl);
+                            postPanel.Controls.Add(createdAtControl);
+
+                            voteBtn.Controls.Add(upVoteButton);
+                            voteBtn.Controls.Add(new LiteralControl("&nbsp;&nbsp;")); // Add padding between buttons
+                            voteBtn.Controls.Add(voteControl);
+                            voteBtn.Controls.Add(new LiteralControl("&nbsp;&nbsp;")); // Add padding between buttons
+                            voteBtn.Controls.Add(downVoteButton);
+                            voteBtn.Controls.Add(new LiteralControl("&nbsp;")); // Add padding between buttons
+                            voteBtn.Controls.Add(unVoteButton);
+
+                            postPanel.Controls.Add(voteBtn);
+
+
+                            posts.Controls.Add(postPanel);
+                        }
+
+                        // If no search results found, display a message
+                        if (!reader.HasRows)
+                        {
+                            LiteralControl noResultsControl = new LiteralControl("<p>No posts found matching your search query.</p>");
+                            posts.Controls.Add(noResultsControl);
                         }
                     }
                 }

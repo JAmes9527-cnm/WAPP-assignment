@@ -280,8 +280,8 @@ label:last-child span {
                     </td>
                     <td>
                         <asp:DropDownList ID="usertype" runat="server" CssClass="styled-dropdown">
-                            <asp:ListItem>Member</asp:ListItem>
-                            <asp:ListItem>Tutor</asp:ListItem>
+                            <asp:ListItem>member</asp:ListItem>
+                            <asp:ListItem>tutor</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                 </tr>

@@ -108,7 +108,39 @@
 
 .mar-top {
     margin-top: 15px;
-}</style>
+}
+
+.searchButton {
+            overflow: hidden;
+            height: 35px;
+            width: 100%;
+            max-width: 80px;
+            padding: 0 1rem;
+            border-radius: 1.5rem;
+            background: #3d3a4e;
+            background-size: 400%;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+.input {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
+}
+
+.input:hover {
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 20px -17px;
+}
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -121,6 +153,11 @@
                 <asp:textbox runat="server" ID="content" TextMode="MultiLine" placeholder="Your message" CssClass="Content" Rows="5"></asp:textbox><br />
                 <asp:Button runat="server" ID="postBtn" CssClass="post" Text="Post to forum" OnClick="postBtn_Click" />
             </div>
+
+            <h2>Search Posts</h2>
+<asp:TextBox runat="server" ID="searchPostsBox" placeholder="Search posts..." CssClass="input" />
+<asp:Button runat="server" ID="searchPostsBtn" Text="Search" OnClick="searchPostsBtn_Click" CssClass="searchButton" />
+
             <div class="topics" id="posts" runat="server"></div>
         </div>
         

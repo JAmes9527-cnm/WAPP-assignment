@@ -27,31 +27,31 @@ namespace WebApplication2
 
         private void LoadExistingTutors()
         {
-            // Connect to database and retrieve existing tutors
-            using (SqlConnection connection = new SqlConnection("ConnectionString"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string query = "SELECT TutorID, TutorName FROM TutorsTable";
+                string query = "SELECT UserID, fname, lname, Verified FROM userTable WHERE usertype = 'tutor' AND Verified = 1";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                GridViewExistingTutors.DataSource = reader;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                GridViewExistingTutors.DataSource = dataTable;
                 GridViewExistingTutors.DataBind();
-                reader.Close();
             }
         }
 
         private void LoadNewTutors()
         {
-            // Connect to database and retrieve new tutors awaiting approval
-            using (SqlConnection connection = new SqlConnection("ConnectionString"))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string query = "SELECT TutorID, TutorName, RegistrationDate FROM TutorsTable";
+                string query = "SELECT UserID, fname, lname, RegisterDate FROM userTable WHERE usertype = 'tutor' AND Verified = 0";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                GridViewNewTutors.DataSource = reader;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                GridViewNewTutors.DataSource = dataTable;
                 GridViewNewTutors.DataBind();
-                reader.Close();
             }
         }
 
@@ -59,10 +59,18 @@ namespace WebApplication2
         {
             if (e.CommandName == "Remove")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewExistingTutors.Rows[index];
-                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
-                // Write code to remove tutor with the specified ID from the database
+                int userID = Convert.ToInt32(e.CommandArgument);
+                // Write code to remove the tutor with the specified UserID from the database
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    string query = "UPDATE userTable SET Verified = 0, usertype = 'user' WHERE UserID = @UserID";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                // Refresh the GridView
+                LoadExistingTutors();
             }
         }
 
@@ -70,17 +78,35 @@ namespace WebApplication2
         {
             if (e.CommandName == "Approve")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewNewTutors.Rows[index];
-                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
-                // Write code to approve the new tutor with the specified ID
+                int userID = Convert.ToInt32(e.CommandArgument);
+                // Write code to approve the new tutor with the specified UserID
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    string query = "UPDATE userTable SET Verified = 1 WHERE UserID = @UserID";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                // Refresh the GridViews
+                LoadExistingTutors();
+                LoadNewTutors();
             }
             else if (e.CommandName == "Decline")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewNewTutors.Rows[index];
-                string tutorID = row.Cells[1].Text; // Assuming TutorID is in the second column
-                // Write code to decline the new tutor with the specified ID
+                int userID = Convert.ToInt32(e.CommandArgument);
+                // Write code to decline the new tutor with the specified UserID
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    string query = "UPDATE userTable SET Verified = 0, usertype = 'user' WHERE UserID = @UserID";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                // Refresh the GridViews
+                LoadExistingTutors();
+                LoadNewTutors();
             }
         }
     }
