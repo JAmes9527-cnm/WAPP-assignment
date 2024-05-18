@@ -42,6 +42,7 @@ namespace WebApplication2
                 Session["firstName"] = name;
                 Session["userName"] = username.Text;
                 Session["userID"] = UserID;
+                Session["userType"] = type;
 
 
 

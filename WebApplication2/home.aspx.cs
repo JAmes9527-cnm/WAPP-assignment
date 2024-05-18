@@ -55,5 +55,32 @@ namespace WebApplication2
             Session.Clear();
             Response.Redirect("login.aspx");
         }
+
+        protected void dashboardBtn_Click(object sender, EventArgs e)
+        {
+            if (Session["userType"] != null)
+            {
+                String type = Session["userType"].ToString();
+                if (type == "member")
+                {
+                    Response.Redirect("memberDashboard");
+                }
+                else if (type == "tutor")
+                {
+                    Response.Redirect("tutorDashboard");
+                }
+                else if (type == "admin")
+                {
+                    Response.Redirect("adminDashboard");
+                }
+            }
+
+           
+            else
+            {
+                Response.Write("<script>alert('You must be logged in to access user dashboard.')</script>");
+            }
+        }
+
     }
 }

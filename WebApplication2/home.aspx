@@ -26,6 +26,7 @@
                         <li><a href="resources.aspx">Resources</a></li>
                         <li><a href="aboutus.aspx">About</a></li>
                         <li><a href="contact.aspx">Contact Us</a></li>
+                        <li><asp:LinkButton runat="server" text="User Dashboard" OnClick="dashboardBtn_Click" CssClass="a" id="dashboardBtn"></asp:LinkButton></li>
                         <li class="more-dropdown">
                             <a href="javascript:void(0);" onclick="toggleDropdown()">More</a>
                             <ul class="dropdown-content">

@@ -276,6 +276,10 @@
         .auto-style17 {
             height: 36px;
         }
+        .widthLimit {
+            max-width: 400px;
+            width:100%;
+        }
 
         .cropped-image {
             width: 100%; /* Take the full width of the container */
@@ -290,6 +294,11 @@
             overflow: hidden;
             border-radius: 50%;
         }
+
+        td{
+        }
+
+        /* Ensure table takes only as much width as needed */
     </style>
 </head>
 <body>
@@ -339,7 +348,7 @@
                 </td>
             </tr>
             <tr>
-                <td  class="auto-style16" colspan="3">
+                <td  class="auto-style16" colspan="2">
                      <asp:Image ID="Image1" runat="server" CssClass="cropped-image circular-img-container" ImageUrl="your_image_url.jpg" />
                 </td>
                 <td class="auto-style17">
@@ -355,11 +364,10 @@
                 <td class="auto-style6">:</td>
                 <td class="auto-style11">
                     <asp:Label ID="id" runat="server"></asp:Label>
-&nbsp;
-                </td>
-                <td class="auto-style15">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="Label9" runat="server" Text="Label" Visible="False"></asp:Label>
                 </td>
+ 
             </tr>
             <tr>
                 <td class="auto-style8">
@@ -367,7 +375,10 @@
                 </td>
                 <td class="auto-style9">:</td>
                 <td class="auto-style12" colspan="2">
-                    <asp:TextBox ID="fname" runat="server" Width="800px"></asp:TextBox>
+                    <asp:TextBox ID="fname" runat="server" Width="400px"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="fname" ErrorMessage="First Name cannot be empty!"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -376,7 +387,10 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="lname" runat="server" Width="799px"></asp:TextBox>
+                    <asp:TextBox ID="lname" runat="server" Width="400px"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="lname" ErrorMessage="Last Name cannot be empty!"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -394,7 +408,10 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="email" runat="server" Width="800px"></asp:TextBox>
+                    <asp:TextBox ID="email" runat="server" Width="400px"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email" ErrorMessage="Invalid email format!" ValidationExpression="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" ForeColor="Red"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -403,7 +420,14 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="username" runat="server" Width="800px"></asp:TextBox>
+                    <asp:TextBox ID="username" runat="server" Width="400px"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+    ControlToValidate="username" 
+    ErrorMessage="Username must be alphanumeric and between 8 to 20 characters long!" 
+    ValidationExpression="^[a-zA-Z0-9]{8,20}$">
+</asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -412,8 +436,29 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="password" runat="server" Width="800px"></asp:TextBox>
+                    <asp:TextBox ID="password" TextMode="Password" runat="server" Width="400px" OnTextChanged="password_TextChanged"></asp:TextBox>
                 </td>
+                <td class="widthLimit">
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
+    ControlToValidate="password"
+    ErrorMessage="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character."
+    ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+</asp:RegularExpressionValidator>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <asp:Label ID="Label10" runat="server" Text="Confirm Password"></asp:Label>
+                </td>
+                <td class="auto-style4">:</td>
+                <td colspan="2">
+                    <asp:TextBox ID="TextBox1" TextMode="Password" runat="server" Width="400px" OnTextChanged="password_TextChanged"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="TextBox1" ControlToValidate="password" ErrorMessage="Not same with password!"></asp:CompareValidator>
+                </td>
+
             </tr>
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
