@@ -145,6 +145,31 @@ nav ul {
         </div>
 
         <!-- Repeat for other courses -->
+        <h3>Courses</h3>
+        <div>
+            <a href="course2.aspx">
+                <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Larger" ForeColor="Black" Text=" Managed Your Money"></asp:Label>
+            </a>
+            <br />
+                <asp:Label ID="Label3" runat="server" Font-Overline="False" ForeColor="Black" Text="Manage Your Money spend and Save"></asp:Label>
+            <br />
+            <br />
+                <img src="placeholder.jpg" alt="Course Thumbnail"/> 
+        </div>
+
+
+        <h3>Courses</h3>
+        <div>
+            <a href="course3.aspx">
+                <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Overline="False" Font-Size="Larger" ForeColor="Black" Text=" Make Big Profit!"></asp:Label>
+            </a>
+            <br />
+                <asp:Label ID="Label5" runat="server" Font-Overline="False" ForeColor="Black" Text="Use Your Money To Make Profit!"></asp:Label>
+            <br />
+            <br />
+                <img src="placeholder.jpg" alt="Course Thumbnail"/> 
+        </div>
+
     </section>
 
     <footer>
