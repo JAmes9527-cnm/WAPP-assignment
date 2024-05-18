@@ -9,8 +9,6 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
                 // Check if the user is logged in
                 if (Session["usertype"] != null)
                 {
@@ -29,12 +27,7 @@ namespace WebApplication2
                         SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] WHERE StudentID = @StudentID";
                         SqlDataSource1.SelectParameters.Clear();
                         SqlDataSource1.SelectParameters.Add("StudentID", studentID);
-                    }
-                }
-                else
-                {
-                    // Redirect to login page if user is not logged in
-                    Response.Redirect("login.aspx");
+                         GridView1.Columns[GridView1.Columns.Count - 1].Visible = false; // Assuming the edit column is the last column
                 }
             }
         }
@@ -117,7 +110,6 @@ namespace WebApplication2
                 {
                     string result1 = ((DataRowView)e.Row.DataItem)["Result1"].ToString();
                     ddlResult1.SelectedValue = result1;
-
                 }
 
                 if (ddlResult2 != null)
@@ -131,10 +123,9 @@ namespace WebApplication2
                     string result3 = ((DataRowView)e.Row.DataItem)["Result3"].ToString();
                     ddlResult3.SelectedValue = result3;
                 }
-
             }
-
         }
+
 
 
         protected void Button3_Click(object sender, EventArgs e)

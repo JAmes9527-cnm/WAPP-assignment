@@ -64,11 +64,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .auto-style1 {
-            margin: 20px auto;
-            width: 90%;
-        }
-
         .grid-view-container {
             overflow-x: auto;
             margin-bottom: 20px;
@@ -112,6 +107,9 @@
 
         .grid-view .edit-button:hover {
             background-color: #45a049; /* Darker green on hover */
+        }
+        .auto-style2 {
+            text-align: center;
         }
     </style>
 
@@ -232,8 +230,8 @@
                 <asp:Parameter Name="TotalResult" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <p>
-            <asp:Button ID="Next" runat="server" OnClick="Button3_Click" Text="Back" Visible="False" />
+        <p class="auto-style2">
+            <asp:Button ID="Next" runat="server" OnClick="Button3_Click" Text="Back" />
         </p>
     </form>
 </body>
