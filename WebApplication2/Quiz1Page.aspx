@@ -11,6 +11,7 @@
 
 
 
+
         header {
             background: #005691;
             color: white;
@@ -111,9 +112,10 @@
             <div class="button-container">
                 <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
                     <asp:Panel ID="loginPanel" runat="server">
-                        <button class="login-btn">Login</button>
-                        <button class="signup-btn">Sign Up</button>
+                         <a class="login-btn" href="login.aspx">Login</a>
+                        <a class="signup-btn" href="register.aspx">Sign Up</a>
                     </asp:Panel>
+
                 </asp:PlaceHolder>
             </div>
         </header>
@@ -187,6 +189,9 @@
         
         <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Button2_Click" />
         <asp:Button ID="Next" runat="server" OnClick="Button3_Click" Text="Next" Visible="False" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Check Result" />
     </form>
+t>
+
 </body>
 </html>

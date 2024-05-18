@@ -169,7 +169,9 @@
     </style>
 </head>
 <body>
+
     <form id="No" runat="server">
+
         <div>
         </div>
         <header>
@@ -244,7 +246,7 @@
                 </td>
                 <td class="auto-style9">:</td>
                 <td class="auto-style21" colspan="2">
-                    <asp:TextBox ID="Question" runat="server" Width="800px"  ></asp:TextBox>
+                    <asp:TextBox ID="Question" runat="server" Width="800px" OnTextChanged="Question_TextChanged"  ></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -295,9 +297,14 @@
         </table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add/Edit" />
-        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Remove" />
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Remove" OnClientClick="return confirm('Are you sure you want to delete this item?');" />
         <asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
+
+
+
     </form>
+   
     </body>
 </html>
+

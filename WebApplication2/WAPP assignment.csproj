@@ -187,6 +187,7 @@
     <Content Include="course1.aspx" />
     <Content Include="EditQuiz.aspx" />
     <Content Include="Quiz1Page.aspx" />
+    <Content Include="Result Page.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="aboutus.aspx.cs">
@@ -373,6 +374,13 @@
     </Compile>
     <Compile Include="Quiz1Page.aspx.designer.cs">
       <DependentUpon>Quiz1Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Result Page.aspx.cs">
+      <DependentUpon>Result Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Result Page.aspx.designer.cs">
+      <DependentUpon>Result Page.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

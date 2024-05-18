@@ -11,7 +11,10 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usertype"] != null &&  Session["usertype"].ToString() == "member")
+            {
+                Button4.Visible = false;
+            }
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -26,7 +29,12 @@ namespace WebApplication2
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            Response.Redirect("Quiz1Page.aspx");
+        }
 
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Result Page.aspx");
         }
     }
 }

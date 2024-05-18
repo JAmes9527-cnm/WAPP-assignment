@@ -205,6 +205,7 @@
         <div style="display: grid; place-items: center;">
             <asp:Button ID="Button4" runat="server" Text="Edit Quiz" OnClick="Button4_Click" />
             <asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click"/>
+            <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Result" />
             <asp:Button ID="Button5" runat="server" Text="Back" OnClick="Button5_Click" />
 
         </div>
