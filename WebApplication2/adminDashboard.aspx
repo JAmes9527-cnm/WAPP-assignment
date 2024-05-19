@@ -60,7 +60,7 @@
                 </div>
                 <div class="admin-options">
                     <!-- Navigation buttons for managing students, tutors, forum, and quizzes -->
-                    <asp:Button ID="ManageStudentsButton" runat="server" CssClass="admin-option-btn" Text="Manage Students" OnClick="ManageStudentsButton_Click" />
+                    <asp:Button ID="ManageStudentsButton" runat="server" CssClass="admin-option-btn" Text="Manage Users" OnClick="ManageStudentsButton_Click" />
                     <asp:Button ID="ManageTutorsButton" runat="server" CssClass="admin-option-btn" Text="Manage Tutors" OnClick="ManageTutorsButton_Click" />
                     <asp:Button ID="ManageForumButton" runat="server" CssClass="admin-option-btn" Text="Manage Forum" OnClick="ManageForumButton_Click" />
                 </div>
