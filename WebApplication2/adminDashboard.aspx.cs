@@ -56,14 +56,14 @@ namespace WebApplication2
             Response.Redirect("manageForum.aspx");
         }
 
-        protected void ManageStudentsButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("manageStudents.aspx");
-        }
-
         protected void ManageTutorsButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("manageTutors.aspx");
+        }
+
+        protected void ManageStudentsButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("manageUsers.aspx");
         }
     }
 }
