@@ -11,25 +11,16 @@ namespace WebApplication2
 {
 
 
-    public partial class Quiz
+    public partial class viewProfile
     {
 
         /// <summary>
-        /// form1 control.
+        /// DetailsView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// questions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl questions;
+        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
     }
 }

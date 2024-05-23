@@ -1,10 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="manageTutors.aspx.cs" Inherits="WebApplication2.manageTutors" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="manageTutors.aspx.cs" Inherits="WebApplication2.manageTutor" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Manage Tutors</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -63,11 +58,9 @@
             margin-top: 30px;
         }
     </style>
-</head>
-
-<body>
-    <form runat="server">
-        <div class="main-content">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <div class="main-content">
             <h1>Manage Tutors</h1>
             <div class="gridview-container">
                 <h2>Existing Tutors</h2>
@@ -88,7 +81,7 @@
                 </asp:GridView>
 
                 <h2>New Tutors Awaiting Approval</h2>
-                <asp:GridView ID="GridViewNewTutors" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewNewTutors_RowCommand" CssClass="centered-gridview">
+                <asp:GridView ID="GridViewNewTutors" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewNewTutors_RowCommand" CssClass="centered-gridview" >
                     <Columns>
                         <asp:TemplateField HeaderText="Tutor Name">
                             <ItemTemplate>
@@ -111,7 +104,4 @@
                 </asp:GridView>
             </div>
         </div>
-    </form>
-</body>
-
-</html>
+</asp:Content>

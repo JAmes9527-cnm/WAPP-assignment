@@ -13,5 +13,10 @@ namespace WebApplication2
         {
 
         }
+
+        protected void courses_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("courses.aspx");
+        }
     }
 }

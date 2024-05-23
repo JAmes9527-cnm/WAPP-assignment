@@ -68,7 +68,7 @@ namespace WebApplication2
                             Panel buttonPanel = new Panel();
                             buttonPanel.CssClass = "buttonPanel";
 
-                            LiteralControl titleControl = new LiteralControl("<h3>"+ topicID + title + "</h3>");
+                            LiteralControl titleControl = new LiteralControl("<h3>"+ title + "</h3>");
                             LiteralControl contentControl = new LiteralControl(content);
                             LiteralControl createdAtControl = new LiteralControl("<p><i>Created on " + createdAt + "</i></p>");
 

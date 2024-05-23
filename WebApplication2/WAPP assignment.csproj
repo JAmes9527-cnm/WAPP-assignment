@@ -1,4 +1,4 @@
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -72,6 +72,7 @@
   <ItemGroup>
     <Content Include="aboutus.aspx" />
     <Content Include="aboutusdesign.css" />
+    <Content Include="addCourses.aspx" />
     <Content Include="adminDashboard.aspx" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
@@ -130,24 +131,24 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="dbconnect.aspx" />
+    <Content Include="editCourse.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="forum.aspx" />
     <Content Include="forum.css" />
-    <Content Include="oldHome.aspx" />
+    <Content Include="img\courseThumbnail\defaultCourse.png" />
+    <Content Include="img\pfp\default_pfp.png" />
+    <Content Include="manageStudents.aspx" />
+    <Content Include="manageTutors.aspx" />
+    <Content Include="masterTemp.aspx" />
+    <Content Include="Courses.aspx" />
     <Content Include="homedesign.css" />
     <Content Include="img\logo.png" />
-    <Content Include="img\pfp\default_pfp.png" />
-    <Content Include="img\pfp\[removal.ai]_79ef1d0b-99b3-4549-963b-d92e8a986911-logo-maker-online-logo-generator-logoai-com.png" />
     <Content Include="login.aspx" />
     <Content Include="admin_register.aspx" />
     <Content Include="manageForum.aspx" />
     <Content Include="ManagePosts.aspx" />
-    <Content Include="manageStudents.aspx" />
-    <Content Include="manageTutors.aspx" />
     <Content Include="home.aspx" />
-    <Content Include="Quiz.aspx" />
-    <Content Include="newViewPost.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -178,12 +179,15 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="statistic.aspx" />
     <Content Include="styles.css" />
     <Content Include="tutorDashboard.aspx" />
     <Content Include="UserProfile.aspx" />
+    <Content Include="viewCourse.aspx" />
     <Content Include="ViewPosts.aspx" />
+    <Content Include="viewProfile.aspx" />
     <Content Include="Web.config" />
-    <Content Include="courses.aspx" />
+    <Content Include="oldCourses.aspx" />
     <Content Include="course1.aspx" />
     <Content Include="EditQuiz.aspx" />
     <Content Include="Quiz1Page.aspx" />
@@ -196,6 +200,13 @@
     </Compile>
     <Compile Include="aboutus.aspx.designer.cs">
       <DependentUpon>aboutus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addCourses.aspx.cs">
+      <DependentUpon>addCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addCourses.aspx.designer.cs">
+      <DependentUpon>addCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminDashboard.aspx.cs">
       <DependentUpon>adminDashboard.aspx</DependentUpon>
@@ -240,6 +251,13 @@
     <Compile Include="dbconnect.aspx.designer.cs">
       <DependentUpon>dbconnect.aspx</DependentUpon>
     </Compile>
+    <Compile Include="editCourse.aspx.cs">
+      <DependentUpon>editCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editCourse.aspx.designer.cs">
+      <DependentUpon>editCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forum.aspx.cs">
       <DependentUpon>forum.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,12 +265,12 @@
     <Compile Include="forum.aspx.designer.cs">
       <DependentUpon>forum.aspx</DependentUpon>
     </Compile>
-    <Compile Include="oldHome.aspx.cs">
-      <DependentUpon>oldHome.aspx</DependentUpon>
+    <Compile Include="manageStudents.aspx.cs">
+      <DependentUpon>manageStudents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="oldHome.aspx.designer.cs">
-      <DependentUpon>oldHome.aspx</DependentUpon>
+    <Compile Include="manageStudents.aspx.designer.cs">
+      <DependentUpon>manageStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="manageTutors.aspx.cs">
       <DependentUpon>manageTutors.aspx</DependentUpon>
@@ -260,6 +278,20 @@
     </Compile>
     <Compile Include="manageTutors.aspx.designer.cs">
       <DependentUpon>manageTutors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="masterTemp.aspx.cs">
+      <DependentUpon>masterTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="masterTemp.aspx.designer.cs">
+      <DependentUpon>masterTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Courses.aspx.cs">
+      <DependentUpon>Courses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Courses.aspx.designer.cs">
+      <DependentUpon>Courses.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -268,21 +300,7 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="newViewPost.aspx.cs">
-      <DependentUpon>newViewPost.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="newViewPost.aspx.designer.cs">
-      <DependentUpon>newViewPost.aspx</DependentUpon>
-    </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="manageTutors.aspx.cs">
-      <DependentUpon>manageTutors.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="manageTutors.aspx.designer.cs">
-      <DependentUpon>manageTutors.aspx</DependentUpon>
-    </Compile>
     <Compile Include="manageForum.aspx.cs">
       <DependentUpon>manageForum.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -305,13 +323,6 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quiz.aspx.cs">
-      <DependentUpon>Quiz.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Quiz.aspx.designer.cs">
-      <DependentUpon>Quiz.aspx</DependentUpon>
-    </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,12 +330,19 @@
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Site1.Master.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
+    <Compile Include="masterPage.Master.cs">
+      <DependentUpon>masterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site1.Master.designer.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
+    <Compile Include="masterPage.Master.designer.cs">
+      <DependentUpon>masterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="statistic.aspx.cs">
+      <DependentUpon>statistic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="statistic.aspx.designer.cs">
+      <DependentUpon>statistic.aspx</DependentUpon>
     </Compile>
     <Compile Include="tutorDashboard.aspx.cs">
       <DependentUpon>tutorDashboard.aspx</DependentUpon>
@@ -340,6 +358,13 @@
     <Compile Include="UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewCourse.aspx.cs">
+      <DependentUpon>viewCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewCourse.aspx.designer.cs">
+      <DependentUpon>viewCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewPosts.aspx.cs">
       <DependentUpon>ViewPosts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -347,12 +372,12 @@
     <Compile Include="ViewPosts.aspx.designer.cs">
       <DependentUpon>ViewPosts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="courses.aspx.cs">
-      <DependentUpon>courses.aspx</DependentUpon>
+    <Compile Include="oldCourses.aspx.cs">
+      <DependentUpon>oldCourses.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="courses.aspx.designer.cs">
-      <DependentUpon>courses.aspx</DependentUpon>
+    <Compile Include="oldCourses.aspx.designer.cs">
+      <DependentUpon>oldCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="course1.aspx.cs">
       <DependentUpon>course1.aspx</DependentUpon>
@@ -382,6 +407,13 @@
     <Compile Include="Result Page.aspx.designer.cs">
       <DependentUpon>Result Page.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewProfile.aspx.cs">
+      <DependentUpon>viewProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewProfile.aspx.designer.cs">
+      <DependentUpon>viewProfile.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\roslyn\csc.exe.config" />
@@ -410,7 +442,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
-    <Content Include="Site1.Master" />
+    <Content Include="masterPage.Master" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <None Include="Web.Debug.config">

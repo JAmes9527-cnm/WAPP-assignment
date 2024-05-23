@@ -1,9 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="WebApplication2.UserProfile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.Master" CodeBehind="UserProfile.aspx.cs" Inherits="WebApplication2.UserProfile" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta charset="utf-8" />
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>user Profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -300,48 +297,9 @@
 
         /* Ensure table takes only as much width as needed */
     </style>
-</head>
-<body>
-    <form id="No" runat="server">
-        <div>
-        </div>
-        <header>
-            <div class="logo">
-                <a href="home.aspx"><img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" /></a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="home.aspx">Home</a></li>
-                    <li><a href="courses.aspx">Courses</a></li>
-                    <li><a href="forum.aspx">Forum</a></li>
-                    <li><a href="resources.aspx">Resources</a></li>
-                    <li><a href="about.aspx">About</a></li>
-                    <li><a href="contact.aspx">Contact Us</a></li>
-                    <li>
-                        <div class="dropdown">
-                            <button id="More_btn">More</button>
-                            <div class="dropdown_content">
-                                <a href="video.aspx">Video</a>
-                                <a href="calculator.aspx">Calculator</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <div class="button-container">
-                <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
-                    <asp:Panel ID="loginPanel" runat="server">
-                        <button class="login-btn">Login</button>
-                        <button class="signup-btn">Sign Up</button>
-                    </asp:Panel>
-                </asp:PlaceHolder>
-            </div>
-        </header>
-
-        <section class="courses-highlight">
-            <h3>Smart Money Management: A Key to Financial Success</h3>
-        </section>
-        <table class="auto-style1">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <table class="auto-style1">
             <tr>
                 <td class="auto-style3" colspan="4">
                     <asp:Label ID="Label1" runat="server" Text="Edit User"></asp:Label>
@@ -499,7 +457,6 @@
 		</div>
 	</div>
 </div>     
-    </form>
-    </body>
-</html>
+</asp:Content>
+
 

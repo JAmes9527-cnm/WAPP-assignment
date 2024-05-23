@@ -44,29 +44,36 @@ namespace WebApplication2
                             string content = reader["Content"].ToString();
                             string createdAt = reader["CreatedAt"].ToString();
 
-                            // Create HTML elements for the topic
                             Panel topicPanel = new Panel();
                             topicPanel.CssClass = "topic";
+                            Panel contentPanel = new Panel();
+                            contentPanel.CssClass = "contentPanel";
+                            Panel buttonPanel = new Panel();
+                            buttonPanel.CssClass = "buttonPanel";
 
                             LiteralControl titleControl = new LiteralControl("<h3>" + title + "</h3>");
                             LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
-                            LiteralControl createdAtControl = new LiteralControl("<p><i>" + createdAt + "</i></p>");
+                            LiteralControl createdAtControl = new LiteralControl("<p><i>Created on " + createdAt + "</i></p>");
 
                             Button managePostsButton = new Button();
                             managePostsButton.Text = "Manage";
+                            managePostsButton.CssClass = "button";
                             managePostsButton.CommandArgument = topicID.ToString(); // Set CommandArgument to TopicID
                             managePostsButton.Click += managePostsButton_Click; // Attach event handler
 
                             Button deleteTopicButton = new Button();
                             deleteTopicButton.Text = "Delete";
+                            deleteTopicButton.CssClass = "button";
                             deleteTopicButton.CommandArgument = topicID.ToString(); // Set CommandArgument to TopicID
                             deleteTopicButton.Click += deleteTopicButton_Click; // Attach event handler
 
                             topicPanel.Controls.Add(titleControl);
-                            topicPanel.Controls.Add(contentControl);
+                            contentPanel.Controls.Add(contentControl);
+                            topicPanel.Controls.Add(contentPanel);
+                            buttonPanel.Controls.Add(managePostsButton);
+                            buttonPanel.Controls.Add(deleteTopicButton);
+                            topicPanel.Controls.Add(buttonPanel);
                             topicPanel.Controls.Add(createdAtControl);
-                            topicPanel.Controls.Add(managePostsButton);
-                            topicPanel.Controls.Add(deleteTopicButton);
 
                             topics.Controls.Add(topicPanel); // Add the topic panel to the existing topics div 
                         }

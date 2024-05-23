@@ -13,6 +13,8 @@ namespace WebApplication2
 {
     public partial class register : System.Web.UI.Page
     {
+        bool otpVerifyStatus = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -29,12 +31,28 @@ namespace WebApplication2
                 SqlCommand cmd = new SqlCommand(query, con);
                 int check = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
+                string quer = "select count(*) from UserTable where email = '" + email.Text + "'";
+                SqlCommand cm = new SqlCommand(quer, con);
+                int chec = Convert.ToInt32(cm.ExecuteScalar().ToString());
+
                 if (check > 0)
                 {
                     errMsg.Visible = true;
                     errMsg.ForeColor = System.Drawing.Color.Red;
                     errMsg.Text = "Username has been taken!";
 
+                }
+                else if(chec > 0)
+                {
+                    errMsg.Visible = true;
+                    errMsg.ForeColor = System.Drawing.Color.Red;
+                    errMsg.Text = "Email has been taken!";
+                }
+                else if (!otpVerifyStatus)
+                {
+                    errMsg.Visible = true;
+                    errMsg.ForeColor = System.Drawing.Color.Red;
+                    errMsg.Text = "Email has been taken!";
                 }
 
                 else
@@ -78,5 +96,90 @@ namespace WebApplication2
             
         }
 
+        private string GenerateOTP()
+        {
+            Random random = new Random();
+            return random.Next(100000, 999999).ToString();
+        }
+
+        private void SendOTPEmail(string email, string otp)
+        {
+            var fromAddress = new MailAddress("mjyak118@gmail.com", "Smart Money Mastery");
+            var toAddress = new MailAddress(email);
+            const string fromPassword = "nbpl oguu osvl ygpr"; // Use the app password generated from your Google account
+            const string subject = "Your OTP Code for registration on Smart Money Mastery";
+            string body = $"Your OTP code is {otp}";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+
+        protected void requestOtp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    con.Open();
+                    string query = "select count(*) from UserTable where email = @Email";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Email", email.Text);
+                    int check = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (check > 0)
+                    {
+                        verifyStatus.Text = "This email has been taken!";
+                        verifyStatus.Visible = true;
+                    }
+                    else
+                    {
+                        string otp = GenerateOTP();
+                        Session["OTP"] = otp;
+                        SendOTPEmail(email.Text, otp);
+                        verifyStatus.Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                verifyStatus.Text = "Error sending OTP: " + ex.Message;
+                verifyStatus.Visible = true;
+            }
+        }
+
+        protected void verifyOtp_Click(object sender, EventArgs e)
+        {
+            string enteredOtp = otp.Text;
+            string sessionOtp = Session["OTP"] as string;
+
+            if (enteredOtp == sessionOtp)
+            {
+                verifyStatus.Text = "OTP Verified!";
+                verifyStatus.ForeColor = System.Drawing.Color.Green;
+                verifyStatus.Visible = true;
+                otpVerifyStatus = true;
+            }
+            else
+            {
+                verifyStatus.Text = "Wrong OTP!";
+                verifyStatus.ForeColor = System.Drawing.Color.Red;
+                verifyStatus.Visible = true;
+            }
+        }
     }
 }

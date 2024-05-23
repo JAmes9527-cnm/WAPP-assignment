@@ -1,15 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="tutorDashboard.aspx.cs" Inherits="WebApplication2.tutorDashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="tutorDashboard.aspx.cs" Inherits="WebApplication2.tutorDashboard" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <asp:Button Text="Edit Courses" ID="editCourses" runat="server" OnClick="courses_Click" />
+    <asp:Button Text="Add Courses" ID="Button1" runat="server" OnClick="courses_Click" />
+    <asp:Button Text="Add Courses" ID="Button2" runat="server" OnClick="courses_Click" />
+</asp:Content>

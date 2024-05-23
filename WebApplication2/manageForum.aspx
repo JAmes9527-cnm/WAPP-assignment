@@ -7,6 +7,7 @@
     <title></title>
         <link rel="stylesheet" href="forum.css" />
     <link rel="stylesheet" href="styles.css" />
+   
 </head>
 <body>
     <form id="form1" runat="server">

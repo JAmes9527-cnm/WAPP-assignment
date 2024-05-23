@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
-    public partial class newViewPost : System.Web.UI.Page
+    public partial class masterTemp : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

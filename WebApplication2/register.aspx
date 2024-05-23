@@ -1,13 +1,17 @@
-﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebApplication2.register" %>
+﻿ <%@ Page Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="WebApplication2.register" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Registration Page</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <style>
+        .button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
         table tr{
             padding:4px;
         }
@@ -88,7 +92,6 @@ label:last-child span {
 }
 
 .styled-dropdown {
-        appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
         border: none;
@@ -154,6 +157,23 @@ label:last-child span {
   transform: translateY(-1px);
 }
 
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.registration-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
@@ -171,30 +191,10 @@ label:last-child span {
         });
     }
     </script>
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <h1>Smart Money Mastery</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="forum.html">Forum</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="button-container">
-            <button class="login-btn">Login</button>
-            <button class="signup-btn">Sign Up</button>
-        </div>
-    </header>
-
-    <form id="form1" runat="server">
-        <div>
+    </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <div class="form-container">
+        <div class="registration-form">
             <h1>Registration</h1>
             <table>
                 <tr>
@@ -233,6 +233,18 @@ label:last-child span {
                     <td>
                         <div style="position: relative; display:inline-block">
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email" ErrorMessage="Invalid email format!" ValidationExpression="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" ForeColor="Red"></asp:RegularExpressionValidator>
+                        </div>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <asp:TextBox ID="otp" runat="server" CssClass="input" Placeholder="OTP"></asp:TextBox>
+                    </td>
+                    <td>
+                        <div style="position: relative; display:inline-block">
+                            <asp:Button ID="requestOtp" runat="server" Text="Request" OnClick="requestOtp_Click" CssClass="button" CausesValidation="false"/>
+                            <asp:Button ID="verifyOtp" runat="server" Text="Verify" OnClick="verifyOtp_Click" CssClass="button" CausesValidation="false"/>
+                            <asp:Label ID="verifyStatus" runat="server" Text="Wrong OTP!" Visible="false"></asp:Label>
                         </div>
                     </td>
                 </tr>
@@ -291,9 +303,5 @@ label:last-child span {
             <asp:Button ID="Button1" runat="server" Text="Register" OnClick="Button1_Click" CssClass="button" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="login.aspx">Already registered? Log in here</a>
         </div>
-        
-    </form>
-    <p>
-        &nbsp;</p>
-</body>
-</html>
+        </div>
+</asp:Content>

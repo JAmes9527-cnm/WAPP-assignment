@@ -1,7 +1,6 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminDashboard.aspx.cs" Inherits="WebApplication2.adminDashboard" %>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminDashboard.aspx.cs" MasterPageFile="~/masterPage.Master" Inherits="WebApplication2.adminDashboard" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,27 +23,9 @@
             text-align: center;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <header class="header">
-            <div class="container">
-                <div class="logo">
-                    <a href="home.aspx"><img src="/img/logo.png" style="height: 68px; width: 159px; margin-right: 1px" /></a></div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="courses.html">Courses</a></li>
-                        <li><a href="forum.html">Forum</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact Us</a> </li>
-                    </ul>
-                </nav>
-                <div class="button-container">
-                </div>
-            </div>
-        </header>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
 
         <div class="container">
             <div class="sidebar">
@@ -66,6 +47,4 @@
                 </div>
             </div>
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>
