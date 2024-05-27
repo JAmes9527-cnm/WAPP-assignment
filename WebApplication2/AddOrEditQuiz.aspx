@@ -1,108 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.Master" CodeBehind="EditQuiz.aspx.cs" Inherits="WebApplication2.WebForm3" %>
+﻿<%@ Page Title="Add or Edit Quiz" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="AddOrEditQuiz.aspx.cs" Inherits="WebApplication2.AddOrEditQuiz" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <style>
-        .container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding:0 20px;
-        }
 
-        .left-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: calc(30% - 20px); 
-            height: 350px; 
-        }
-
-        .center-content {
-            text-align: center; 
-        }
-
-        .center-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: calc(30% - 20px); 
-            height: 350px; 
-        }
-
-        .right-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: calc(30% - 20px); 
-            height: 350px; 
-        }
-
-        .content{
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: calc(100% - 20px); 
-            height: 350px; 
-        }
-
-
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .auto-style1 {
-            width: 67%;
-            margin-right: 0px;
-            margin-bottom: 26px;
-        }
-        .auto-style2 {
-            width: 448px;
-        }
-        .auto-style3 {
-            text-align: center;
-        }
-        .auto-style4 {
-            width: 122px;
-        }
-        .auto-style8 {
-            width: 448px;
-            height: 34px;
-        }
-        .auto-style9 {
-            width: 122px;
-            height: 34px;
-        }
-        .auto-style20 {
-            width: 1014px;
-            text-align: left;
-            margin-left: 40px;
-        }
-        .auto-style21 {
-            height: 34px;
-        }
     </style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <table class="auto-style1">
             <tr>
                 <td class="auto-style3" colspan="4">
-                    <asp:Label ID="Label1" runat="server" Text="Edit Quiz 1"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Edit Quiz"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -111,9 +19,15 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:DropDownList ID="Number" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
+                    <asp:DropDownList ID="SelectedQuestion" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Question" DataValueField="Question" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="596px">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Quiz]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+    SelectCommand="SELECT * FROM [Questions] WHERE [CourseID] = @CourseID">
+    <SelectParameters>
+        <asp:Parameter Name="CourseID" Type="String" />
+    </SelectParameters>
+</asp:SqlDataSource>
                     <asp:Label ID="ErrMsg" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
                 </td>
             </tr>
@@ -122,7 +36,7 @@
                     Question-ID</td>
                 <td class="auto-style4">:</td>
                 <td class="auto-style20">
-                    <asp:Label ID="QuizID" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="QuestionID" runat="server" Text="0"></asp:Label>
                 &nbsp;&nbsp;
                 </td>
                 <td class="auto-style15">
@@ -186,6 +100,5 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add/Edit" />
         <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Remove" OnClientClick="return confirm('Are you sure you want to delete this item?');" />
-        <asp:Button ID="Button2" runat="server" Text="Quiz" OnClick="Button2_Click" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Back" />
 </asp:Content>

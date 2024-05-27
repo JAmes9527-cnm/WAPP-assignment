@@ -15,33 +15,6 @@ namespace WebApplication2
     {
 
         /// <summary>
-        /// No control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm No;
-
-        /// <summary>
-        /// loginPlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder loginPlaceHolder;
-
-        /// <summary>
-        /// loginPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel loginPanel;
-
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>

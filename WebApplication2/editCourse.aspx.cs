@@ -21,8 +21,7 @@ namespace WebApplication2
                 string courseID = Request.QueryString["courseID"];
                 if (string.IsNullOrEmpty(courseID))
                 {
-                    // Handle missing courseID, show an error or redirect
-                    return;
+                    Response.Redirect("Courses.aspx");
                 }
                 SqlCommand cmdType = new SqlCommand("select createdBy from courses where CourseID = '" + courseID + "'", con);
                 SqlDataReader dr = cmdType.ExecuteReader();
@@ -140,5 +139,49 @@ namespace WebApplication2
         {
             Response.Redirect("Courses.aspx");
         }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            string courseID = Request.QueryString["courseID"];
+            if (string.IsNullOrEmpty(courseID))
+            {
+                // Handle missing courseID, show an error or redirect
+                lblMessage.Text = "Course ID is missing.";
+                lblMessage.Visible = true;
+                return;
+            }
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM courses WHERE CourseID = @courseID", con);
+            cmd.Parameters.AddWithValue("@courseID", courseID);
+
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    // Successfully deleted
+                    Response.Redirect("Courses.aspx");
+                }
+                else
+                {
+                    // Course not found
+                    lblMessage.Text = "Course not found.";
+                    lblMessage.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred: " + ex.Message;
+                lblMessage.Visible = true;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
     }
 }

@@ -1,17 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManagePosts.aspx.cs" Inherits="WebApplication2.ManagePosts" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManagePosts.aspx.cs" Inherits="WebApplication2.ManagePosts" MasterPageFile="~/masterPage.Master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
+    <title>Manage posts</title>
     <link rel="stylesheet" href="forum.css" />
     <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <h1>Posts in the Topic</h1>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <h1>Posts in the Topic</h1>
             <!-- Container for displaying posts -->
             <asp:Label runat="server" id="label1" Visible="false" Text="There is no post in this topic yet"></asp:Label>
             <div class="post-form">
@@ -20,8 +14,4 @@
                 <asp:Button runat="server" ID="postBtn" CssClass="post" Text="Post to forum" OnClick="postBtn_Click" />
             </div>
             <div class="posts" id="posts" runat="server"></div>
-        </div>
-        
-    </form>
-</body>
-</html>
+</asp:Content>

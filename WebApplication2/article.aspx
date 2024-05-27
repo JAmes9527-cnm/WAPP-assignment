@@ -1,8 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="article.aspx.cs" Inherits="WebApplication2.article" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.Master" CodeBehind="article.aspx.cs" Inherits="WebApplication2.article" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Articles - Smart Money Mastery</title>
     <style>
         body {
@@ -55,10 +53,9 @@
             text-decoration: underline;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div class="container">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <div class="container">
             <div class="article-section">
                 <h2>Understanding Your Credit Score: A Comprehensive Guide</h2>
                 <p>This article explores the fundamentals of credit scores, how they are calculated, and why they are essential for your financial health. Learn strategies to improve your credit score effectively.</p>
@@ -110,6 +107,4 @@
                 <p><a href="https://example.com/articles/tax-planning" target="_blank">Read more...</a></p>
             </div>
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>

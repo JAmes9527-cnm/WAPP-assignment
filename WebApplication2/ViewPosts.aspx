@@ -1,10 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewPosts.aspx.cs" Inherits="WebApplication2.ViewPosts" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewPosts.aspx.cs" MasterPageFile="~/masterPage.Master" Inherits="WebApplication2.ViewPosts" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
+    <title>Posts</title>
     <link rel="stylesheet" href="forum.css" />
     <link rel="stylesheet" href="styles.css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -141,11 +138,9 @@
   box-shadow: 0px 0px 20px -17px;
 }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <h1>Posts in the Topic</h1>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <h1>Posts in the Topic</h1>
             <!-- Container for displaying posts -->
             <asp:Label runat="server" id="label1" Visible="false" Text="There is no post in this topic yet"></asp:Label>
             <div class="post-form">
@@ -159,8 +154,4 @@
 <asp:Button runat="server" ID="searchPostsBtn" Text="Search" OnClick="searchPostsBtn_Click" CssClass="searchButton" />
 
             <div class="topics" id="posts" runat="server"></div>
-        </div>
-        
-    </form>
-</body>
-</html>
+</asp:Content>

@@ -73,12 +73,14 @@
     <Content Include="aboutus.aspx" />
     <Content Include="aboutusdesign.css" />
     <Content Include="addCourses.aspx" />
+    <Content Include="AddOrEditQuiz.aspx" />
     <Content Include="adminDashboard.aspx" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="article.aspx" />
+    <Content Include="AttemptQuiz.aspx" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\roslyn\csc.exe" />
@@ -149,6 +151,9 @@
     <Content Include="manageForum.aspx" />
     <Content Include="ManagePosts.aspx" />
     <Content Include="home.aspx" />
+    <Content Include="otp test.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="QuizResult.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -190,7 +195,7 @@
     <Content Include="oldCourses.aspx" />
     <Content Include="course1.aspx" />
     <Content Include="EditQuiz.aspx" />
-    <Content Include="Quiz1Page.aspx" />
+    <Content Include="Quiz.aspx" />
     <Content Include="Result Page.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +212,13 @@
     </Compile>
     <Compile Include="addCourses.aspx.designer.cs">
       <DependentUpon>addCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddOrEditQuiz.aspx.cs">
+      <DependentUpon>AddOrEditQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddOrEditQuiz.aspx.designer.cs">
+      <DependentUpon>AddOrEditQuiz.aspx</DependentUpon>
     </Compile>
     <Compile Include="adminDashboard.aspx.cs">
       <DependentUpon>adminDashboard.aspx</DependentUpon>
@@ -228,6 +240,13 @@
     </Compile>
     <Compile Include="article.aspx.designer.cs">
       <DependentUpon>article.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AttemptQuiz.aspx.cs">
+      <DependentUpon>AttemptQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AttemptQuiz.aspx.designer.cs">
+      <DependentUpon>AttemptQuiz.aspx</DependentUpon>
     </Compile>
     <Compile Include="calculator.aspx.cs">
       <DependentUpon>calculator.aspx</DependentUpon>
@@ -322,7 +341,28 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="otp test.aspx.cs">
+      <DependentUpon>otp test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="otp test.aspx.designer.cs">
+      <DependentUpon>otp test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuizResult.aspx.cs">
+      <DependentUpon>QuizResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizResult.aspx.designer.cs">
+      <DependentUpon>QuizResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -393,12 +433,12 @@
     <Compile Include="EditQuiz.aspx.designer.cs">
       <DependentUpon>EditQuiz.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Quiz1Page.aspx.cs">
-      <DependentUpon>Quiz1Page.aspx</DependentUpon>
+    <Compile Include="Quiz.aspx.cs">
+      <DependentUpon>Quiz.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Quiz1Page.aspx.designer.cs">
-      <DependentUpon>Quiz1Page.aspx</DependentUpon>
+    <Compile Include="Quiz.aspx.designer.cs">
+      <DependentUpon>Quiz.aspx</DependentUpon>
     </Compile>
     <Compile Include="Result Page.aspx.cs">
       <DependentUpon>Result Page.aspx</DependentUpon>

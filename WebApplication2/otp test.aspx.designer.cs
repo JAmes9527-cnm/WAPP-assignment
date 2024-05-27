@@ -11,187 +11,205 @@ namespace WebApplication2
 {
 
 
-    public partial class calculator
+    public partial class otp_test
     {
 
         /// <summary>
-        /// Label1 control.
+        /// MultiView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
 
         /// <summary>
-        /// Monthlydesiredamount control.
+        /// LoginView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Monthlydesiredamount;
+        protected global::System.Web.UI.WebControls.View LoginView;
 
         /// <summary>
-        /// Label2 control.
+        /// username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.TextBox username;
 
         /// <summary>
-        /// Desiredretirementage control.
+        /// pwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Desiredretirementage;
+        protected global::System.Web.UI.WebControls.TextBox pwd;
 
         /// <summary>
-        /// monthlyamount control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox monthlyamount;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// currentage control.
+        /// register_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox currentage;
+        protected global::System.Web.UI.WebControls.Button register_btn;
 
         /// <summary>
-        /// retirementage control.
+        /// forgotPasswordLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox retirementage;
+        protected global::System.Web.UI.WebControls.LinkButton forgotPasswordLink;
 
         /// <summary>
-        /// Label3 control.
+        /// ForgotPasswordView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.View ForgotPasswordView;
 
         /// <summary>
-        /// Label4 control.
+        /// forgotEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.TextBox forgotEmail;
 
         /// <summary>
-        /// expectedannual control.
+        /// RequiredFieldValidatorForgotEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox expectedannual;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorForgotEmail;
 
         /// <summary>
-        /// Label5 control.
+        /// SendOTPButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Button SendOTPButton;
 
         /// <summary>
-        /// Label6 control.
+        /// OTPView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.View OTPView;
 
         /// <summary>
-        /// initialamount control.
+        /// otp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox initialamount;
+        protected global::System.Web.UI.WebControls.TextBox otp;
 
         /// <summary>
-        /// Checkbox2 control.
+        /// RequiredFieldValidatorOTP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Checkbox2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorOTP;
 
         /// <summary>
-        /// Label7 control.
+        /// ValidateOTPButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Button ValidateOTPButton;
 
         /// <summary>
-        /// inflationRate control.
+        /// ResendOTPButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inflationRate;
+        protected global::System.Web.UI.WebControls.Button ResendOTPButton;
 
         /// <summary>
-        /// reset control.
+        /// NewPasswordView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button reset;
+        protected global::System.Web.UI.WebControls.View NewPasswordView;
 
         /// <summary>
-        /// calculate control.
+        /// newPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button calculate;
+        protected global::System.Web.UI.WebControls.TextBox newPassword;
 
         /// <summary>
-        /// resultsLabel control.
+        /// RequiredFieldValidatorNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label resultsLabel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorNewPassword;
 
         /// <summary>
-        /// chartData control.
+        /// confirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField chartData;
+        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
+
+        /// <summary>
+        /// CompareValidatorNewPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorNewPassword;
+
+        /// <summary>
+        /// ResetPasswordButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ResetPasswordButton;
     }
 }

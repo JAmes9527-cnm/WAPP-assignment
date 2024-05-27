@@ -12,94 +12,101 @@ namespace WebApplication2
 {
     public partial class WebForm4 : System.Web.UI.Page
     {
+        string courseID;
         string CorrectAnswer;
         int totalResult = 0;
         List<int> validQuizIDs = new List<int>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            courseID = Request.QueryString["courseID"];
             if (!IsPostBack)
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-                con.Open();
-
-                SqlCommand idCmd = new SqlCommand("Select QuizID from Quiz Where QuizID<>0", con);
-                SqlDataReader reader = idCmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    validQuizIDs.Add(Convert.ToInt32(reader["QuizID"]));
-                }
-                reader.Close();
-
-                Random random = new Random();
-
-                for (int i = 0; i < 3; i++)
-                {
-                    if (validQuizIDs.Count != 0)
-                    {
-                        int randomIndex = random.Next(validQuizIDs.Count);
-                        int randomQuizID = validQuizIDs[randomIndex];
-
-                        SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizID = @QuizId", con);
-                        da.SelectCommand.Parameters.AddWithValue("@QuizId", randomQuizID);
-
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        validQuizIDs.RemoveAt(randomIndex);
-
-                        Random randomChoice = new Random();
-                        List<int> randomChoiceIndices = new List<int>();
-
-                        while (randomChoiceIndices.Count < 4)
-                        {
-                            int randomChoiceIndex = randomChoice.Next(3, 7); // 7 is exclusive, so it will give values from 3 to 6
-                            if (!randomChoiceIndices.Contains(randomChoiceIndex))
-                            {
-                                randomChoiceIndices.Add(randomChoiceIndex);
-                            }
-                        }
-
-                        if (i == 0)
-                        {
-                            Question1.Text = dt.Rows[0][2].ToString();
-                            Choice1.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
-                            Choice2.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
-                            Choice3.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
-                            Choice4.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
-                            CorrectAnswer = dt.Rows[0][7].ToString();
-                            ViewState["CorrectAnswer1"] = CorrectAnswer;
-                        }
-                        else if (i == 1)
-                        {
-                            Question2.Text = dt.Rows[0][2].ToString();
-                            Choice5.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
-                            Choice6.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
-                            Choice7.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
-                            Choice8.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
-                            CorrectAnswer = dt.Rows[0][7].ToString();
-                            ViewState["CorrectAnswer2"] = CorrectAnswer;
-                        }
-                        else if (i == 2)
-                        {
-                            Question3.Text = dt.Rows[0][2].ToString();
-                            Choice9.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
-                            Choice10.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
-                            Choice11.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
-                            Choice12.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
-                            CorrectAnswer = dt.Rows[0][7].ToString();
-                            ViewState["CorrectAnswer3"] = CorrectAnswer;
-
-                        }
-                    }
-                    else
-                    {
-
-                    }
-                }
+                LoadQuiz(courseID);
             }
         }
 
+        private void LoadQuiz(string courseID)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand idCmd = new SqlCommand("Select QuizID from Quizzes Where CourseID = @CourseID", con);
+            idCmd.Parameters.AddWithValue("@CourseID", courseID);
+            SqlDataReader reader = idCmd.ExecuteReader();
+            while (reader.Read())
+            {
+                validQuizIDs.Add(Convert.ToInt32(reader["QuizID"]));
+            }
+            reader.Close();
+
+            Random random = new Random();
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (validQuizIDs.Count != 0)
+                {
+                    int randomIndex = random.Next(validQuizIDs.Count);
+                    int randomQuizID = validQuizIDs[randomIndex];
+
+                    SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where QuizID = @QuizId", con);
+                    da.SelectCommand.Parameters.AddWithValue("@QuizId", randomQuizID);
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    validQuizIDs.RemoveAt(randomIndex);
+
+                    Random randomChoice = new Random();
+                    List<int> randomChoiceIndices = new List<int>();
+
+                    while (randomChoiceIndices.Count < 4)
+                    {
+                        int randomChoiceIndex = randomChoice.Next(3, 7); // 7 is exclusive, so it will give values from 3 to 6
+                        if (!randomChoiceIndices.Contains(randomChoiceIndex))
+                        {
+                            randomChoiceIndices.Add(randomChoiceIndex);
+                        }
+                    }
+
+                    if (i == 0)
+                    {
+                        Question1.Text = dt.Rows[0][2].ToString();
+                        Choice1.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
+                        Choice2.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
+                        Choice3.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
+                        Choice4.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
+                        CorrectAnswer = dt.Rows[0][7].ToString();
+                        ViewState["CorrectAnswer1"] = CorrectAnswer;
+                    }
+                    else if (i == 1)
+                    {
+                        Question2.Text = dt.Rows[0][2].ToString();
+                        Choice5.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
+                        Choice6.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
+                        Choice7.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
+                        Choice8.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
+                        CorrectAnswer = dt.Rows[0][7].ToString();
+                        ViewState["CorrectAnswer2"] = CorrectAnswer;
+                    }
+                    else if (i == 2)
+                    {
+                        Question3.Text = dt.Rows[0][2].ToString();
+                        Choice9.Text = dt.Rows[0][randomChoiceIndices[0]].ToString();
+                        Choice10.Text = dt.Rows[0][randomChoiceIndices[1]].ToString();
+                        Choice11.Text = dt.Rows[0][randomChoiceIndices[2]].ToString();
+                        Choice12.Text = dt.Rows[0][randomChoiceIndices[3]].ToString();
+                        CorrectAnswer = dt.Rows[0][7].ToString();
+                        ViewState["CorrectAnswer3"] = CorrectAnswer;
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        }
 
         protected void Button2_Click(object sender, EventArgs e)
         {

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
@@ -13,7 +10,15 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadCourses();
+
+                LoadCourses();
+            
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchQuery = txtSearch.Text.Trim();
+            LoadCourses(searchQuery);
         }
 
         private void LoadCourses(string searchQuery = "")
@@ -23,13 +28,13 @@ namespace WebApplication2
             // Create a SQL connection
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                // Define the SQL query to select topics
+                // Define the SQL query to select courses
                 string query = "SELECT CourseID, name, description, thumbnailUrl, createdBy, createdAt FROM courses";
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    query += " WHERE Title LIKE @SearchQuery OR Content LIKE @SearchQuery";
+                    query += " WHERE name LIKE @SearchQuery OR description LIKE @SearchQuery";
                 }
-                query += " ORDER BY CreatedAt ASC";
+                query += " ORDER BY createdAt ASC";
 
                 // Create a SQL command
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -45,10 +50,10 @@ namespace WebApplication2
                     // Execute the command and get a data reader
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Clear previous topics
+                        // Clear previous courses
                         courses.Controls.Clear();
 
-                        // Loop through the results and generate HTML for each topic
+                        // Loop through the results and generate HTML for each course
                         while (reader.Read())
                         {
                             int courseID = Convert.ToInt32(reader["CourseID"]);
@@ -58,7 +63,7 @@ namespace WebApplication2
                             string createdBy = reader["createdBy"].ToString();
                             string createdAt = reader["createdAt"].ToString();
 
-                            // Create HTML elements for the topic
+                            // Create HTML elements for the course
                             Panel coursePanel = new Panel();
                             coursePanel.CssClass = "course";
                             Panel thumbnailPanel = new Panel();
@@ -68,7 +73,7 @@ namespace WebApplication2
 
                             LiteralControl titleControl = new LiteralControl("<h3>" + name + "</h3>");
                             LiteralControl thumbnailControl = new LiteralControl("<img src='" + thumbnailUrl + "'/>");
-                            LiteralControl contentControl = new LiteralControl(description);
+                            LiteralControl contentControl = new LiteralControl("<p>" + description + "</p>");
                             LiteralControl createdAtControl = new LiteralControl("<p><i>Created on " + createdAt + " by: " + createdBy + "</i></p>");
 
                             Button viewCourseButton = new Button();
@@ -82,22 +87,19 @@ namespace WebApplication2
                             detailsPanel.Controls.Add(contentControl);
                             detailsPanel.Controls.Add(createdAtControl);
                             detailsPanel.Controls.Add(viewCourseButton);
-                            if (Session["userType"] != null)
+                            if (Session["userType"] != null && Session["userType"].ToString() == "tutor")
                             {
-                                if (Session["userType"].ToString() == "tutor")
-                                {
-                                    Button editCourseButton = new Button();
-                                    editCourseButton.Text = "Edit Course";
-                                    editCourseButton.CssClass = "viewCourseButton";
-                                    editCourseButton.CommandArgument = courseID.ToString(); // Set CommandArgument to CourseID
-                                    editCourseButton.Click += editCourseButton_Click; // Attach event handler
-                                    detailsPanel.Controls.Add(editCourseButton);
-                                }
+                                Button editCourseButton = new Button();
+                                editCourseButton.Text = "Edit Course";
+                                editCourseButton.CssClass = "viewCourseButton";
+                                editCourseButton.CommandArgument = courseID.ToString(); // Set CommandArgument to CourseID
+                                editCourseButton.Click += EditCourseButton_Click; // Attach event handler
+                                detailsPanel.Controls.Add(editCourseButton);
                             }
                             coursePanel.Controls.Add(thumbnailPanel);
                             coursePanel.Controls.Add(detailsPanel);
 
-                            courses.Controls.Add(coursePanel); // Add the topic panel to the existing topics div
+                            courses.Controls.Add(coursePanel); // Add the course panel to the existing courses div
                         }
                     }
                 }
@@ -106,21 +108,21 @@ namespace WebApplication2
 
         protected void ViewCourseButton_Click(object sender, EventArgs e)
         {
-            // Get the topicID from the command argument
+            // Get the courseID from the command argument
             Button viewCourseButton = (Button)sender;
             int courseID = Convert.ToInt32(viewCourseButton.CommandArgument);
 
-            // Redirect to the page where users can view posts in the selected topic
+            // Redirect to the page where users can view the selected course
             Response.Redirect("viewCourse.aspx?CourseID=" + courseID);
         }
 
-        protected void editCourseButton_Click(object sender, EventArgs e)
+        protected void EditCourseButton_Click(object sender, EventArgs e)
         {
-            // Get the topicID from the command argument
-            Button viewCourseButton = (Button)sender;
-            int courseID = Convert.ToInt32(viewCourseButton.CommandArgument);
+            // Get the courseID from the command argument
+            Button editCourseButton = (Button)sender;
+            int courseID = Convert.ToInt32(editCourseButton.CommandArgument);
 
-            // Redirect to the page where users can view posts in the selected topic
+            // Redirect to the page where users can edit the selected course
             Response.Redirect("editCourse.aspx?CourseID=" + courseID);
         }
     }

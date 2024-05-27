@@ -42,19 +42,18 @@ namespace WebApplication2
                     errMsg.Text = "Username has been taken!";
 
                 }
-                else if(chec > 0)
+                else if (chec > 0)
                 {
                     errMsg.Visible = true;
                     errMsg.ForeColor = System.Drawing.Color.Red;
                     errMsg.Text = "Email has been taken!";
                 }
-                else if (!otpVerifyStatus)
+                else if (Session["otpVerifyStatus"] == null || !(bool)Session["otpVerifyStatus"])
                 {
                     errMsg.Visible = true;
                     errMsg.ForeColor = System.Drawing.Color.Red;
-                    errMsg.Text = "Email has been taken!";
+                    errMsg.Text = "OTP not verified!";
                 }
-
                 else
                 {
                     //create record in a table called userTable
@@ -80,6 +79,7 @@ namespace WebApplication2
                 errMsg.Text = "Registration not sucessful!" + ex.ToString();
             }
         }
+
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
@@ -152,6 +152,7 @@ namespace WebApplication2
                         Session["OTP"] = otp;
                         SendOTPEmail(email.Text, otp);
                         verifyStatus.Visible = false;
+                        Session["otpVerifyStatus"] = false; // Reset OTP verification status
                     }
                 }
             }
@@ -161,6 +162,7 @@ namespace WebApplication2
                 verifyStatus.Visible = true;
             }
         }
+
 
         protected void verifyOtp_Click(object sender, EventArgs e)
         {
@@ -172,14 +174,16 @@ namespace WebApplication2
                 verifyStatus.Text = "OTP Verified!";
                 verifyStatus.ForeColor = System.Drawing.Color.Green;
                 verifyStatus.Visible = true;
-                otpVerifyStatus = true;
+                Session["otpVerifyStatus"] = true; // Set session variable
             }
             else
             {
                 verifyStatus.Text = "Wrong OTP!";
                 verifyStatus.ForeColor = System.Drawing.Color.Red;
                 verifyStatus.Visible = true;
+                Session["otpVerifyStatus"] = false; // Set session variable
             }
         }
+
     }
 }

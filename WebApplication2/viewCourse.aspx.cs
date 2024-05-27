@@ -11,6 +11,43 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
+                string courseID = Request.QueryString["courseID"];
+                if (string.IsNullOrEmpty(courseID))
+                {
+                    Response.Redirect("Courses.aspx");
+                }
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("select count(*) from Questions where CourseID = '" + courseID + "'" , con);
+                int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (count > 0)
+                {
+                    
+                    if (Session["userType"] != null)
+                    {
+                        if(Session["userType"].ToString() == "member")
+                        {
+                            quiz_buttons.Visible = true;
+                            AttemptQuizBtn.Visible = true;
+                        }
+                        else if (Session["userType"].ToString() == "tutor")
+                        {
+                            quiz_buttons.Visible = true;
+                            EditQuizBtn.Text = "Edit Quiz";
+                            EditQuizBtn.Visible = true;
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    quiz_buttons.Visible = true;
+                    EditQuizBtn.Text = "Add Quiz";
+                    EditQuizBtn.Visible = true;
+                }
+                con.Close();
                 LoadCourseDetails();
             }
         }
@@ -57,6 +94,38 @@ namespace WebApplication2
                     }
                 }
             }
+        }
+
+        protected void AttemptQuizBtn_Click(object sender, EventArgs e)
+        {
+            string courseID = Request.QueryString["courseID"];
+            Response.Redirect("AttemptQuiz.aspx?CourseID=" + courseID);
+        }
+
+        protected void EditQuizBtn_Click(object sender, EventArgs e)
+        {
+            if(ExtractUsername(lblCreatedBy.Text) != Session["userName"].ToString())
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showErrorMessage();", true);
+                return;
+            }
+            else
+            {
+                string courseID = Request.QueryString["courseID"];
+                Response.Redirect("AddOrEditQuiz.aspx?CourseID=" + courseID);
+            }
+        }
+
+        private string ExtractUsername(string createdByText)
+        {
+            // Define the prefix to look for
+            string prefix = "Created by: ";
+            if (createdByText.StartsWith(prefix))
+            {
+                // Extract and return the part after the prefix
+                return createdByText.Substring(prefix.Length);
+            }
+            return string.Empty; // Or handle the case where the prefix is not found
         }
     }
 }

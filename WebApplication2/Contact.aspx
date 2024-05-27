@@ -1,8 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="WebApplication2.Contact" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.Master" CodeBehind="Contact.aspx.cs" Inherits="WebApplication2.Contact" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Contact Us - Smart Money Mastery</title>
     <style>
         body {
@@ -30,10 +28,9 @@
             border-radius: 8px;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div class="contact-info">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <div class="contact-info">
             <h2>Contact Us</h2>
             <p>If you have any questions, please contact us:</p>
             <p>Email: <a href="mailto:info@smartmoneymastery.com">info@smartmoneymastery.com</a></p>
@@ -55,6 +52,4 @@
                 loading="lazy">
             </iframe>
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>

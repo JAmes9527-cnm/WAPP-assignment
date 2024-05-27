@@ -93,6 +93,7 @@
 
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-primary mt-3" />
         <asp:Button ID="btnSubmit" runat="server" Text="Save changes" OnClick="btnSubmit_Click" CssClass="btn btn-primary mt-3" />
+        <asp:Button ID="btnDelete" runat="server" Text="Delete Course" OnClick="btnDelete_Click" CssClass="btn btn-primary mt-3" />
         <asp:Label ID="lblMessage" runat="server" Text="[errMsg]" Visible="false" AssociatedControlID="txtContent4"></asp:Label>
     </asp:Panel>
 </asp:Content>

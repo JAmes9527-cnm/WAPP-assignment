@@ -1,8 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="calculator.aspx.cs" Inherits="WebApplication2.calculator" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.Master" CodeBehind="calculator.aspx.cs" Inherits="WebApplication2.calculator" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Financial Freedom Calculator</title>
     <link href="calculatordesign.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
@@ -37,11 +35,37 @@
             });
             updateChart();
         }
+            // Function to update the chart with data from the hidden field
+            function updateChart() {
+                var chartData = JSON.parse(document.getElementById('<%= chartData.ClientID %>').value);
+                var ctx = document.getElementById('financialChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Year'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Amount (RM)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
     </script>
-</head>
-<body>
-    <form id="form1" runat="server" onsubmit="return validateForm()">
-        <asp:Label ID="Label1" runat="server" Text="What monthly amount would you want to have post-retirement?"></asp:Label>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <div class="container">
+    <asp:Label ID="Label1" runat="server" Text="What monthly amount would you want to have post-retirement?"></asp:Label>
         <br />
         <asp:Label ID="Monthlydesiredamount" runat="server" Text="Monthly Desired Amount:"></asp:Label>
         &nbsp;&nbsp;
@@ -87,35 +111,6 @@
         <!-- Chart -->
         <canvas id="financialChart" width="600" height="400"></canvas>
         <asp:HiddenField ID="chartData" runat="server" />
-    </form>
+        </div>
+</asp:Content>
 
-    <script>
-        // Function to update the chart with data from the hidden field
-        function updateChart() {
-            var chartData = JSON.parse(document.getElementById('<%= chartData.ClientID %>').value);
-            var ctx = document.getElementById('financialChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Year'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Amount (RM)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    </script>
-</body>
-</html>

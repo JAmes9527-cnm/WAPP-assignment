@@ -11,34 +11,25 @@ namespace WebApplication2
 {
 
 
-    public partial class newCourses
+    public partial class QuizResult
     {
 
         /// <summary>
-        /// txtSearch control.
+        /// lblResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Label lblResult;
 
         /// <summary>
-        /// btnSearch control.
+        /// rptQuestions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-
-        /// <summary>
-        /// courses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl courses;
+        protected global::System.Web.UI.WebControls.Repeater rptQuestions;
     }
 }

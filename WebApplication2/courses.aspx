@@ -3,103 +3,129 @@
     <title>Courses</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
 
-.courses {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
-    margin: 0 auto; /* Center the container */
-}
+        .search-container {
+            text-align: center;
+            padding: 20px;
+        }
 
-.course {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: calc(30% - 26.67px); /* Adjust width for responsiveness and gap */
-    margin: 10px; /* Adjust margin for responsiveness and gap */
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-}
+        .search-bar {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
 
-.course:hover {
-    transform: translateY(-5px);
-}
+        .search-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
 
-.thumbnail {
-    max-width: 100%; /* Set maximum width for the thumbnail */
-    max-height: 200px; /* Set maximum height for the thumbnail */
-    overflow: hidden;
-}
+        .search-button:hover {
+            background-color: #0056b3;
+        }
 
-.thumbnail img {
-    width: auto;
-    height: auto;
-    max-width: 100%; /* Ensure the image doesn't exceed the thumbnail's width */
-    max-height: 100%; /* Ensure the image doesn't exceed the thumbnail's height */
-    display: block;
-    margin: auto; /* Center the image horizontally */
-}
+        .courses {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            margin: 0 auto; /* Center the container */
+        }
 
+        .course {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: calc(30% - 26.67px); /* Adjust width for responsiveness and gap */
+            margin: 10px; /* Adjust margin for responsiveness and gap */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
 
-.details {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
+        .course:hover {
+            transform: translateY(-5px);
+        }
 
-.details h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
-    color: #333333;
-}
+        .thumbnail {
+            max-width: 100%; /* Set maximum width for the thumbnail */
+            max-height: 200px; /* Set maximum height for the thumbnail */
+            overflow: hidden;
+        }
 
-.details p {
-    margin: 10px 0;
-    color: #666666;
-    flex-grow: 1;
-}
+        .thumbnail img {
+            width: auto;
+            height: auto;
+            max-width: 100%; /* Ensure the image doesn't exceed the thumbnail's width */
+            max-height: 100%; /* Ensure the image doesn't exceed the thumbnail's height */
+            display: block;
+            margin: auto; /* Center the image horizontally */
+        }
 
-.viewCourseButton {
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: #ffffff;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    align-self: center;
-    margin-top: auto;
-}
+        .details {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
 
-.viewCourseButton:hover {
-    background-color: #0056b3;
-}
+        .details h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            color: #333333;
+        }
 
-.details p i {
-    font-size: 0.9em;
-    color: #999999;
-}
+        .details p {
+            margin: 10px 0;
+            color: #666666;
+            flex-grow: 1;
+        }
 
+        .viewCourseButton {
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: center;
+            margin-top: auto;
+        }
 
+        .viewCourseButton:hover {
+            background-color: #0056b3;
+        }
 
+        .details p i {
+            font-size: 0.9em;
+            color: #999999;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <h1>Courses</h1>
+    <div class="search-container">
+        <asp:TextBox ID="txtSearch" runat="server" CssClass="search-bar" Placeholder="Search for courses..."></asp:TextBox>
+        <asp:Button ID="btnSearch" runat="server" CssClass="search-button" Text="Search" OnClick="btnSearch_Click" />
+    </div>
     <div id="courses" class="courses" runat="server">
     </div>
 </asp:Content>

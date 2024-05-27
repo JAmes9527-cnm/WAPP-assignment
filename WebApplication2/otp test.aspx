@@ -1,7 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/masterPage.master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="WebApplication2.newLogin" %>
-
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="headContent" Runat="Server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="otp test.aspx.cs" Inherits="WebApplication2.otp_test" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Login Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -38,27 +36,21 @@
             document.getElementById('<%= ValidateOTPButton.ClientID %>').disabled = true;
         }
 
-        function showSuccessMessage(redirectPage, fname) {
+        function showSuccessMessage(message) {
             Swal.fire({
                 icon: 'success',
-                title: 'Login Successfully!',
-                text: 'Welcome, ' + fname + '!',
+                title: 'Success',
+                text: message,
                 confirmButtonColor: '#1970ae',
                 confirmButtonText: 'Continue'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = redirectPage;
-                }
-                else {
-                    window.location.href = redirectPage;
-                }
             });
         }
-        function showErrorMessage() {
+
+        function showErrorMessage(message) {
             Swal.fire({
                 icon: 'error',
-                title: 'Wrong username or password!',
-                text: 'Try again !',
+                title: 'Error',
+                text: message,
                 confirmButtonColor: '#1970ae',
                 confirmButtonText: 'Continue'
             });
@@ -90,37 +82,33 @@
     </style>
 
 </asp:Content>
-
-
-<asp:Content ContentPlaceHolderID="content" Runat="Server">
-        <asp:ScriptManager runat="server" />
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
+    <asp:ScriptManager runat="server" />
             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                         <!-- Login Section -->
                         <asp:View ID="LoginView" runat="server">
-
-        <div class="login-form">
-        <h2 class="text-center">Log in</h2>       
-        <div class="form-group">
-            <asp:Textbox ID="username" type="text" CssClass="form-control" placeholder="Username" required="required" runat="server"/>
-        </div>
-        <div class="form-group">
-            <asp:Textbox ID="pwd" type="password" CssClass="form-control" placeholder="Password" required="required" runat="server"/>
-        </div>
-        <div class="form-group">
-            <asp:Button CssClass="btn btn-primary btn-block" Text="Log in" runat="server" ID="Button1" OnClick="Button1_Click"></asp:Button>
-        </div>
-        <div class="clearfix">
-          <asp:LinkButton ID="forgotPasswordLink" runat="server" OnClick="forgotPasswordLink_Click" CssClass="float-right">Forgot Password?</asp:LinkButton>
-        </div>
-            <p class="text-center"><a href="register.aspx">Create an Account</a></p>
-</div>
-            </asp:View>
+                            <h2 class="text-center">Log in</h2>
+                            <div class="form-group">
+                                <asp:TextBox ID="username" runat="server" CssClass="form-control" placeholder="Username" required="required"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="pwd" runat="server" CssClass="form-control" placeholder="Password" required="required" TextMode="Password"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Button CssClass="btn btn-primary btn-block" Text="Log in" runat="server" ID="Button1" OnClick="Button1_Click"></asp:Button>
+                            </div>
+                            <div class="form-group">
+                                <asp:Button CssClass="btn btn-primary btn-block" Text="Sign Up" runat="server" ID="register_btn" OnClick="register_btn_Click"></asp:Button>
+                            </div>
+                            <div class="clearfix">
+                                <asp:LinkButton ID="forgotPasswordLink" runat="server" OnClick="forgotPasswordLink_Click" CssClass="float-right">Forgot Password?</asp:LinkButton>
+                            </div>
+                        </asp:View>
 
                         <!-- Forgot Password Section -->
                         <asp:View ID="ForgotPasswordView" runat="server">
-                            <div class="login-form">
                             <h2 class="text-center">Forgot Password</h2>
                             <div class="form-group">
                                 <asp:TextBox ID="forgotEmail" runat="server" CssClass="form-control" placeholder="Email" required="required"></asp:TextBox>
@@ -129,12 +117,10 @@
                             <div class="form-group">
                                 <asp:Button CssClass="btn btn-primary btn-block" Text="Send OTP" runat="server" ID="SendOTPButton" OnClick="SendOTPButton_Click"></asp:Button>
                             </div>
-                                </div>
                         </asp:View>
 
                         <!-- OTP Section -->
                         <asp:View ID="OTPView" runat="server">
-                            <div class="login-form">
                             <h2 class="text-center">Enter OTP</h2>
                             <div class="form-group">
                                 <asp:TextBox ID="otp" runat="server" CssClass="form-control" placeholder="Enter OTP" required="required"></asp:TextBox>
@@ -147,12 +133,10 @@
                                 <span id="countdown"></span>
                                 <asp:Button CssClass="btn btn-secondary" Text="Resend OTP" runat="server" ID="ResendOTPButton" OnClick="ResendOTPButton_Click" Enabled="false"></asp:Button>
                             </div>
-                                </div>
                         </asp:View>
 
                         <!-- New Password Section -->
                         <asp:View ID="NewPasswordView" runat="server">
-                            <div class="login-form">
                             <h2 class="text-center">New Password</h2>
                             <div class="form-group">
                                 <asp:TextBox ID="newPassword" runat="server" CssClass="form-control" placeholder="New Password" required="required" TextMode="Password"></asp:TextBox>
@@ -165,10 +149,9 @@
                             <div class="form-group">
                                 <asp:Button CssClass="btn btn-primary btn-block" Text="Reset Password" runat="server" ID="ResetPasswordButton" OnClick="ResetPasswordButton_Click"></asp:Button>
                             </div>
-                                </div>
                         </asp:View>
                     </asp:MultiView>
                 </ContentTemplate>
             </asp:UpdatePanel>
-    </asp:Content>
 
+</asp:Content>

@@ -38,7 +38,7 @@ namespace WebApplication2
 
         protected void PfpButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UserProfile.aspx");
+            Response.Redirect("Profile.aspx");
         }
 
         protected void Login_Click(object sender, EventArgs e)

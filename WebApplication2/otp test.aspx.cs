@@ -8,7 +8,7 @@ using System.Web.UI;
 
 namespace WebApplication2
 {
-    public partial class newLogin : System.Web.UI.Page
+    public partial class otp_test : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,48 +16,38 @@ namespace WebApplication2
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("select count(*) from userTable where username = '" + username.Text + "' and Password = '" + pwd.Text + "'", con);
-            int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-
-            if (count > 0)
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                SqlCommand cmdType = new SqlCommand("select fname, usertype, UserID from userTable where username = '" + username.Text + "'", con);
-                SqlDataReader dr = cmdType.ExecuteReader();
+                con.Open();
 
-                string type = "";
-                string name = "";
-                string UserID = "";
+                SqlCommand cmd = new SqlCommand("select count(*) from userTable where username = @username and Password = @password", con);
+                cmd.Parameters.AddWithValue("@username", username.Text);
+                cmd.Parameters.AddWithValue("@password", pwd.Text);
+                int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
-                while (dr.Read())
+                if (count > 0)
                 {
-                    type = dr["usertype"].ToString().Trim();
-                    name = dr["fname"].ToString().Trim();
-                    UserID = dr["UserID"].ToString().Trim();
+                    SqlCommand cmdType = new SqlCommand("select fname, email, usertype from userTable where username = @username", con);
+                    cmdType.Parameters.AddWithValue("@username", username.Text);
+                    SqlDataReader dr = cmdType.ExecuteReader();
+                    dr.Read();
+                    Session["user"] = dr["fname"].ToString();
+                    Session["email"] = dr["email"].ToString();
+                    if (dr["usertype"].ToString() == "student")
+                        Response.Redirect("student.aspx");
+                    else if (dr["usertype"].ToString() == "admin")
+                        Response.Redirect("admin.aspx");
+                    else if (dr["usertype"].ToString() == "staff")
+                        Response.Redirect("staff.aspx");
+                    dr.Close();
                 }
-                Session["firstName"] = name;
-                Session["userName"] = username.Text;
-                Session["userID"] = UserID;
-                Session["userType"] = type;
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "errorMessage", "showErrorMessage('Incorrect username or password.');", true);
+                }
 
-
-
-                if (type == "admin")
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('adminDashboard.aspx','" + name + "');", true);
-                else if (type == "member")
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('home.aspx','" + name + "');", true);
-                else if (type == "tutor")
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('tutorDashboard.aspx','" + name + "');", true);
+                con.Close();
             }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showErrorMessage();", true);
-                return;
-            }
-
-            con.Close();
         }
 
         protected void register_btn_Click(object sender, EventArgs e)
