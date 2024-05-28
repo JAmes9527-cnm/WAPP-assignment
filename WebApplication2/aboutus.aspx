@@ -2,7 +2,44 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>About Us - Smart Money Mastery</title>
-    <link rel="stylesheet" href="aboutusdesign.css" />
+    <style>section {
+    padding: 80px 20px 20px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+    section h1, section h2 {
+        color: #2c3e50;
+    }
+
+    section p {
+        color: #7f8c8d;
+        line-height: 1.6;
+    }
+
+.about-section {
+    background-color: #fff;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.mission-statement, .team-section, .testimonial-section, .history-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+blockquote {
+    border-left: 4px solid #3498db;
+    padding-left: 16px;
+    font-style: italic;
+    color: #2c3e50;
+}</style>
+    
     <link rel="stylesheet" href="masterdesign.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />

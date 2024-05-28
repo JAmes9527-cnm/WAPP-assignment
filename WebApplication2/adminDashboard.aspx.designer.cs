@@ -15,39 +15,30 @@ namespace WebApplication2
     {
 
         /// <summary>
-        /// Image1 control.
+        /// editCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Button editCourses;
 
         /// <summary>
-        /// ManageStudentsButton control.
+        /// addCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ManageStudentsButton;
+        protected global::System.Web.UI.WebControls.Button addCourses;
 
         /// <summary>
-        /// ManageTutorsButton control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ManageTutorsButton;
-
-        /// <summary>
-        /// ManageForumButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ManageForumButton;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

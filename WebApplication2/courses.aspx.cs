@@ -29,12 +29,12 @@ namespace WebApplication2
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 // Define the SQL query to select courses
-                string query = "SELECT CourseID, name, description, thumbnailUrl, createdBy, createdAt FROM courses";
+                string query = "SELECT CourseID, name, description, thumbnailUrl, createdBy, createdAt FROM courses ";
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     query += " WHERE name LIKE @SearchQuery OR description LIKE @SearchQuery";
                 }
-                query += " ORDER BY createdAt ASC";
+                query += " ORDER BY createdAt DESC";
 
                 // Create a SQL command
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -87,7 +87,7 @@ namespace WebApplication2
                             detailsPanel.Controls.Add(contentControl);
                             detailsPanel.Controls.Add(createdAtControl);
                             detailsPanel.Controls.Add(viewCourseButton);
-                            if (Session["userType"] != null && Session["userType"].ToString() == "tutor")
+                            if (Session["userType"] != null && (Session["userType"].ToString() == "tutor" || Session["userType"].ToString() == "admin"))
                             {
                                 Button editCourseButton = new Button();
                                 editCourseButton.Text = "Edit Course";

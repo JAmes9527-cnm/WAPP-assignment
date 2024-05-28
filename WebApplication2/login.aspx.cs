@@ -139,7 +139,7 @@ namespace WebApplication2
                     cmd.Parameters.AddWithValue("@Email", Session["userEmail"].ToString());
                     cmd.ExecuteNonQuery();
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "successMessage", "showSuccessMessage('Password reset successfully.');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "successMessage", "showSuccessMessage2('Password reset successfully.');", true);
                     MultiView1.ActiveViewIndex = 0; // Switch back to LoginView
                 }
             }
@@ -165,7 +165,7 @@ namespace WebApplication2
                 SendOTPEmail(userEmail, generatedOTP);
                 MultiView1.ActiveViewIndex = 2; // Switch to OTPView
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "startCountdown", "startCountdown();", true);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "successMessage", "showSuccessMessage('A new OTP has been sent to your email.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "successMessage", "showSuccessMessage2('A new OTP has been sent to your email.');", true);
             }
             catch (Exception ex)
             {

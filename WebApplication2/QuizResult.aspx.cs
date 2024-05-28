@@ -29,8 +29,7 @@ namespace WebApplication2
             {
                 con.Open();
 
-                // Get the number of correct answers
-                con.Open();
+                
                 SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM QuizAnswers WHERE AttemptID = @AttemptID AND UserAnswer = (SELECT Answer FROM Questions WHERE QuestionID = QuizAnswers.QuestionID)", con);
                 cmd.Parameters.AddWithValue("@AttemptID", attemptID);
 

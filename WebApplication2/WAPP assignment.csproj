@@ -138,7 +138,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="forum.aspx" />
     <Content Include="forum.css" />
+    <Content Include="img\addCourseIcon.png" />
     <Content Include="img\courseThumbnail\defaultCourse.png" />
+    <Content Include="img\editCourseIcon.png" />
+    <Content Include="img\manageForumIcon.png" />
+    <Content Include="img\manageTutorIcon.png" />
+    <Content Include="img\manageUserIcon.png" />
     <Content Include="img\pfp\default_pfp.png" />
     <Content Include="manageStudents.aspx" />
     <Content Include="manageTutors.aspx" />
@@ -155,6 +160,7 @@
     <Content Include="Profile.aspx" />
     <Content Include="QuizResult.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="resources.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -376,6 +382,13 @@
     </Compile>
     <Compile Include="masterPage.Master.designer.cs">
       <DependentUpon>masterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="resources.aspx.cs">
+      <DependentUpon>resources.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resources.aspx.designer.cs">
+      <DependentUpon>resources.aspx</DependentUpon>
     </Compile>
     <Compile Include="statistic.aspx.cs">
       <DependentUpon>statistic.aspx</DependentUpon>

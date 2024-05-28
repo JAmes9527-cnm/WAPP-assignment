@@ -54,6 +54,16 @@
                 }
             });
         }
+        function showSuccessMessage2(text) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successfully!',
+                text: text,
+                confirmButtonColor: '#1970ae',
+                confirmButtonText: 'Continue'
+            });
+        }
+
         function showErrorMessage() {
             Swal.fire({
                 icon: 'error',

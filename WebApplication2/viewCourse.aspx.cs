@@ -9,6 +9,7 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 string courseID = Request.QueryString["courseID"];
@@ -39,13 +40,19 @@ namespace WebApplication2
                             EditQuizBtn.Visible = true;
                         }
                     }
-                    
                 }
-                else
+                else if(count == 0)
                 {
-                    quiz_buttons.Visible = true;
-                    EditQuizBtn.Text = "Add Quiz";
-                    EditQuizBtn.Visible = true;
+                    if (Session["userType"] != null)
+                    {
+                       if (Session["userType"].ToString() == "tutor")
+                        {
+                            quiz_buttons.Visible = true;
+                            EditQuizBtn.Text = "Add Quiz";
+                            EditQuizBtn.Visible = true;
+                        }
+                    }
+                        
                 }
                 con.Close();
                 LoadCourseDetails();
@@ -104,15 +111,20 @@ namespace WebApplication2
 
         protected void EditQuizBtn_Click(object sender, EventArgs e)
         {
-            if(ExtractUsername(lblCreatedBy.Text) != Session["userName"].ToString())
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showErrorMessage();", true);
-                return;
-            }
-            else
+            if(ExtractUsername(lblCreatedBy.Text) == Session["userName"].ToString())
             {
                 string courseID = Request.QueryString["courseID"];
                 Response.Redirect("AddOrEditQuiz.aspx?CourseID=" + courseID);
+            }
+            else if(Session["userType"].ToString() == "admin")
+            {
+                string courseID = Request.QueryString["courseID"];
+                Response.Redirect("AddOrEditQuiz.aspx?CourseID=" + courseID);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showErrorMessage();", true);
+                return;
             }
         }
 

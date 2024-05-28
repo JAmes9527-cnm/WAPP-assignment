@@ -53,7 +53,6 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
     }
 
     .header .logo {
@@ -96,7 +95,7 @@ a {
                     display: none;
                     position: absolute;
                     background-color: white;
-                    min-width: 160px;
+                    min-width: 236px;
                     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
                     z-index: 1;
                     border-radius: 5px;
@@ -126,6 +125,7 @@ a {
     .header .auth-links {
         display: flex;
         align-items: center;
+        margin-left: auto; /* This will push the auth-links to the right */
     }
 
         .header .auth-links .profile-photo {
@@ -378,8 +378,10 @@ footer {
     }
 
     .header .nav-links {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 
         .header .nav-links ul {

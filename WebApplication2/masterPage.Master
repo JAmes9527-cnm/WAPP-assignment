@@ -40,7 +40,6 @@
 
                     <!-- Sign In and User Info -->
                     <ul class="auth-links">
-                        <div class="button-container">
             <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
                 <asp:Panel ID="loginPanel" runat="server" Visible="false">
                 <a href="login.aspx" class="btn">Login</a>
@@ -52,7 +51,7 @@
                 <asp:ImageButton ID="pfp" ImageUrl="~/img/pfp/default_pfp.img" runat="server" OnClick="PfpButton_Click" CssClass="cropped-image circular-img-container" AlternateText="Profile picture"/>
                 <asp:Button  Text="Log Out" runat="server" Onclick="LogOut_Click" CssClass="btn"/>
                 </asp:Panel>
-            </asp:PlaceHolder></div>
+            </asp:PlaceHolder>
                     </ul>
                 </div>
                 <i class="fa fa-bars" onclick="showMenu()"></i>
