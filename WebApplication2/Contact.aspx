@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/masterPage.Master" CodeBehind="Contact.aspx.cs" Inherits="WebApplication2.Contact" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
-    <title>Contact Us - Smart Money Mastery</title>
+<title>Contact Us - Smart Money Mastery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -9,7 +9,7 @@
             padding: 20px;
         }
 
-        .contact-info, .social-links, .map-link, .map-embed {
+        .contact-info, .social-links, .map-link, .map-embed, .contact-form {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -17,7 +17,7 @@
             margin-bottom: 20px;
         }
 
-        .contact-info h2, .social-links h3, .map-link h3 {
+        .contact-info h2, .social-links h3, .map-link h3, .contact-form h3 {
             margin-top: 0;
         }
 
@@ -27,7 +27,55 @@
             border: none;
             border-radius: 8px;
         }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
     </style>
+    <script type="text/javascript">
+        function validateForm() {
+            var name = document.getElementById('<%= txtName.ClientID %>').value;
+            var email = document.getElementById('<%= txtEmail.ClientID %>').value;
+            var message = document.getElementById('<%= txtMessage.ClientID %>').value;
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (name === "" || email === "" || message === "") {
+                alert("Please ensure all required fields are completed before submitting the form.");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address in the correct format (e.g., user@example.com).");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="contact-info">
@@ -51,5 +99,19 @@
                 allowfullscreen="" 
                 loading="lazy">
             </iframe>
+        </div>
+        <div class="contact-form">
+            <h3>Contact Form</h3>
+            <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+            <label for="txtName">Name:</label>
+            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+
+            <label for="txtEmail">Email:</label>
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+
+            <label for="txtMessage">Message:</label>
+            <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="return validateForm();" OnClick="btnSubmit_Click" />
         </div>
 </asp:Content>

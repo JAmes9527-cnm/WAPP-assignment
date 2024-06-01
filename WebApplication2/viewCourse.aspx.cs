@@ -20,7 +20,7 @@ namespace WebApplication2
                 string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("select count(*) from Questions where CourseID = '" + courseID + "'" , con);
+                SqlCommand cmd = new SqlCommand("select count(*) from Quiz where Quiz = '" + courseID + "'" , con);
                 int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (count > 0)

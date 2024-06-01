@@ -3,108 +3,188 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
     <title>Articles - Smart Money Mastery</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
+       /* Articles Section */
+.articles {
+    padding: 80px 20px 20px;
+}
 
-        .container {
-            max-width: 900px;
+    .articles .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .articles h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 32px;
+        color: #2c3e50;
+    }
+
+    .articles .search-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+        .articles .search-bar input {
             width: 100%;
-        }
-
-        .article-section {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #ffffff;
+            max-width: 600px;
+            padding: 10px;
+            font-size: 16px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            border-radius: 4px;
         }
 
-        .article-section:hover {
+    .articles .article-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .articles .article-item {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+        .articles .article-item:hover {
             transform: translateY(-5px);
         }
 
-        .article-section h2 {
+        .articles .article-item h2 {
             color: #2c3e50;
             font-size: 24px;
             margin-bottom: 10px;
         }
 
-        .article-section p {
+        .articles .article-item p {
             color: #7f8c8d;
             font-size: 16px;
             line-height: 1.6;
         }
 
-        .article-section a {
+        .articles .article-item .read-more {
             color: #3498db;
             text-decoration: none;
             font-weight: 600;
         }
 
-        .article-section a:hover {
-            text-decoration: underline;
-        }
+            .articles .article-item .read-more:hover {
+                text-decoration: underline;
+            }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <div class="container">
-            <div class="article-section">
-                <h2>Understanding Your Credit Score: A Comprehensive Guide</h2>
-                <p>This article explores the fundamentals of credit scores, how they are calculated, and why they are essential for your financial health. Learn strategies to improve your credit score effectively.</p>
-                <p><a href="https://example.com/articles/understanding-credit-score" target="_blank">Read more...</a></p>
+   <section class="articles">
+            <div class="container">
+                <h1>Our Latest Articles</h1>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for articles..." oninput="debounceSearch()" />
+                </div>
+                <div class="article-list" id="articleList">
+                    <div class="article-item">
+                        <h2>Understanding Financial Freedom</h2>
+                        <p>Financial freedom means having enough savings, investments, and cash on hand to afford the lifestyle we want for ourselves and our families...</p>
+                        <a href="https://example.com/article1" class="read-more" target="_blank">Read more...</a>
+                    </div>
+                    <div class="article-item">
+                        <h2>Investment Strategies for Beginners</h2>
+                        <p>Investing can be intimidating for beginners, but with the right strategies and guidance, you can start building your portfolio with confidence...</p>
+                        <a href="https://example.com/article2" class="read-more" target="_blank">Read more...</a>
+                    </div>
+                    <div class="article-item">
+                        <h2>How to Manage Debt Effectively</h2>
+                        <p>Debt management is crucial to achieving financial stability. Learn the best practices for managing and reducing debt in a structured way...</p>
+                        <a href="https://example.com/article3" class="read-more" target="_blank">Read more...</a>
+                    </div>
+                    <div class="article-item">
+                        <h2>The Importance of Budgeting</h2>
+                        <p>Creating a budget is one of the most effective ways to manage your finances. It helps you track your spending, save money, and reach your financial goals...</p>
+                        <a href="https://example.com/article4" class="read-more" target="_blank">Read more...</a>
+                    </div>
+                    <!-- Additional Articles -->
+                    <div class="article-item">
+                        <h2>Building a Solid Investment Portfolio</h2>
+                        <p>Learn how to create a diversified investment portfolio that can help you achieve long-term financial goals and mitigate risks...</p>
+                        <a href="https://example.com/article5" class="read-more" target="_blank">Read more...</a>
+                    </div>
+                    <div class="article-item">
+                        <h2>Retirement Planning Tips</h2>
+                        <p>Planning for retirement can be daunting, but with these tips, you can ensure a comfortable and financially secure retirement...</p>
+                        <a href="https://example.com/article6" class="read-more" target="_blank">Read more...</a>
+                    </div>
+                </div>
+                <div class="article-list" id="externalArticlesContainer">
+                    <!-- External Articles will be appended here -->
+                </div>
             </div>
-            <div class="article-section">
-                <h2>Investing in Stocks: Strategies for Beginners</h2>
-                <p>Begin your journey into the stock market with confidence. This guide provides essential tips for newcomers, covering everything from selecting stocks to understanding market trends.</p>
-                <p><a href="https://example.com/articles/investing-in-stocks" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>The Impact of Global Economic Changes on Personal Finance</h2>
-                <p>Examine how global economic shifts can impact your personal finances and what steps you can take to safeguard your assets in uncertain times.</p>
-                <p><a href="https://example.com/articles/global-economic-impact" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Retirement Planning: How to Prepare for Your Future</h2>
-                <p>It's never too early to start planning for retirement. This article discusses various retirement planning strategies to help ensure a secure and stable future.</p>
-                <p><a href="https://example.com/articles/retirement-planning" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Steps to Achieve Financial Freedom</h2>
-                <p>Discover actionable steps you can take today to start your journey toward financial freedom. From budgeting tips to investment strategies, this guide covers it all.</p>
-                <p><a href="https://example.com/articles/steps-to-financial-freedom" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Building an Emergency Fund: Why and How</h2>
-                <p>Learn the importance of having an emergency fund and how to build one effectively to protect yourself from unexpected financial setbacks.</p>
-                <p><a href="https://example.com/articles/building-emergency-fund" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Debt Management: Strategies to Reduce and Eliminate Debt</h2>
-                <p>Understand different strategies to manage, reduce, and eventually eliminate your debt. Learn how to prioritize and tackle various types of debt effectively.</p>
-                <p><a href="https://example.com/articles/debt-management" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Creating a Budget That Works for You</h2>
-                <p>Find out how to create a budget that suits your lifestyle and financial goals. This guide provides practical tips and tools to help you manage your finances better.</p>
-                <p><a href="https://example.com/articles/creating-budget" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Real Estate Investing: A Beginner's Guide</h2>
-                <p>Explore the basics of real estate investing, including how to get started, what to look for in properties, and tips for maximizing your returns.</p>
-                <p><a href="https://example.com/articles/real-estate-investing" target="_blank">Read more...</a></p>
-            </div>
-            <div class="article-section">
-                <h2>Tax Planning: Tips to Save on Taxes</h2>
-                <p>Learn various tax planning strategies to help you save money on taxes and make the most of your income. This guide covers deductions, credits, and more.</p>
-                <p><a href="https://example.com/articles/tax-planning" target="_blank">Read more...</a></p>
-            </div>
-        </div>
+        </section>
+
+<!-- JavaScript -->
+        <script>
+            let debounceTimeout;
+
+            function debounceSearch() {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(searchArticles, 300); // Delay of 300ms
+            }
+
+            async function searchArticles() {
+                const query = document.getElementById('searchInput').value.toLowerCase();
+
+                // Local search
+                const articles = document.querySelectorAll('.article-item');
+                articles.forEach(article => {
+                    const title = article.querySelector('h2').innerText.toLowerCase();
+                    const description = article.querySelector('p').innerText.toLowerCase();
+                    if (title.includes(query) || description.includes(query)) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+
+                // Fetch articles from an external API
+                if (query.length > 0) {
+                    try {
+                        const response = await fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=cb89ed164041409fb107770099be9cc0`);
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        const data = await response.json();
+                        displayExternalArticles(data.articles);
+                    } catch (error) {
+                        console.error('There was a problem with the fetch operation:', error);
+                    }
+                } else {
+                    document.getElementById('externalArticlesContainer').innerHTML = ''; // Clear external articles if query is empty
+                }
+            }
+
+            function displayExternalArticles(articles) {
+                const container = document.getElementById('externalArticlesContainer');
+                container.innerHTML = ''; // Clear previous results
+
+                articles.forEach(article => {
+                    const articleSection = document.createElement('div');
+                    articleSection.className = 'article-item';
+                    articleSection.innerHTML = `
+            <h2>${article.title}</h2>
+            <p>${article.description}</p>
+            <p><a href="${article.url}" target="_blank" class="read-more">Read more...</a></p>
+        `;
+                    container.appendChild(articleSection);
+                });
+            }
+
+            function toggleDropdown() {
+                var dropdownContent = document.querySelector('.dropdown-content');
+                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+            }
+
+        </script>
 </asp:Content>

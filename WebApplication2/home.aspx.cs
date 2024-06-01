@@ -34,7 +34,65 @@ namespace WebApplication2
             {
                 loginPanel.Visible = true;
             }
+
+            if (!IsPostBack)
+            {
+                LoadUserFeedback();
+            }
+
         }
+
+        private void LoadUserFeedback()
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connStr))
+                {
+                    con.Open();
+                    string query = "SELECT TOP 5 Name, Rating, Review, Timestamp FROM feedbackTable ORDER BY Timestamp DESC";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            feedbackSection.Visible = true;
+                            feedbackRepeater.DataSource = reader;
+                            feedbackRepeater.DataBind();
+                        }
+                        else
+                        {
+                            feedbackSection.Visible = false; // Hide the section if there are no feedback entries
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (implement logging as needed)
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+
+        protected string GenerateStarsHtml(int rating)
+        {
+            string starsHtml = string.Empty;
+            for (int i = 0; i < 5; i++)
+            {
+                if (i < rating)
+                {
+                    starsHtml += "<i class='fas fa-star' style='color: #f7c508;'></i>";
+                }
+                else
+                {
+                    starsHtml += "<i class='fas fa-star' style='color: #ddd;'></i>";
+                }
+            }
+            return starsHtml;
+        }
+
+
 
         protected void PfpButton_Click(object sender, EventArgs e)
         {

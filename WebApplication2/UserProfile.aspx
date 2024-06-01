@@ -103,14 +103,27 @@
             border-radius: 50%;
         }
 
-        td{
+        .table{
+            display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+    height: 100vh; /* Take at least the full height of the viewport */
+    width: 75%; /* or max-width: 90%; for some padding around */
+    margin: 20px auto; /* Auto margin for horizontal centering */
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+        }
+
+        .modals-button{
+            text-align:center;
         }
 
         /* Ensure table takes only as much width as needed */
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <table class="auto-style1">
+    <table class="table">
             <tr>
                 <td class="auto-style3" colspan="4">
                     <asp:Label ID="Label1" runat="server" Text="Edit User"></asp:Label>
@@ -230,9 +243,10 @@
 
             </tr>
         </table>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<button type="button" href="#myModal" class="trigger-btn" data-toggle="modal">Confirm Changes</button>
-        &nbsp;&nbsp;&nbsp;<button type="button" href="#deleteModal" class="trigger-btn" data-toggle="modal">Delete account</button>
+    <div class="modals-button">
+<button type="button" href="#myModal" class="trigger-btn" data-toggle="modal">Confirm Changes</button>
+<button type="button" href="#deleteModal" class="trigger-btn" data-toggle="modal">Delete account</button>
+        </div>
         <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">

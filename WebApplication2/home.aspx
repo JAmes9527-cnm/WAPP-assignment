@@ -82,18 +82,99 @@
             </div>
         </section>
 
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h1>What Our Students Say</h1>
+            <p>See what our satisfied students have to say about Smart Money Mastery.</p>
+            <div class="row">
+                <div class="testimonial-col">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Wee_Ka_Siong_IMO_%28cropped%29.jpg" alt="User Photo">
+                    <div>
+                        <p>"This course has transformed my financial life. I now feel confident about managing my money and planning for the future."</p>
+                        <h3>John Doe</h3>
+                        <p>Financial Freedom Course Graduate</p>
+                    </div>
+                </div>
+                <div class="testimonial-col">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbq-_ezBly8iuP8Oo4qgj7j66VJWjybvwnbQ&s" alt="User Photo">
+                    <div>
+                        <p>"The Ultimate Guide to Financial Freedom is a must-take course. It covered everything I needed to know to take control of my finances."</p>
+                        <h3>Jane Smith</h3>
+                        <p>Financial Freedom Course Graduate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <h1>Frequently Asked Questions</h1>
+            <div class="faq-item">
+                <h3>What is Smart Money Mastery?</h3>
+                <p>Smart Money Mastery is an educational platform that offers courses and resources to help you manage your finances effectively and achieve financial freedom.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I enroll in a course?</h3>
+                <p>You can enroll in any of our courses by visiting the Courses section and selecting the course you're interested in. Follow the prompts to complete your registration.</p>
+            </div>
+        </section>
+
+        <!-- Blog Highlights Section -->
+        <section class="blog-highlights">
+            <h1>From Our Blog</h1>
+            <div class="row">
+                <div class="blog-col">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlJOAB5WRDMzEjDl5Mh7OcFmkYsqSONp_2Ow&s" alt="Blog Post Image">
+                    <h3>5 Tips to Improve Your Financial Health</h3>
+                    <p>Learn five simple yet effective tips to improve your financial health and secure your financial future.</p>
+                    <a href="https://www.macquarie.com.au/investing/financial-health-money-management-tips.html" class="read-more-btn">Read More</a>
+                </div>
+                <div class="blog-col">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHg1d-LjmLVj6uRq9CYuwq7YtgJiKUoXirg&s" alt="Blog Post Image">
+                    <h3>Investing for Beginners: Where to Start</h3>
+                    <p>New to investing? Discover the basics of investing and how to get started on your investment journey.</p>
+                    <a href="https://fortune.com/recommends/investing/how-to-start-investing/" class="read-more-btn">Read More</a>
+                </div>
+            </div>
+        </section>
+
+       <!-- User Feedback Section -->
+        <section class="user-feedback" runat="server" id="feedbackSection" visible="false">
+            <h1>User Feedback</h1>
+            <asp:Repeater ID="feedbackRepeater" runat="server">
+                <ItemTemplate>
+                     <div class="feedback-item">
+                     <h3><%# Eval("Name") %></h3>
+                     <div>
+                        <%# GenerateStarsHtml((int)Eval("Rating")) %>
+                      </div>
+                         <p><%# Eval("Review") %></p>
+                         <small class="feedback-timestamp"><%# Eval("Timestamp", "{0:dd MMM yyyy HH:mm:ss}") %></small>
+                     </div>
+             </ItemTemplate>
+        </asp:Repeater>
+
+        </section>
+
+
+
         <!-- Contact Section -->
         <section class="cta">
             <h1>Know more about us</h1>
             <a href="contact.aspx" class="hero-btn">CONTACT US</a>
         </section>
 
+        <!-- Floating Feedback Button -->
+        <button class="feedback-button" onclick="feedback.aspx">Feedback</button>
+
+        <a href="feedback.aspx" class="feedback-button">Feedback</a>
+
         <!-- Footer -->
         <footer>
             <div class="footer-container">
                 <!-- Office Information -->
                 <div class="footer-col">
-                    <img src="img/logo.png" alt="Smart Money Mastery Logo">
+                    <img src="images/logo.jpg" alt="Smart Money Mastery Logo">
                     <p>Financial Freedom through education and resources.</p>
                     <p>Technology Park</p>
                     <p class="email-id">smartmoneymastery@gmail.com</p>
@@ -128,13 +209,14 @@
             </div>
         </footer>
 
+        <!-- JavaScript -->
         <script>
-            var navLinks = document.getElementById("navLinks");
-
             function showMenu() {
+                var navLinks = document.getElementById('navLinks');
                 navLinks.classList.add('showMenu');
             }
             function hideMenu() {
+                var navLinks = document.getElementById('navLinks');
                 navLinks.classList.remove('showMenu');
             }
 
@@ -176,6 +258,7 @@
             };
             updateUserInfo(user.photo);
         </script>
+
     </form>
 </body>
 </html>

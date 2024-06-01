@@ -23,11 +23,12 @@
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
     ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-    SelectCommand="SELECT * FROM [Questions] WHERE [CourseID] = @CourseID">
+    SelectCommand="SELECT * FROM [Quiz] WHERE Quiz = @CourseID">
     <SelectParameters>
-        <asp:Parameter Name="CourseID" Type="String" />
+        <asp:Parameter Name="CourseID" Type="Int32" />
     </SelectParameters>
 </asp:SqlDataSource>
+
                     <asp:Label ID="ErrMsg" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
                 </td>
             </tr>

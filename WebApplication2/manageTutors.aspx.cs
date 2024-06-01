@@ -68,6 +68,11 @@ namespace WebApplication2
                 RemoveTutor(userId);
                 BindExistingTutorsGrid();
             }
+            else if (e.CommandName == "ViewProfile")
+            {
+                int userId = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect($"viewProfile.aspx?UserID={userId}");
+            }
         }
 
         protected void GridViewNewTutors_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -1,7 +1,6 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminDashboard.aspx.cs" MasterPageFile="~/masterPage.Master" Inherits="WebApplication2.adminDashboard" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="memberDashboard.aspx.cs" Inherits="WebApplication2.memberDashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" runat="server">
-    <title>Admin Dashboard</title>
+    <title>User Dashboard</title>
     <style>
    .dashboard-container {
     width: calc(100% - 40px); /* Set width slightly larger than dashboard box */
@@ -54,22 +53,21 @@
     }
 </style>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-        <div class="dashboard-container">
-        <div style="text-align:center"><h1>Admin dashboard</h1></div>
+    <div class="dashboard-container">
+        <div style="text-align:center"><h1>User dashboard</h1></div>
         <div class="dashboard-box">
             <div class="button-container">
-                <asp:ImageButton runat="server" OnClick="courses_Click" ImageUrl="~/img/manageUserIcon.png" CssClass="icon-button" />
-                <asp:Button Text="Manage Student" ID="editCourses" runat="server" CssClass="dashboard-button" OnClick="courses_Click" />
+                <asp:ImageButton runat="server" OnClick="courses_Click" ImageUrl="~/img/coursesIcon.png" CssClass="icon-button" />
+                <asp:Button Text="View Courses" ID="editCourses" runat="server" CssClass="dashboard-button" OnClick="courses_Click" />
             </div>
             <div class="button-container">
-                <asp:ImageButton runat="server" OnClick="addCourses_Click" ImageUrl="~/img/manageForumIcon.png" CssClass="icon-button" />
-                <asp:Button Text="Manage Forum" ID="addCourses" runat="server" CssClass="dashboard-button" OnClick="addCourses_Click" />
+                <asp:ImageButton runat="server" OnClick="addCourses_Click" ImageUrl="~/img/resourcesIcon.png" CssClass="icon-button" />
+                <asp:Button Text="Resources" ID="addCourses" runat="server" CssClass="dashboard-button" OnClick="addCourses_Click" />
             </div>
             <div class="button-container">
-                <asp:ImageButton runat="server" OnClick="Button1_Click" ImageUrl="~/img/manageTutorIcon.png" CssClass="icon-button" />
-                <asp:Button Text="Manage Tutor" ID="Button1" runat="server" CssClass="dashboard-button" OnClick="Button1_Click" />
+                <asp:ImageButton runat="server" OnClick="Button1_Click" ImageUrl="~/img/calculatorIcon.png" CssClass="icon-button" />
+                <asp:Button Text="Calculator" ID="Button1" runat="server" CssClass="dashboard-button" OnClick="Button1_Click" />
             </div>
         </div>
     </div>

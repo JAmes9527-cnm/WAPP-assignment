@@ -51,7 +51,7 @@ namespace WebApplication2
                     {
                         if (SelectedQuestion.SelectedItem != null && Question.Text.Equals(SelectedQuestion.SelectedItem.Text))
                         {
-                            string updateQuery = "UPDATE Questions SET CourseID = @CourseID, Question = @Question, Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE QuestionID = @QuestionID";
+                            string updateQuery = "UPDATE Quiz SET Quiz = @CourseID, Question = @Question, Choice1 = @Choice1, Choice2 = @Choice2, Choice3 = @Choice3, Choice4 = @Choice4, Answer = @Answer WHERE QuizID = @QuestionID";
                             using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
                             {
                                 updateCmd.Parameters.AddWithValue("@CourseID", CourseID);
@@ -72,7 +72,7 @@ namespace WebApplication2
                         }
                         else
                         {
-                            string insertQuery = "INSERT INTO Questions (CourseID, Question, Choice1, Choice2, Choice3, Choice4, Answer) VALUES (@CourseID, @Question, @Choice1, @Choice2, @Choice3, @Choice4, @Answer)";
+                            string insertQuery = "INSERT INTO Quiz (Quiz, Question, Choice1, Choice2, Choice3, Choice4, Answer) VALUES (@CourseID, @Question, @Choice1, @Choice2, @Choice3, @Choice4, @Answer)";
                             using (SqlCommand cmd = new SqlCommand(insertQuery, con))
                             {
                                 cmd.Parameters.AddWithValue("@CourseID", CourseID);
@@ -106,7 +106,7 @@ namespace WebApplication2
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
 
-            SqlDataAdapter da = new SqlDataAdapter("select * from Questions where Question = '" + SelectedQuestion.Text + "'", con);
+            SqlDataAdapter da = new SqlDataAdapter("select * from Quiz where Question = '" + SelectedQuestion.Text + "'", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
 
@@ -122,16 +122,16 @@ namespace WebApplication2
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-                con.Open();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
 
-                string query = "delete from Questions where QuestionID = '" + QuestionID.Text + "'";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.ExecuteNonQuery();
+            string query = "delete from Quiz where QuizID = '" + QuestionID.Text + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
 
-                con.Close();
-                Response.Redirect(Request.RawUrl);
-        
+            con.Close();
+            Response.Redirect(Request.RawUrl);
+
         }
 
         protected void Question_TextChanged(object sender, EventArgs e)
@@ -147,7 +147,7 @@ namespace WebApplication2
                 {
                     conn.Open();
 
-                    string query = "SELECT COUNT(*) FROM Questions WHERE Question = @Question AND CourseID = @CourseID";
+                    string query = "SELECT COUNT(*) FROM Quiz WHERE Question = @Question AND CourseID = @CourseID";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Question", question);

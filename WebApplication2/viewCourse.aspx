@@ -90,7 +90,7 @@
         </div>
         <asp:PlaceHolder ID="quiz_buttons" Visible="false" runat="server">
         <asp:Button ID="AttemptQuizBtn" Text="Attemp quiz" OnClick="AttemptQuizBtn_Click" runat="server" Visible="false" />
-        <asp:Button ID="EditQuizBtn" Text="Edit quiz" runat="server" OnClick="EditQuizBtn_Click" Visible="false" />
+        <asp:Button ID="EditQuizBtn" runat="server" OnClick="EditQuizBtn_Click" Visible="false" />
     </asp:PlaceHolder>
     </div>
     

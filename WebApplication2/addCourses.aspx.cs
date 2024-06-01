@@ -27,7 +27,7 @@ namespace WebApplication2
                 string fileExtension = Path.GetExtension(FileUpload1.FileName);
 
                 // Specify the directory where you want to save the file
-                string directoryPath = Server.MapPath("~/img/courseThumbnail/");
+                string directoryPath = Server.MapPath("/img/courseThumbnail/");
 
                 // Create the directory if it doesn't exist
                 if (!Directory.Exists(directoryPath))
@@ -42,7 +42,7 @@ namespace WebApplication2
                 FileUpload1.SaveAs(filePath);
 
                 // Set the imgUrl to the relative path
-                txtThumbnailUrl.Text = "~/img/courseThumbnail/" + fileName;
+                txtThumbnailUrl.Text = "/img/courseThumbnail/" + fileName;
             }
 
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;

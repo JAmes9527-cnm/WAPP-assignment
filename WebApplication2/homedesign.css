@@ -509,3 +509,269 @@ footer {
     .button1:active {
         transform: translateY(-1px);
     }
+
+/* Testimonials Section */
+.testimonials {
+    padding: 60px 0;
+    text-align: center;
+    background: #f8f9fa;
+}
+
+    .testimonials h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .testimonials p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 40px;
+    }
+
+    .testimonials .row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .testimonials .testimonial-col {
+        background: #ffffff;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 10px;
+        flex-basis: 45%;
+        max-width: 45%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+    }
+
+        .testimonials .testimonial-col img {
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .testimonials .testimonial-col:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonials .testimonial-col h3 {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .testimonials .testimonial-col p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+/* FAQ Section */
+.faq {
+    padding: 60px;
+    text-align: left;
+    background: #ffffff;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+    .faq h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+.faq-item {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .faq-item h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .faq-item p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+/* Blog Highlights Section */
+.blog-highlights {
+    padding: 60px 0;
+    text-align: center;
+    background: #f8f9fa;
+}
+
+    .blog-highlights h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .blog-highlights .row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .blog-highlights .blog-col {
+        background: #ffffff;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 10px;
+        flex-basis: 30%;
+        max-width: 30%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: left;
+    }
+
+        .blog-highlights .blog-col img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .blog-highlights .blog-col:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-highlights .blog-col h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .blog-highlights .blog-col p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+    .blog-highlights .read-more-btn {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+        text-align: center;
+        display: block;
+        width: fit-content;
+        margin-top: 10px;
+    }
+
+        .blog-highlights .read-more-btn:hover {
+            background: #0056b3;
+        }
+
+.feedback-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f7c508;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+    .feedback-button:hover {
+        background-color: #ffbb33;
+    }
+
+/* Star Rating */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    .star-rating input[type=radio] {
+        display: none;
+    }
+
+    .star-rating label {
+        font-size: 2em;
+        color: #ddd;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .star-rating input[type=radio]:checked ~ label {
+        color: #f7c508;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #f7c508;
+    }
+
+/feedback display/
+
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedback-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .feedback-item h3 {
+        margin: 0 0 10px;
+        font-size: 1.2em;
+    }
+
+    .feedback-item p {
+        margin: 5px 0;
+    }
+
+
+/* Contact Section */
+.cta {
+    padding: 60px 0;
+    text-align: center;
+    background: #1c1c1c;
+    color: white;
+    border-top: 5px solid #ffeb3b;
+}
+
+    .cta h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .cta .hero-btn {
+        padding: 10px 30px;
+        background: #ffeb3b;
+        color: #1c1c1c;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+    }
+
+        .cta .hero-btn:hover {
+            background: #f9c21a;
+            color: #0056b3;
+        }

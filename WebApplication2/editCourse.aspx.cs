@@ -159,18 +159,7 @@ namespace WebApplication2
 
             try
             {
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    // Successfully deleted
-                    Response.Redirect("Courses.aspx");
-                }
-                else
-                {
-                    // Course not found
-                    lblMessage.Text = "Course not found.";
-                    lblMessage.Visible = true;
-                }
+                Response.Redirect("Courses.aspx");
             }
             catch (Exception ex)
             {
