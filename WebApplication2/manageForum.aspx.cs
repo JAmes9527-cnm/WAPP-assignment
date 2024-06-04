@@ -40,6 +40,8 @@ namespace WebApplication2
                         while (reader.Read())
                         {
                             int topicID = Convert.ToInt32(reader["TopicID"]);
+                            int UserID = Convert.ToInt32(reader["UserID"]);
+                            string username = Class1.GetUsernameFromID(UserID);
                             string title = reader["Title"].ToString();
                             string content = reader["Content"].ToString();
                             string createdAt = reader["CreatedAt"].ToString();
@@ -54,6 +56,7 @@ namespace WebApplication2
                             LiteralControl titleControl = new LiteralControl("<h3>" + title + "</h3>");
                             LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
                             LiteralControl createdAtControl = new LiteralControl("<p><i>Created on " + createdAt + "</i></p>");
+                            LiteralControl createdByControl = new LiteralControl("<p><i>Created by " + username + "</i></p>");
 
                             Button managePostsButton = new Button();
                             managePostsButton.Text = "Manage";
@@ -74,6 +77,7 @@ namespace WebApplication2
                             buttonPanel.Controls.Add(deleteTopicButton);
                             topicPanel.Controls.Add(buttonPanel);
                             topicPanel.Controls.Add(createdAtControl);
+                            topicPanel.Controls.Add(createdByControl);
 
                             topics.Controls.Add(topicPanel); // Add the topic panel to the existing topics div 
                         }

@@ -24,5 +24,10 @@ namespace WebApplication2
         {
             Response.Redirect("calculator.aspx");
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewResult.aspx?username="+ Session["userName"].ToString());
+        }
     }
 }

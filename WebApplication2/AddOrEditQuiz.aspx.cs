@@ -32,6 +32,14 @@ namespace WebApplication2
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            var choicess = new List<string> { Choice1.Text, Choice2.Text, Choice3.Text, Choice4.Text };
+            if (choicess.Distinct().Count() != choicess.Count)
+            {
+                ErrMsg.Visible = true;
+                ErrMsg.Text = "The Choices cannot repeat.";
+                return;
+            }
+
             try
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))

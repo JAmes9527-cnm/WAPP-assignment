@@ -121,6 +121,20 @@
 
         /* Ensure table takes only as much width as needed */
     </style>
+    <script>
+function validateFileType(){
+    var fileName = document.getElementById("<%= FileUpload1.ClientID %>").value;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+        // TO DO: Allow submit
+        return true;
+    }else{
+        alert("Only jpg/jpeg and png files are allowed!");
+        return false;
+    }   
+}
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <table class="table">
@@ -190,7 +204,7 @@
                 </td>
                 <td class="auto-style4">:</td>
                 <td colspan="2">
-                    <asp:TextBox ID="email" runat="server" Width="400px"></asp:TextBox>
+                    <asp:TextBox ID="email" runat="server" Width="400px" ReadOnly="true"></asp:TextBox>
                 </td>
                 <td>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email" ErrorMessage="Invalid email format!" ValidationExpression="\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b" ForeColor="Red"></asp:RegularExpressionValidator>

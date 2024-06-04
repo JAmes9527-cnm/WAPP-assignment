@@ -23,7 +23,7 @@ namespace WebApplication2
                 SqlCommand cmd = new SqlCommand("select count(*) from Quiz where Quiz = '" + courseID + "'" , con);
                 int count = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
-                if (count > 0)
+                if (count > 2)
                 {
                     
                     if (Session["userType"] != null)
@@ -41,7 +41,7 @@ namespace WebApplication2
                         }
                     }
                 }
-                else if(count == 0)
+                else if(count < 3)
                 {
                     if (Session["userType"] != null)
                     {
@@ -107,6 +107,12 @@ namespace WebApplication2
         {
             string courseID = Request.QueryString["courseID"];
             Response.Redirect("AttemptQuiz.aspx?CourseID=" + courseID);
+        }
+
+        protected void CheckResult_Click(object sender, EventArgs e)
+        {
+            string courseID = Request.QueryString["courseID"];
+            Response.Redirect("QuizResult.aspx?CourseID=" + courseID);
         }
 
         protected void EditQuizBtn_Click(object sender, EventArgs e)

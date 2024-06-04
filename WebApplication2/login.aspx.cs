@@ -48,8 +48,10 @@ namespace WebApplication2
                     ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('adminDashboard.aspx','" + name + "');", true);
                 else if (type == "member")
                     ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('home.aspx','" + name + "');", true);
-                else if (type == "tutor")
+                else if (type == "tutor" && Class1.GetUserVerified(Convert.ToInt32(Session["userID"].ToString())) == 1)
                     ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('tutorDashboard.aspx','" + name + "');", true);
+                else if (type == "tutor" && Class1.GetUserVerified(Convert.ToInt32(Session["userID"].ToString())) != 1)
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "showSuccessMessage('home.aspx','" + name + "');", true);
             }
             else
             {

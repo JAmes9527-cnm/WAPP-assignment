@@ -192,9 +192,9 @@ namespace WebApplication2
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO ResultTable (StudentID, Quiz, Q1, StudentAnswer1, CorrectAnswer1, Result1, Q2, StudentAnswer2, CorrectAnswer2, Result2, Q3, StudentAnswer3, CorrectAnswer3, Result3, TotalResult) VALUES (@StudentID, @Quiz, @Q1, @StudentAnswer1, @CorrectAnswer1, @Result1, @Q2, @StudentAnswer2, @CorrectAnswer2, @Result2, @Q3, @StudentAnswer3, @CorrectAnswer3, @Result3, @TotalResult)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO ResultTable (StudentID, CourseID, Q1, StudentAnswer1, CorrectAnswer1, Result1, Q2, StudentAnswer2, CorrectAnswer2, Result2, Q3, StudentAnswer3, CorrectAnswer3, Result3, TotalResult) VALUES (@StudentID, @CourseID, @Q1, @StudentAnswer1, @CorrectAnswer1, @Result1, @Q2, @StudentAnswer2, @CorrectAnswer2, @Result2, @Q3, @StudentAnswer3, @CorrectAnswer3, @Result3, @TotalResult)", con);
                 cmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
-                cmd.Parameters.AddWithValue("@Quiz", "Quiz 1");
+                cmd.Parameters.AddWithValue("@CourseID", courseID);
                 cmd.Parameters.AddWithValue("@Q1", Question1.Text);
                 cmd.Parameters.AddWithValue("@StudentAnswer1", Answer.Text);
                 cmd.Parameters.AddWithValue("@CorrectAnswer1", ViewState["CorrectAnswer1"].ToString());
@@ -344,7 +344,7 @@ namespace WebApplication2
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("QuizResult.aspx");
+            Response.Redirect("QuizResult.aspx?CourseID=" +courseID);
         }
     }
 }

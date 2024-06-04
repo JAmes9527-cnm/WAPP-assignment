@@ -15,54 +15,54 @@
     <form id="form1" runat="server">
         <header class="header">
             <nav>
-                <a href="home.aspx">
+                <a href="home.aspx" data-voice="Home">
                     <img src="img/logo.png" alt="Smart Money Mastery Logo" class="logo" />
                 </a>
                 <div class="nav-links" id="navLinks">
                     <i class="fa fa-times" onclick="hideMenu()"></i>
                     <ul>
-                        <li><a href="home.aspx">Home</a></li>
-                        <li><a href="courses.aspx">Courses</a></li>
-                        <li><a href="forum.aspx">Forum</a></li>
-                        <li><a href="resources.aspx">Resources</a></li>
-                        <li><a href="aboutus.aspx">About</a></li>
-                        <li><a href="contact.aspx">Contact Us</a></li>
-                        <li><asp:LinkButton runat="server" text="User Dashboard" OnClick="dashboardBtn_Click" CssClass="a" id="dashboardBtn"></asp:LinkButton></li>
+                        <li><a href="home.aspx" data-voice="Home" tabindex="0">Home</a></li>
+                        <li><a href="courses.aspx" data-voice="Courses" tabindex="0">Courses</a></li>
+                        <li><a href="forum.aspx" data-voice="Forum" tabindex="0">Forum</a></li>
+                        <li><a href="resources.aspx" data-voice="Resources" tabindex="0">Resources</a></li>
+                        <li><a href="aboutus.aspx" data-voice="About Us" tabindex="0">About Us</a></li>
+                        <li><a href="contact.aspx" data-voice="Contact Us" tabindex="0">Contact Us</a></li>
+                        <li><asp:LinkButton runat="server" text="User Dashboard" OnClick="dashboardBtn_Click" CssClass="a" id="dashboardBtn" data-voice="User Dashboard" tabindex="0"></asp:LinkButton></li>
                         <li class="more-dropdown">
-                            <a href="javascript:void(0);" onclick="toggleDropdown()">More</a>
+                            <a href="javascript:void(0);" onclick="toggleDropdown()" data-voice="More" tabindex="0">More</a>
                             <ul class="dropdown-content">
-                                <li><a href="article.aspx">Article</a></li>
-                                <li><a href="calculator.aspx">Financial calculator</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="article.aspx" data-voice="Article" tabindex="0">Article</a></li>
+                                <li><a href="calculator.aspx" data-voice="Financial calculator" tabindex="0">Financial calculator</a></li>
+                                <li><a href="#" data-voice="Settings" tabindex="0" onclick="toggleSettings()">Settings</a></li>
                             </ul>
                         </li>
                     </ul>
 
                     <!-- Sign In and User Info -->
                     <ul class="auth-links">
-            <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
-                <asp:Panel ID="loginPanel" runat="server" Visible="false">
-                <a href="login.aspx" class="btn">Login</a>
-                <a href="register.aspx" class="btn">Sign Up</a>
-                </asp:Panel>
+                        <asp:PlaceHolder ID="loginPlaceHolder" runat="server">
+                            <asp:Panel ID="loginPanel" runat="server" Visible="false">
+                                <a href="login.aspx" class="btn" data-voice="Login" tabindex="0">Login</a>
+                                <a href="register.aspx" class="btn" data-voice="Sign Up" tabindex="0">Sign Up</a>
+                            </asp:Panel>
 
-                <asp:Panel ID="UserPanel" runat="server" Visible="false">
-                <asp:Label CssClass="mid_text" ID="WelcomeText" Text="Welcome, User" runat="server"/>
-                <asp:ImageButton ID="pfp" ImageUrl="~/img/pfp/default_pfp.img" runat="server" OnClick="PfpButton_Click" CssClass="cropped-image circular-img-container" AlternateText="Profile picture"/>
-                <asp:Button  Text="Log Out" runat="server" Onclick="LogOut_Click" CssClass="btn"/>
-                </asp:Panel>
-            </asp:PlaceHolder>
+                            <asp:Panel ID="UserPanel" runat="server" Visible="false">
+                                <asp:Label CssClass="mid_text" ID="WelcomeText" Text="Welcome, User" runat="server"/>
+                                <asp:ImageButton ID="pfp" ImageUrl="~/img/pfp/default_pfp.img" runat="server" OnClick="PfpButton_Click" CssClass="cropped-image circular-img-container" AlternateText="Profile picture" data-voice="Profile picture"/>
+                                <asp:Button Text="Log Out" runat="server" Onclick="LogOut_Click" CssClass="btn" data-voice="Log Out"/>
+                            </asp:Panel>
+                        </asp:PlaceHolder>
                     </ul>
                 </div>
-                <i class="fa fa-bars" onclick="showMenu()"></i>
+                <i class="fa fa-bars" onclick="showMenu()" tabindex="0"></i>
             </nav>
         </header>
-        <div class="content-wrapper"><asp:contentplaceholder id="content" runat="server">
-        </asp:contentplaceholder></div>
+        <div class="content-wrapper">
+            <asp:ContentPlaceHolder id="content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
         
-
-
-   <footer>
+        <footer>
             <div class="footer-container">
                 <!-- Office Information -->
                 <div class="footer-col">
@@ -76,22 +76,22 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Courses</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Resources</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#" data-voice="Home" tabindex="0">Home</a></li>
+                        <li><a href="#" data-voice="Courses" tabindex="0">Courses</a></li>
+                        <li><a href="#" data-voice="Forum" tabindex="0">Forum</a></li>
+                        <li><a href="#" data-voice="Resources" tabindex="0">Resources</a></li>
+                        <li><a href="#" data-voice="About Us" tabindex="0">About Us</a></li>
+                        <li><a href="#" data-voice="Contact Us" tabindex="0">Contact Us</a></li>
                     </ul>
                 </div>
                 <!-- Social Media Icons -->
                 <div class="footer-col">
                     <h3>Stay Connected</h3>
                     <div class="icons">
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" data-voice="Facebook" tabindex="0"><i class="fab fa-facebook"></i> Facebook</a>
+                        <a href="https://www.instagram.com/" target="_blank" data-voice="Instagram" tabindex="0"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://twitter.com/" target="_blank" data-voice="Twitter" tabindex="0"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="https://www.linkedin.com/" target="_blank" data-voice="LinkedIn" tabindex="0"><i class="fab fa-linkedin"></i> LinkedIn</a>
                     </div>
                 </div>
             </div>
@@ -100,6 +100,18 @@
                 <p>© 2024 Smart Money Mastery. All rights reserved.</p>
             </div>
         </footer>
+
+        <div id="settingsModal" class="settings-modal" style="display:none;">
+            <div class="settings-content">
+                <span class="close" onclick="toggleSettings()">&times;</span>
+                <h2>Settings</h2>
+                <label for="soundSwitch">Enable Sound</label>
+                <input type="checkbox" id="soundSwitch">
+                <br>
+                <button type="button" onclick="increaseFontSize()" class="btn btn-secondary">Increase Font</button>
+                <button type="button" onclick="decreaseFontSize()" class="btn btn-secondary">Decrease Font</button>
+            </div>
+        </div>
 
         <script>
             var navLinks = document.getElementById("navLinks");
@@ -138,18 +150,102 @@
                 var userInfo = document.getElementById('userInfo');
                 var profilePhotoElem = document.getElementById('profilePhoto');
 
-                loginLink.style.display = 'none';
-                profilePhotoElem.src = profilePhotoUrl;
-                userInfo.style.display = 'flex';
+                if (loginLink) loginLink.style.display = 'none';
+                if (profilePhotoElem) profilePhotoElem.src = profilePhotoUrl;
+                if (userInfo) userInfo.style.display = 'flex';
             }
 
-            // Example: Simulate a user login (this would normally come from your backend)
-            var user = {
-                photo: "images/profile.jpg" // Replace with the actual profile photo URL
-            };
-            updateUserInfo(user.photo);
+            // Voice narration function
+            function speakText(text) {
+                if ('speechSynthesis' in window) {
+                    var utterance = new SpeechSynthesisUtterance(text);
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    console.error('Text-to-speech not supported.');
+                }
+            }
+
+            // Add event listeners to elements with the data-voice attribute
+            document.querySelectorAll('[data-voice]').forEach(function (element) {
+                element.addEventListener('mouseover', function () {
+                    var text = element.getAttribute('data-voice');
+                    if (localStorage.getItem('soundEnabled') === 'true') {
+                        speakText(text);
+                    }
+                });
+            });
+
+            // Font size adjustment
+            function increaseFontSize() {
+                document.body.style.fontSize = 'larger';
+            }
+
+            function decreaseFontSize() {
+                document.body.style.fontSize = 'smaller';
+            }
+
+            // Settings modal toggle
+            function toggleSettings() {
+                var settingsModal = document.getElementById('settingsModal');
+                if (settingsModal.style.display === "block") {
+                    settingsModal.style.display = "none";
+                } else {
+                    settingsModal.style.display = "block";
+                }
+            }
+
+            // Save sound setting
+            document.getElementById('soundSwitch').addEventListener('change', function () {
+                localStorage.setItem('soundEnabled', this.checked);
+            });
+
+            // Load sound setting on page load
+            window.onload = function () {
+                var soundEnabled = localStorage.getItem('soundEnabled');
+                if (soundEnabled !== null) {
+                    document.getElementById('soundSwitch').checked = (soundEnabled === 'true');
+                }
+            }
         </script>
+
+        <style>
+            .settings-modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.4);
+                padding-top: 60px;
+            }
+
+            .settings-content {
+                background-color: #fefefe;
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 400px;
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
     </form>
 </body>
 </html>
-

@@ -35,37 +35,38 @@
             });
             updateChart();
         }
-            // Function to update the chart with data from the hidden field
-            function updateChart() {
-                var chartData = JSON.parse(document.getElementById('<%= chartData.ClientID %>').value);
-                var ctx = document.getElementById('financialChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: chartData,
-                    options: {
-                        responsive: true,
-                        scales: {
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Year'
-                                }
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: 'Amount (RM)'
-                                }
+
+        // Function to update the chart with data from the hidden field
+        function updateChart() {
+            var chartData = JSON.parse(document.getElementById('<%= chartData.ClientID %>').value);
+            var ctx = document.getElementById('financialChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Amount (RM)'
                             }
                         }
                     }
-                });
-            }
+                }
+            });
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="container">
-    <asp:Label ID="Label1" runat="server" Text="What monthly amount would you want to have post-retirement?"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="What monthly amount would you want to have post-retirement?"></asp:Label>
         <br />
         <asp:Label ID="Monthlydesiredamount" runat="server" Text="Monthly Desired Amount:"></asp:Label>
         &nbsp;&nbsp;
@@ -73,30 +74,30 @@
         &nbsp;&nbsp;
         <asp:Label ID="Desiredretirementage" runat="server" Text="Desired Retirement Age:"></asp:Label>
         <br /><br />
-        <asp:TextBox ID="monthlyamount" runat="server" Width="180px" CssClass="numeric-only"></asp:TextBox>
+        <asp:TextBox ID="monthlyamount" runat="server" Width="180px" CssClass="numeric-only" TextMode="Number" step="0.01"></asp:TextBox>
         &nbsp;&nbsp;
-        <asp:TextBox ID="currentage" runat="server" Width="130px" CssClass="numeric-only"></asp:TextBox>
+        <asp:TextBox ID="currentage" runat="server" Width="130px" CssClass="numeric-only" TextMode="Number" step="1"></asp:TextBox>
         &nbsp;&nbsp;
-        <asp:TextBox ID="retirementage" runat="server" Width="190px" CssClass="numeric-only"></asp:TextBox>
+        <asp:TextBox ID="retirementage" runat="server" Width="190px" CssClass="numeric-only" TextMode="Number" step="1"></asp:TextBox>
         <br /><br />
         <asp:Label ID="Label3" runat="server" Text="Interest Rate:"></asp:Label>
         <br />
         <asp:Label ID="Label4" runat="server" Text="Expected Annual Return on Investment:"></asp:Label>
         <br /><br />
-        <asp:TextBox ID="expectedannual" runat="server" Width="580px" CssClass="numeric-only"></asp:TextBox>
+        <asp:TextBox ID="expectedannual" runat="server" Width="580px" CssClass="numeric-only" TextMode="Number" step="0.01"></asp:TextBox>
         <br /><br />
         <asp:Label ID="Label5" runat="server" Text="Initial Amount You Can Invest:"></asp:Label>
         <br />
         <asp:Label ID="Label6" runat="server" Text="Enter the initial amount that you can invest (optional):"></asp:Label>
         <br /><br />
-        <asp:TextBox ID="initialamount" runat="server" Width="580px" CssClass="numeric-only"></asp:TextBox>
+        <asp:TextBox ID="initialamount" runat="server" Width="580px" CssClass="numeric-only" TextMode="Number" step="0.01"></asp:TextBox>
         <br /><br />
         <asp:CheckBox ID="Checkbox2" runat="server" AutoPostBack="true" OnCheckedChanged="Checkbox2_CheckedChanged" />
         <asp:Label ID="Label7" runat="server" Text="Include Inflation Rate in Calculation"></asp:Label>
         &nbsp;&nbsp;
         &nbsp;&nbsp;
         <br />
-        <asp:TextBox ID="inflationRate" runat="server" Width="578px" CssClass="numeric-only"></asp:TextBox>
+        <asp:TextBox ID="inflationRate" runat="server" Width="578px" CssClass="numeric-only" TextMode="Number" step="0.01"></asp:TextBox>
         <p>
             <asp:Button ID="reset" runat="server" Text="Reset to Default" OnClick="Reset_Click" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -111,6 +112,5 @@
         <!-- Chart -->
         <canvas id="financialChart" width="600" height="400"></canvas>
         <asp:HiddenField ID="chartData" runat="server" />
-        </div>
+    </div>
 </asp:Content>
-

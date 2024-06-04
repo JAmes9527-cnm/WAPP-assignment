@@ -271,8 +271,7 @@ label:last-child span {
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
     ControlToValidate="pwd"
     ErrorMessage="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character."
-    ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-</asp:RegularExpressionValidator>
+    ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"></asp:RegularExpressionValidator>
 
                     </td>
                 </tr>

@@ -29,6 +29,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="table-container">
             <h1>Manage Tutors</h1>
+        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" Placeholder="Search by name..."></asp:TextBox>
+        <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="SearchTutors" CssClass="btn btn-primary" />
             <div class="gridview-container">
                 <h2>Existing Tutors</h2>
                 <asp:GridView ID="GridViewExistingTutors" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewExistingTutors_RowCommand" CssClass="table">
@@ -60,12 +62,9 @@
                         <asp:BoundField DataField="RegisterDate" HeaderText="Date of Registration" DataFormatString="{0:yyyy-MM-dd}" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CommandName="Approve" CommandArgument='<%# Bind("UserID") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Button ID="btnDecline" runat="server" Text="Decline" CommandName="Decline" CommandArgument='<%# Bind("UserID") %>' />
+                                <asp:Button ID="ViewProfileButton" runat="server" Text="View Profile" CommandName="ViewProfile" CommandArgument='<%# Eval("UserID") %>' CssClass="btn btn-info"></asp:Button>
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CommandName="Approve" CommandArgument='<%# Bind("UserID") %>' CssClass="btn btn-info" />
+                                <asp:Button ID="btnDecline" runat="server" Text="Decline" CommandName="Decline" CommandArgument='<%# Bind("UserID") %>' CssClass="btn btn-danger" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

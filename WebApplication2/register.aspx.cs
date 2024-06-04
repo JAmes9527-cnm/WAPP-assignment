@@ -22,6 +22,14 @@ namespace WebApplication2
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(pwd.Text))
+            {
+                errMsg.Visible = true;
+                errMsg.ForeColor = System.Drawing.Color.Red;
+                errMsg.Text = "Password cannot be empty!";
+                return; // Stop further processing
+            }
+
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
@@ -57,7 +65,7 @@ namespace WebApplication2
                 else
                 {
                     //create record in a table called userTable
-                    string query1 = "insert into UserTable (fname, lname, gender, email, username,password, usertype) values(@firstName, @lastName, @gender, @email, @username, @password, @usertype) ";
+                    string query1 = "insert into UserTable (fname, lname, gender, email, username, password, usertype) values(@firstName, @lastName, @gender, @email, @username, @password, @usertype) ";
                     SqlCommand cmd1 = new SqlCommand(query1, con);
                     cmd1.Parameters.AddWithValue("@firstName", fname.Text);
                     cmd1.Parameters.AddWithValue("@lastName", lname.Text);

@@ -18,16 +18,24 @@ namespace WebApplication2
             }
         }
 
-        private void BindExistingTutorsGrid()
+        protected void SearchTutors(object sender, EventArgs e)
+        {
+            BindExistingTutorsGrid(txtSearch.Text.Trim());
+            BindNewTutorsGrid(txtSearch.Text.Trim()); // Assuming you want to search new tutors as well
+        }
+
+        private void BindExistingTutorsGrid(string searchTerm = "")
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = @"SELECT UserID, fname, lname FROM userTable 
+                     WHERE Verified = 1 AND usertype = 'tutor' 
+                     AND (fname LIKE '%' + @searchTerm + '%' OR lname LIKE '%' + @searchTerm + '%')";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT UserID, fname, lname FROM userTable WHERE Verified = 1 AND usertype = 'tutor'";
-
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@searchTerm", searchTerm);
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
@@ -39,16 +47,18 @@ namespace WebApplication2
             }
         }
 
-        private void BindNewTutorsGrid()
+        private void BindNewTutorsGrid(string searchTerm = "")
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = @"SELECT UserID, fname, lname, RegisterDate FROM userTable 
+                     WHERE Verified = 0 AND usertype = 'tutor' 
+                     AND (fname LIKE '%' + @searchTerm + '%' OR lname LIKE '%' + @searchTerm + '%')";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT UserID, fname, lname FROM userTable WHERE Verified = 0 AND usertype = 'tutor'";
-
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@searchTerm", searchTerm);
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
@@ -82,6 +92,10 @@ namespace WebApplication2
             if (e.CommandName == "Approve")
             {
                 ApproveTutor(userId);
+            }
+            else if (e.CommandName == "ViewProfile")
+            {
+                Response.Redirect($"viewProfile.aspx?UserID={userId}");
             }
             else if (e.CommandName == "Decline")
             {

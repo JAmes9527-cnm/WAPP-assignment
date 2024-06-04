@@ -18,10 +18,44 @@ namespace WebApplication2
             {
                 BindGrid();
                 RetrieveUserCounts();
+                RegisterChartScript();
+            }
+        }
 
-                // Pass data to the client-side script
-                ClientScript.RegisterStartupScript(this.GetType(), "chartData",
-                    $"var studentCount = {StudentCount}; var tutorCount = {TutorCount};", true);
+        private void RegisterChartScript()
+        {
+            string script = $"document.addEventListener('DOMContentLoaded', function() {{ initChart({StudentCount}, {TutorCount}); }});";
+            ClientScript.RegisterStartupScript(this.GetType(), "initChartScript", script, true);
+        }
+
+        protected void SearchUsers(object sender, EventArgs e)
+        {
+            BindGrid(txtSearch.Text.Trim(), ddlUserType.SelectedValue);
+        }
+
+        private void BindGrid(string search = "", string userType = "")
+        {
+            string query = "SELECT * FROM userTable WHERE (@search = '' OR username LIKE '%' + @search + '%' OR email LIKE '%' + @search + '%')";
+            if (!string.IsNullOrEmpty(userType))
+            {
+                query += " AND usertype = @userType";
+            }
+
+            string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@search", search);
+                    cmd.Parameters.AddWithValue("@userType", userType);
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        GridView1.DataSource = dt;
+                        GridView1.DataBind();
+                    }
+                }
             }
         }
         private void RetrieveUserCounts()

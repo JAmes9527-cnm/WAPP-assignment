@@ -150,6 +150,7 @@
     <Content Include="img\manageUserIcon.png" />
     <Content Include="img\pfp\default_pfp.png" />
     <Content Include="img\resourcesIcon.png" />
+    <Content Include="img\resultIcon.png" />
     <Content Include="manageStudents.aspx" />
     <Content Include="manageTutors.aspx" />
     <Content Include="masterTemp.aspx" />
@@ -201,10 +202,10 @@
     <Content Include="viewCourse.aspx" />
     <Content Include="ViewPosts.aspx" />
     <Content Include="viewProfile.aspx" />
+    <Content Include="ViewResult.aspx" />
     <Content Include="Web.config" />
     <Content Include="course1.aspx" />
     <Content Include="EditQuiz.aspx" />
-    <Content Include="Result Page.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="aboutus.aspx.cs">
@@ -448,19 +449,19 @@
     <Compile Include="EditQuiz.aspx.designer.cs">
       <DependentUpon>EditQuiz.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Result Page.aspx.cs">
-      <DependentUpon>Result Page.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Result Page.aspx.designer.cs">
-      <DependentUpon>Result Page.aspx</DependentUpon>
-    </Compile>
     <Compile Include="viewProfile.aspx.cs">
       <DependentUpon>viewProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="viewProfile.aspx.designer.cs">
       <DependentUpon>viewProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewResult.aspx.cs">
+      <DependentUpon>ViewResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewResult.aspx.designer.cs">
+      <DependentUpon>ViewResult.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

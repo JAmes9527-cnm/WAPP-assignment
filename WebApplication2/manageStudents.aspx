@@ -28,6 +28,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="table-container">
         <h2>Manage Students</h2>
+        <div style="margin-bottom: 20px;">
+            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" Placeholder="Enter username or email"></asp:TextBox>
+            <asp:DropDownList ID="ddlUserType" runat="server" CssClass="form-control" AutoPostBack="true">
+                <asp:ListItem Value="" Text="All Users" />
+                <asp:ListItem Value="member" Text="Students" />
+                <asp:ListItem Value="tutor" Text="Tutors" />
+            </asp:DropDownList>
+            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="SearchUsers" CssClass="btn btn-primary" />
+        </div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="UserID" CssClass="table" OnRowCommand="GridView1_RowCommand">
             <Columns>
                 <asp:BoundField DataField="UserID" HeaderText="ID" ReadOnly="True" SortExpression="UserID" />
@@ -54,50 +63,48 @@
     <div style="display: flex; justify-content: center; align-items: center; height: 400px;">
     <canvas id="myChart" style="max-width: 600px;"></canvas>
 </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var studentCount = parseInt('<%= StudentCount %>');
-            var tutorCount = parseInt('<%= TutorCount %>');
+   <script>
+       function initChart(studentCount, tutorCount) {
+           var ctx = document.getElementById('myChart').getContext('2d');
+           var myChart = new Chart(ctx, {
+               type: 'pie', // or 'bar'
+               data: {
+                   labels: ['Students', 'Tutors'],
+                   datasets: [{
+                       label: '# of Users',
+                       data: [studentCount, tutorCount],
+                       backgroundColor: [
+                           'rgba(75, 192, 192, 0.2)',
+                           'rgba(153, 102, 255, 0.2)'
+                       ],
+                       borderColor: [
+                           'rgba(75, 192, 192, 1)',
+                           'rgba(153, 102, 255, 1)'
+                       ],
+                       borderWidth: 1
+                   }]
+               },
+               options: {
+                   responsive: true,
+                   plugins: {
+                       legend: {
+                           position: 'top',
+                       },
+                       tooltip: {
+                           callbacks: {
+                               label: function (context) {
+                                   var total = context.dataset.data.reduce(function (a, b) {
+                                       return a + b;
+                                   }, 0);
+                                   var percentage = (context.raw / total * 100).toFixed(2) + '%';
+                                   return context.label + ': ' + context.raw + ' (' + percentage + ')';
+                               }
+                           }
+                       }
+                   }
+               }
+           });
+       }
+   </script>
 
-            var myChart = new Chart(ctx, {
-                type: 'pie', // or 'bar'
-                data: {
-                    labels: ['Students', 'Tutors'],
-                    datasets: [{
-                        label: '# of Users',
-                        data: [studentCount, tutorCount],
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    var total = context.dataset.data.reduce(function (a, b) {
-                                        return a + b;
-                                    }, 0);
-                                    var percentage = (context.raw / total * 100).toFixed(2) + '%';
-                                    return context.label + ': ' + context.raw + ' (' + percentage + ')';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
 </asp:Content>

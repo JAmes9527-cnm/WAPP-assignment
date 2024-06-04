@@ -81,21 +81,24 @@ namespace WebApplication2
                     {
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        ShowAlert("Course added successfully!", "success");
+                        ShowAlert("Course added successfully!", "success", "tutorDashboard.aspx");
                     }
                     catch (Exception ex)
                     {
                         ShowAlert("Error: " + ex.Message, "error");
                     }
                 }
-
             }
         }
 
-        private void ShowAlert(string message, string type = "error")
+        private void ShowAlert(string message, string type = "error", string redirectUrl = null)
         {
             string alertMessage = type == "success" ? "success" : "danger";
             string script = $"alert('{message.Replace("'", "\\'")}');";
+            if (!string.IsNullOrEmpty(redirectUrl))
+            {
+                script += $"window.location='{redirectUrl}';";
+            }
             ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
         }
     }

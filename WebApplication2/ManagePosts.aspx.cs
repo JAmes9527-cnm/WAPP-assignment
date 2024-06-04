@@ -84,6 +84,7 @@ namespace WebApplication2
                             postPanel.Controls.Add(deleteButton);
 
                             posts.Controls.Add(postPanel);
+
                         }
                     }
 

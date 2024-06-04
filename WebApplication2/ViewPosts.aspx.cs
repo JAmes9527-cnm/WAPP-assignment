@@ -13,23 +13,21 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Initialize controls or data that should only be set once
+            }
 
-                // Check if the TopicID is provided in the query string
-                if (Request.QueryString["TopicID"] != null)
-                {
-                    int topicID = Convert.ToInt32(Request.QueryString["TopicID"]);
-
-                    // Now you have the topicID, you can use it to load posts or perform any other necessary actions
-                    // For example, you might call a method to load posts for the specified topic
-                    GetPostsForTopic(topicID);
-                }
-                else
-                {
-                    // Handle the case when TopicID is not provided
-                    // Redirect the user back to the forum page or display an error message
-                    Response.Redirect("forum.aspx");
-                }
-            
+            // Code that should run on every load, postback or not
+            if (Request.QueryString["TopicID"] != null)
+            {
+                int topicID = Convert.ToInt32(Request.QueryString["TopicID"]);
+                GetPostsForTopic(topicID);
+            }
+            else
+            {
+                Response.Redirect("forum.aspx");
+            }
         }
 
 
@@ -64,7 +62,7 @@ namespace WebApplication2
                             int postID = Convert.ToInt32(reader["PostID"]);
                             string content = reader["Content"].ToString();
                             int userID = Convert.ToInt32(reader["UserID"]);
-                            string createdBy = Class1.GetUsernameFromID(userID);
+                            string createdBy ="By: " + Class1.GetUsernameFromID(userID);
                             int vote = Convert.ToInt32(reader["vote"]);
                             DateTime createdAt = Convert.ToDateTime(reader["CreatedAt"]);
 
@@ -74,9 +72,13 @@ namespace WebApplication2
                             voteBtn.CssClass = "btnContainer";
 
                             LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
-                            LiteralControl createdByControl = new LiteralControl("<p>By: " + createdBy + "</p>");
                             LiteralControl createdAtControl = new LiteralControl("<p><i>" + createdAt + "</i></p>");
                             LiteralControl voteControl = new LiteralControl("<p>vote: " + vote + "</p>");
+
+                            LinkButton createdByLink = new LinkButton();
+                            createdByLink.Text = createdBy;
+                            createdByLink.CommandArgument = userID.ToString();
+                            createdByLink.Click += ViewProfile_Click; // Attach event handler
 
                             LinkButton upVoteButton = new LinkButton();
                             upVoteButton.Text = "<i class=\"fa-solid fa-thumbs-up\"></i>";
@@ -95,8 +97,13 @@ namespace WebApplication2
                             downVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using named color
                             unVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using color name
 
+                            Button deleteButton = new Button();
+                            deleteButton.Text = "delete";
+                            deleteButton.CommandArgument = postID.ToString();
+                            deleteButton.Click += deleteButton_Click; // Attach event handler
+
                             postPanel.Controls.Add(contentControl);
-                            postPanel.Controls.Add(createdByControl);
+                            postPanel.Controls.Add(createdByLink);
                             postPanel.Controls.Add(createdAtControl);
 
                             voteBtn.Controls.Add(upVoteButton);
@@ -108,7 +115,15 @@ namespace WebApplication2
                             voteBtn.Controls.Add(unVoteButton);
 
                             postPanel.Controls.Add(voteBtn);
-                            
+                            if (Session["userID"] != null)
+                            {
+                                string loginUserID = Session["userID"].ToString();
+                                if (userID == Convert.ToInt32(loginUserID))
+                                {
+                                    postPanel.Controls.Add(deleteButton);
+                                }
+                            }
+
 
                             posts.Controls.Add(postPanel);
                         }
@@ -157,7 +172,7 @@ namespace WebApplication2
                             int postID = Convert.ToInt32(reader["PostID"]);
                             string content = reader["Content"].ToString();
                             int userID = Convert.ToInt32(reader["UserID"]);
-                            string createdBy = Class1.GetUsernameFromID(userID);
+                            string createdBy = "By: " + Class1.GetUsernameFromID(userID);
                             int vote = Convert.ToInt32(reader["vote"]);
                             DateTime createdAt = Convert.ToDateTime(reader["CreatedAt"]);
 
@@ -167,9 +182,13 @@ namespace WebApplication2
                             voteBtn.CssClass = "btnContainer";
 
                             LiteralControl contentControl = new LiteralControl("<p>" + content + "</p>");
-                            LiteralControl createdByControl = new LiteralControl("<p>By: " + createdBy + "</p>");
                             LiteralControl createdAtControl = new LiteralControl("<p><i>" + createdAt + "</i></p>");
                             LiteralControl voteControl = new LiteralControl("<p>vote: " + vote + "</p>");
+
+                            LinkButton createdByLink = new LinkButton();
+                            createdByLink.Text = createdBy;
+                            createdByLink.CommandArgument = userID.ToString();
+                            createdByLink.Click += ViewProfile_Click; // Attach event handler
 
                             LinkButton upVoteButton = new LinkButton();
                             upVoteButton.Text = "<i class=\"fa-solid fa-thumbs-up\"></i>";
@@ -189,7 +208,7 @@ namespace WebApplication2
                             unVoteButton.ForeColor = System.Drawing.Color.Black; // Set color using color name
 
                             postPanel.Controls.Add(contentControl);
-                            postPanel.Controls.Add(createdByControl);
+                            postPanel.Controls.Add(createdByLink);
                             postPanel.Controls.Add(createdAtControl);
 
                             voteBtn.Controls.Add(upVoteButton);
@@ -257,6 +276,13 @@ namespace WebApplication2
             }
 
         }
+        protected void ViewProfile_Click(object sender, EventArgs e)
+        {
+            LinkButton link = (LinkButton)sender;
+            int userID = Convert.ToInt32(link.CommandArgument);
+            Response.Redirect($"viewProfile.aspx?UserID={userID}");
+        }
+
 
         protected void downVoteButton_Click(object sender, EventArgs e)
         {
@@ -506,6 +532,44 @@ namespace WebApplication2
             {
                 // User is not logged in, display an error message or redirect to the login page
                 Response.Write("<script>alert('You must be logged in to post.')</script>");
+            }
+        }
+
+        protected void deleteButton_Click(object sender, EventArgs e)
+        {
+            Button deleteButton = (Button)sender;
+            int PostID = Convert.ToInt32(deleteButton.CommandArgument);
+
+            deletePost(PostID);
+            Response.Redirect(Request.Url.AbsoluteUri, false); // Redirect to the same page
+            Context.ApplicationInstance.CompleteRequest(); // End the response without further processing
+        }
+
+        private void deletePost(int PostID)
+        {
+            // Get the connection string from web.config
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                // Step 1: Delete all votes related to the posts of the topic
+                string deleteVotesQuery = "DELETE FROM Votes WHERE PostID = @PostID";
+                using (SqlCommand deleteVotesCmd = new SqlCommand(deleteVotesQuery, con))
+                {
+                    deleteVotesCmd.Parameters.AddWithValue("@PostID", PostID);
+                    deleteVotesCmd.ExecuteNonQuery();
+                }
+
+                // Step 2: Delete all posts related to the topic
+                string deletePostsQuery = "DELETE FROM Posts WHERE PostID = @PostID";
+                using (SqlCommand deletePostsCmd = new SqlCommand(deletePostsQuery, con))
+                {
+                    deletePostsCmd.Parameters.AddWithValue("@PostID", PostID);
+                    deletePostsCmd.ExecuteNonQuery();
+                }
+
             }
         }
     }

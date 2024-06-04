@@ -1,34 +1,58 @@
 ﻿using System;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
-    public partial class WebForm5 : System.Web.UI.Page
+    public partial class ViewResult : System.Web.UI.Page
     {
+        string TutorID;
         protected void Page_Load(object sender, EventArgs e)
         {
-                // Check if the user is logged in
-                if (Session["usertype"] != null)
-                {
-                    string userType = Session["usertype"].ToString();
+            if (Request.QueryString["username"] != null)
+            {
+                TutorID = Request.QueryString["username"];
+            }
+            else
+            {
+                Response.Redirect("courses.aspx");
+            }
+            // Check if the user is logged in
+            if (Session["usertype"] != null)
+            {
+                string userType = Session["usertype"].ToString();
 
-                    // Check if the user is a tutor
-                    if (userType == "tutor")
-                    {
-                        // Show all data
-                        SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable]";
-                    }
-                    else if (userType == "member")
-                    {
-                        // Show only data related to the student
-                        string studentID = Session["userID"].ToString();
-                        SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] WHERE StudentID = @StudentID";
-                        SqlDataSource1.SelectParameters.Clear();
-                        SqlDataSource1.SelectParameters.Add("StudentID", studentID);
-                         GridView1.Columns[GridView1.Columns.Count - 1].Visible = false; // Assuming the edit column is the last column
+                // Check if the user is a tutor
+                if (userType == "tutor")
+                {
+                    // Show all data
+                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] WHERE CourseID IN (SELECT CourseID FROM courses WHERE CreatedBy = @username)";
+                    SqlDataSource1.SelectParameters.Clear();
+                    SqlDataSource1.SelectParameters.Add("username", TutorID);
                 }
+                else if (userType == "member")
+                {
+                    String userID = Session["userID"].ToString();
+                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] WHERE StudentID = @StudentID";
+                    SqlDataSource1.SelectParameters.Clear();
+                    SqlDataSource1.SelectParameters.Add("StudentID", userID);
+                }
+                else if (userType == "admin")
+                {
+                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable]";
+                }
+
+                if (userType == "member")
+                {
+                    if (GridView1.Columns.Count > 0)
+                    {
+                        GridView1.Columns[0].Visible = false;
+                    }
+                }
+
             }
         }
 
@@ -43,33 +67,24 @@ namespace WebApplication2
             GridViewRow row = GridView1.Rows[e.RowIndex];
             string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
             string studentID = ((TextBox)row.Cells[1].Controls[0]).Text;
-            string quiz = ((TextBox)row.Cells[2].Controls[0]).Text;
+            string courseID = ((TextBox)row.Cells[2].Controls[0]).Text;
             string q1 = ((TextBox)row.Cells[3].Controls[0]).Text;
             string studentAnswer1 = ((TextBox)row.Cells[4].Controls[0]).Text;
             string correctAnswer1 = ((TextBox)row.Cells[5].Controls[0]).Text;
-            DropDownList ddlResult1 = (DropDownList)row.Cells[6].FindControl("DropDownListResult1");
-            string result1 = ddlResult1.SelectedValue;
+            string result1 = ((TextBox)row.Cells[6].Controls[0]).Text;
             string q2 = ((TextBox)row.Cells[7].Controls[0]).Text;
             string studentAnswer2 = ((TextBox)row.Cells[8].Controls[0]).Text;
             string correctAnswer2 = ((TextBox)row.Cells[9].Controls[0]).Text;
-            DropDownList ddlResult2 = (DropDownList)row.Cells[10].FindControl("DropDownListResult2");
-            string result2 = ddlResult2.SelectedValue;
+            string result2 = ((TextBox)row.Cells[10].Controls[0]).Text;
             string q3 = ((TextBox)row.Cells[11].Controls[0]).Text;
             string studentAnswer3 = ((TextBox)row.Cells[12].Controls[0]).Text;
             string correctAnswer3 = ((TextBox)row.Cells[13].Controls[0]).Text;
-            DropDownList ddlResult3 = (DropDownList)row.Cells[14].FindControl("DropDownListResult3");
-            string result3 = ddlResult3.SelectedValue;
-
-            int correctCount = 0;
-            if (result1 == "Correct") correctCount++;
-            if (result2 == "Correct") correctCount++;
-            if (result3 == "Correct") correctCount++;
-
-            string totalResult = correctCount.ToString();
+            string result3 = ((TextBox)row.Cells[14].Controls[0]).Text;
+            string totalResult = ((TextBox) row.Cells[15].Controls[0]).Text;
 
             SqlDataSource1.UpdateParameters["Id"].DefaultValue = id;
             SqlDataSource1.UpdateParameters["StudentID"].DefaultValue = studentID;
-            SqlDataSource1.UpdateParameters["Quiz"].DefaultValue = quiz;
+            SqlDataSource1.UpdateParameters["CourseID"].DefaultValue = courseID;
             SqlDataSource1.UpdateParameters["Q1"].DefaultValue = q1;
             SqlDataSource1.UpdateParameters["StudentAnswer1"].DefaultValue = studentAnswer1;
             SqlDataSource1.UpdateParameters["CorrectAnswer1"].DefaultValue = correctAnswer1;
@@ -98,6 +113,7 @@ namespace WebApplication2
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
             if (e.Row.RowType == DataControlRowType.DataRow && GridView1.EditIndex == e.Row.RowIndex)
             {
                 // Find the DropDownList controls in edit mode
@@ -130,7 +146,7 @@ namespace WebApplication2
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            Response.Redirect("course1.aspx");
+            Response.Redirect("AttemptQuiz.aspx");
         }
     }
 }

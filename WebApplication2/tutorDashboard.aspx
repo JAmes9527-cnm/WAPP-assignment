@@ -67,6 +67,10 @@
                 <asp:ImageButton runat="server" OnClick="addCourses_Click" ImageUrl="~/img/addCourseIcon.png" CssClass="icon-button" />
                 <asp:Button Text="Add Courses" ID="addCourses" runat="server" CssClass="dashboard-button" OnClick="addCourses_Click" />
             </div>
+            <div class="button-container">
+                <asp:ImageButton runat="server" OnClick="Button1_Click" ImageUrl="~/img/resultIcon.png" CssClass="icon-button" />
+                <asp:Button Text="Manage Results" ID="Button1" runat="server" CssClass="dashboard-button" OnClick="Button1_Click" />
+            </div>
         </div>
     </div>
 </asp:Content>

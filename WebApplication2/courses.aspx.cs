@@ -87,7 +87,7 @@ namespace WebApplication2
                             detailsPanel.Controls.Add(contentControl);
                             detailsPanel.Controls.Add(createdAtControl);
                             detailsPanel.Controls.Add(viewCourseButton);
-                            if (Session["userType"] != null && (Session["userType"].ToString() == "tutor" || Session["userType"].ToString() == "admin"))
+                            if (Session["userType"] != null && ((Session["userType"].ToString() == "tutor" && Class1.GetUserVerified(Convert.ToInt32( Session["userID"].ToString())) == 1) || Session["userType"].ToString() == "admin"))
                             {
                                 Button editCourseButton = new Button();
                                 editCourseButton.Text = "Edit Course";

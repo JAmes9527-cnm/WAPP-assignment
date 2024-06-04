@@ -9,8 +9,17 @@ namespace WebApplication2
 {
     public partial class QuizResult : System.Web.UI.Page
     {
+        string CourseID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["CourseID"] != null)
+            {
+                CourseID = Request.QueryString["CourseID"];
+            }
+            else
+            {
+                Response.Redirect("courses.aspx");
+            }
             // Check if the user is logged in
             if (Session["usertype"] != null)
             {
@@ -20,15 +29,18 @@ namespace WebApplication2
                 if (userType == "tutor")
                 {
                     // Show all data
-                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable]";
+                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] where CourseID = @CourseID";
+                    SqlDataSource1.SelectParameters.Clear();
+                    SqlDataSource1.SelectParameters.Add("CourseID",CourseID);
                 }
                 else if (userType == "member")
                 {
                     // Show only data related to the student
                     string studentID = Session["userID"].ToString();
-                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] WHERE StudentID = @StudentID";
+                    SqlDataSource1.SelectCommand = "SELECT * FROM [ResultTable] WHERE StudentID = @StudentID and  CourseID = @CourseID";
                     SqlDataSource1.SelectParameters.Clear();
                     SqlDataSource1.SelectParameters.Add("StudentID", studentID);
+                    SqlDataSource1.SelectParameters.Add("CourseID", CourseID);
                     GridView1.Columns[0].Visible = false; // Assuming the edit column is the last column
                 }
             }
@@ -45,7 +57,7 @@ namespace WebApplication2
             GridViewRow row = GridView1.Rows[e.RowIndex];
             string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
             string studentID = ((TextBox)row.Cells[1].Controls[0]).Text;
-            string quiz = ((TextBox)row.Cells[2].Controls[0]).Text;
+            string courseID = ((TextBox)row.Cells[2].Controls[0]).Text;
             string q1 = ((TextBox)row.Cells[3].Controls[0]).Text;
             string studentAnswer1 = ((TextBox)row.Cells[4].Controls[0]).Text;
             string correctAnswer1 = ((TextBox)row.Cells[5].Controls[0]).Text;
@@ -71,7 +83,7 @@ namespace WebApplication2
 
             SqlDataSource1.UpdateParameters["Id"].DefaultValue = id;
             SqlDataSource1.UpdateParameters["StudentID"].DefaultValue = studentID;
-            SqlDataSource1.UpdateParameters["Quiz"].DefaultValue = quiz;
+            SqlDataSource1.UpdateParameters["CourseID"].DefaultValue = courseID;
             SqlDataSource1.UpdateParameters["Q1"].DefaultValue = q1;
             SqlDataSource1.UpdateParameters["StudentAnswer1"].DefaultValue = studentAnswer1;
             SqlDataSource1.UpdateParameters["CorrectAnswer1"].DefaultValue = correctAnswer1;

@@ -11,35 +11,8 @@ namespace WebApplication2
 {
 
 
-    public partial class WebForm5
+    public partial class ViewResult
     {
-
-        /// <summary>
-        /// form2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
-
-        /// <summary>
-        /// loginPlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder loginPlaceHolder;
-
-        /// <summary>
-        /// loginPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel loginPanel;
 
         /// <summary>
         /// Label13 control.

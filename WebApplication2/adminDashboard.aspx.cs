@@ -6,9 +6,13 @@ namespace WebApplication2
 {
     public partial class adminDashboard : Page
     {
+        string username;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["userName"] != null)
+            {
+                username = Session["userName"].ToString();
+            }
         }
 
 
@@ -26,6 +30,11 @@ namespace WebApplication2
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("manageTutors.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewResult.aspx?username=" + username);
         }
     }
 }

@@ -94,11 +94,7 @@
         </div>
         <div class="map-embed">
             <h3>Our Location</h3>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.885431709822!2d-122.08424968469299!3d37.42199977982588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5a6e4a15b1f%3A0x23a4e3ec1a0ec8f2!2sGoogleplex!5e0!3m2!1sen!2sus!4v1629236934562!5m2!1sen!2sus" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.14662745759!2d101.6979864752936!3d3.055405696920368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4abb795025d9%3A0x1c37182a714ba968!2sAsia%20Pacific%20University%20of%20Technology%20%26%20Innovation%20(APU)!5e0!3m2!1sen!2smy!4v1717430118639!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="contact-form">
             <h3>Contact Form</h3>

@@ -5,7 +5,7 @@
     <style>
    .dashboard-container {
     width: calc(100% - 40px); /* Set width slightly larger than dashboard box */
-    max-width: 600px; /* Maximum width for responsiveness */
+    max-width: 850px; /* Maximum width for responsiveness */
     margin: 0 auto; /* Center the container horizontally */
     align-items: center;
     height: 100vh;
@@ -70,6 +70,10 @@
             <div class="button-container">
                 <asp:ImageButton runat="server" OnClick="Button1_Click" ImageUrl="~/img/manageTutorIcon.png" CssClass="icon-button" />
                 <asp:Button Text="Manage Tutor" ID="Button1" runat="server" CssClass="dashboard-button" OnClick="Button1_Click" />
+            </div>
+            <div class="button-container">
+                <asp:ImageButton runat="server" OnClick="Button2_Click" ImageUrl="~/img/resultIcon.png" CssClass="icon-button" />
+                <asp:Button Text="Manage Results" ID="Button2" runat="server" CssClass="dashboard-button" OnClick="Button2_Click" />
             </div>
         </div>
     </div>

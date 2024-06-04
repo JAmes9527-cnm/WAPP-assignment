@@ -67,7 +67,15 @@ namespace WebApplication2
                 }
                 else if (type == "tutor")
                 {
-                    Response.Redirect("tutorDashboard.aspx");
+                    if(Class1.GetUserVerified(Convert.ToInt32(Session["userID"].ToString())) == 1)
+                    {
+                        Response.Redirect("tutorDashboard.aspx");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('You must be verified to access user dashboard.')</script>");
+                    }
+                    
                 }
                 else if (type == "admin")
                 {

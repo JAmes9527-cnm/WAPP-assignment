@@ -89,8 +89,9 @@
             <p><asp:Label ID="lblCreatedAt" runat="server" Text=""></asp:Label></p>
         </div>
         <asp:PlaceHolder ID="quiz_buttons" Visible="false" runat="server">
-        <asp:Button ID="AttemptQuizBtn" Text="Attemp quiz" OnClick="AttemptQuizBtn_Click" runat="server" Visible="false" />
-        <asp:Button ID="EditQuizBtn" runat="server" OnClick="EditQuizBtn_Click" Visible="false" />
+        <asp:Button ID="AttemptQuizBtn" Text="Attemp quiz" OnClick="AttemptQuizBtn_Click" CssClass="btn" runat="server" Visible="false" />
+        <asp:Button ID="EditQuizBtn" runat="server" OnClick="EditQuizBtn_Click" CssClass="btn" Visible="false" />
+            <asp:Button ID="CheckResult" Text="Check Result" runat="server" CssClass="btn"  OnClick="CheckResult_Click" Visible="true" />
     </asp:PlaceHolder>
     </div>
     

@@ -46,6 +46,43 @@ namespace WebApplication2
             return username;
         }
 
+        public static int GetUserVerified(int userID)
+        {
+            int Verified = 0;
+
+            // Get the connection string from web.config
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            // Create a SQL connection
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                // Open the connection
+                con.Open();
+
+                // Define the SQL query to select the username for the given userID
+                string query = "SELECT Verified FROM userTable WHERE UserID = @UserID";
+
+                // Create a SQL command with parameters
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    // Add parameter to the command
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+
+                    // Execute the command and get the username
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Verified = Convert.ToInt32(reader["Verified"]);
+                    }
+
+                    // Close the reader
+                    reader.Close();
+                }
+            }
+
+            return Verified;
+        }
+
         public static int GetPostNo(int TopicID)
         {
             int count = 0;
